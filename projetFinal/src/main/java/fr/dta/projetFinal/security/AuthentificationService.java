@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.dta.projetFinal.enumRole.EnumRole;
+import fr.dta.projetFinal.enums.EnumRole;
 import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.service.MyUserService;
 
@@ -26,8 +26,8 @@ public class AuthentificationService implements UserDetailsService{
 	private MyUserService myuserservice;
 	
 	@Override
-	public UserDetails loadUserByUsername(final String username) {
-		Optional<MyUser> option = myuserservice.findOneByLogin(username);
+	public UserDetails loadUserByUsername(final String login) {
+		Optional<MyUser> option = myuserservice.findBylogin(login);
 		if (option.isPresent()) {
 			MyUser user = option.get();
 			List<GrantedAuthority> rules = this.getUserCredentials(user);

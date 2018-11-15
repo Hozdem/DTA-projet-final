@@ -36,9 +36,17 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public Optional<MyUser> greeting(@PathVariable long id)
 	{
         return myUserService.findById(id);
+    }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/findUser/{login}")
+    public Optional<MyUser> findBylogin(@PathVariable String login)
+	{
+        return myUserService.findBylogin(login);
     }
 	
 

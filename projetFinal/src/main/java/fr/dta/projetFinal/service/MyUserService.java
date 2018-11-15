@@ -3,6 +3,9 @@ package fr.dta.projetFinal.service;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +21,11 @@ public class MyUserService
 
 	private List<MyUser> users;
 	
-	// a implémenter
-	public Optional<MyUser> findOneByLogin(String username)
+	
+	public Optional<MyUser> findBylogin(String login)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return myUserRepository.findByLogin(login);
+		
 	}
 	
 	public MyUser insertMyUser(MyUser user)
