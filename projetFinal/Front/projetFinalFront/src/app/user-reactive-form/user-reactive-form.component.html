@@ -1,0 +1,7 @@
+<h1>Entrer un nouvel utilisateur</h1>
+<form  [formGroup]='userForm' (ngSubmit) = "onSubmit()">
+  Nom: <input type="text" id="nom" name="nom" formControlName="login" /><br>
+  Password: <input type="password" id="password" name="password" formControlName="password" /><br>
+  <button type='submit' [disabled]='!userForm.valid'>Enregistrer</button>
+</form>
+

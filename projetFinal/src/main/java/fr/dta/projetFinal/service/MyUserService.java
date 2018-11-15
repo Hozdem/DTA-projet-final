@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import fr.dta.projetFinal.model.MyUser;
 
+
 @Service
 public class MyUserService
 {

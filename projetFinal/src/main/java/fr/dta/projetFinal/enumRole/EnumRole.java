@@ -18,6 +18,4 @@ public enum EnumRole {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
 }

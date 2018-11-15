@@ -17,10 +17,8 @@ public class MyUser
 	@Column
 	private String password;
 	
-
-	@Enumerated(EnumType.STRING)
 	@Column
-	private EnumRole role;
+	private String role;
 	
 	
 	public MyUser()
@@ -32,7 +30,7 @@ public class MyUser
 	{
 		this.login = login;
 		this.password = password;
-		this.role = EnumRole.ROLE_USER;
+		this.role = EnumRole.ROLE_USER.getRole();
 	}
 
 	public long getId()
@@ -65,12 +63,12 @@ public class MyUser
 		this.password = password;
 	}
 
-	public EnumRole getRole()
+	public String getRole()
 	{
 		return role;
 	}
 
-	public void setRole(EnumRole role)
+	public void setRole(String role)
 	{
 		this.role = role;
 	}

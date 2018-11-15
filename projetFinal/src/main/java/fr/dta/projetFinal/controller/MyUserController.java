@@ -18,7 +18,7 @@ import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.repository.MyUserRepository;
 
 @RestController
-@RequestMapping("/api/MyUser")
+@RequestMapping("/api/MyUsers")
 public class MyUserController
 {
 
