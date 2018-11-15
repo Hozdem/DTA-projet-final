@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.repository.MyUserRepository;
+import fr.dta.projetFinal.service.MyUserService;
 
 @RestController
 @RequestMapping("/api/MyUsers")
@@ -23,20 +25,20 @@ public class MyUserController
 {
 
 	@Autowired
-	MyUserRepository myuserrepos;
+	MyUserService myUserService;
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
     public List<MyUser> greeting()
 	{
-        return (List<MyUser>) myuserrepos.findAll();
+        return myUserService.findAll();
     }
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
     public Optional<MyUser> greeting(@PathVariable long id)
 	{
-        return myuserrepos.findById(id);
+        return myUserService.findById(id);
     }
 	
 
@@ -44,7 +46,7 @@ public class MyUserController
 	@PostMapping("/addMyUser")
     public MyUser insertMyUser(@RequestBody MyUser user)
 	{
-        return myuserrepos.save(user);
+        return myUserService.insertMyUser(user);
     }
 	
 
@@ -52,7 +54,7 @@ public class MyUserController
 	@PutMapping("/updateMyUser")
     public MyUser updateMyUser(@RequestBody MyUser user)
 	{
-		return myuserrepos.save(user);
+		return myUserService.insertMyUser(user);
     }
 	
 
@@ -60,7 +62,6 @@ public class MyUserController
 	@DeleteMapping("/deleteMyUser/{id}")
     public void deleteMyUser(@PathVariable long id)
 	{
-		myuserrepos.deleteById(id);
+		myUserService.deleteById(id);
     }
-	
 }
