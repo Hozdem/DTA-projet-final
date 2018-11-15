@@ -25,8 +25,8 @@ public class AuthentificationService implements UserDetailsService{
 	private MyUserService myuserservice;
 	
 	@Override
-	public UserDetails loadUserByUsername(final String username) {
-		Optional<MyUser> option = myuserservice.findOneByLogin(username);
+	public UserDetails loadUserByUsername(final String login) {
+		Optional<MyUser> option = myuserservice.findBylogin(login);
 		if (option.isPresent()) {
 			MyUser user = option.get();
 			List<GrantedAuthority> rules = this.getUserCredentials(user);

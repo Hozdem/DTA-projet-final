@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  */
 
-@SpringBootApplication(scanBasePackages = { "fr.dta" }) 
+@SpringBootApplication
 @EntityScan(basePackages="fr.dta") 
 @EnableJpaRepositories(basePackages="fr.dta") 
 @EnableJpaAuditing
