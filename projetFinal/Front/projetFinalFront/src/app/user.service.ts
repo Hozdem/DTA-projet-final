@@ -17,7 +17,6 @@ export class UserService {
 
   addUser(user: MyUser)
   {
-    console.log(this.url);
     this.http.post(this.url + '/addMyUser',user, this.httpOptions).subscribe(() => this.router.navigate(['/addUser']));
   }
 }

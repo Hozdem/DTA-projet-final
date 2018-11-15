@@ -15,8 +15,6 @@ public class MyUserService
 {
 	@Autowired
 	MyUserRepository myUserRepository;
-
-	private List<MyUser> users;
 	
 	// a implémenter
 	public Optional<MyUser> findOneByLogin(String username)

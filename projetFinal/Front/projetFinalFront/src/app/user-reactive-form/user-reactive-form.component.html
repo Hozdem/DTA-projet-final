@@ -1,7 +1,74 @@
 <h1>Entrer un nouvel utilisateur</h1>
 <form  [formGroup]='userForm' (ngSubmit) = "onSubmit()">
-  Nom: <input type="text" id="nom" name="nom" formControlName="login" /><br>
-  Password: <input type="password" id="password" name="password" formControlName="password" /><br>
-  <button type='submit' [disabled]='!userForm.valid'>Enregistrer</button>
+      <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input type="text" pInputText placeholder="Pseudo" formControlName="login">         
+          </div>
+      </div>
+  <br>
+
+  <input type="password" pPassword placeholder="Password" formControlName="password"/>
+  <br><br>
+  
+  <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input type="text" pInputText placeholder="Nom" formControlName="nom">         
+          </div>
+      </div>
+  </div>
+  <br>
+
+  <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input type="text" pInputText placeholder="Prenom" formControlName="prenom">         
+          </div>
+      </div>
+  </div>
+
+  <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input type="text" pInputText placeholder="Rôle" formControlName="role">         
+          </div>
+      </div>
+  </div>
+  <br>
+
+  <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">@</span>
+          <input type="email" pInputText placeholder="Email" formControlName="email">     
+      </div>
+  </div>
+  <br>
+
+  <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+          <input type="text" pInputText placeholder="Adresse" formControlName="adresse">     
+      </div>
+  </div>
+  <br>
+
+  <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+          <input type="text" pInputText placeholder="Ville" formControlName="ville">     
+      </div>
+  </div>
+  <br>
+  
+
+  <p-inputMask  formControlName="codePostal" placeholder="Code postal" mask="99999"></p-inputMask>
+  <br>  <br>
+
+  <p-inputMask formControlName="numTel" placeholder="Téléphone" mask="99-99-99-99-99"></p-inputMask>
+  <br><br>  
+  
+  <button type='submit'>Enregistrer</button>
 </form>
 

@@ -15,6 +15,11 @@ import { UserReactiveFormComponent } from './user-reactive-form/user-reactive-fo
 
 import {HttpClientModule} from '@angular/common/http';
 
+// primeNG
+import {AccordionModule} from 'primeng/accordion';
+import {PasswordModule} from 'primeng/password';
+import {InputMaskModule} from 'primeng/inputmask';
+
 const route: Routes = 
 [
   {path: 'addUser', component: UserReactiveFormComponent}
@@ -31,7 +36,10 @@ const route: Routes =
     RouterModule.forRoot(route),
     FormsModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AccordionModule,
+    PasswordModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-package fr.dta.projetFinal.enumRole;
+package fr.dta.projetFinal.enums;
 
 public enum EnumRole {
 	ROLE_ADMIN("ROLE_ADMIN"),
