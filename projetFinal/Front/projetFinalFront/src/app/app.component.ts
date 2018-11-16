@@ -22,15 +22,15 @@ export class AppComponent {
     ];
 
     this.visiteur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connection'}]}
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connexion'}]}
     ];
 
     this.utilisateur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connection'}]}
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connexion'}]}
     ];
 
     this.administrateur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connection'}]}
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connexion'}]}
     ];
   }
 }
