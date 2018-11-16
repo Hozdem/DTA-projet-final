@@ -42,13 +42,20 @@ public class MyUserController
     }
 	
 	@CrossOrigin(origins = "*")
+	@GetMapping("/connexion")
+    public MyUser verifPassword(@RequestBody MyUser user)
+	{
+        //return myUserService.verifPassword(user);
+		return user;
+    }
+	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/findUser/{login}")
     public Optional<MyUser> findBylogin(@PathVariable String login)
 	{
         return myUserService.findBylogin(login);
     }
 	
-
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addMyUser")
     public MyUser insertMyUser(@RequestBody MyUser user)

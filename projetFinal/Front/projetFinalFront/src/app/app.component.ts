@@ -22,7 +22,7 @@ export class AppComponent {
     ];
 
     this.visiteur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connection'}]}
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connexion', url: '/connexion'}]}
     ];
 
     this.utilisateur = [

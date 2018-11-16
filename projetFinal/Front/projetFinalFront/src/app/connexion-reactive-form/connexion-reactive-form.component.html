@@ -1,0 +1,14 @@
+<form [formGroup]='userForm' (ngSubmit)="onSubmit()">
+    <div class="ui-g ui-g-md-12 ui-g-sm-12">
+      <div class="ui-md-5 ui-sm-5"></div>
+      <div class="ui-md-1 ui-sm-1">
+        <label>Login</label>
+        <input type="text" pInputText placeholder="Login" formControlName="login">
+
+        <label>Password</label>
+        <input type="text" pInputText placeholder="Password" formControlName="password">
+
+        <button pButton type="submit" label="Connexion" class="ui-button-raised"></button>
+      </div>
+    </div>
+</form>

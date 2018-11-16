@@ -23,17 +23,22 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import {ChipsModule} from 'primeng/chips';
+import {ButtonModule} from 'primeng/button';
+import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
 
 const route: Routes = 
 [
   {path: 'addUser', component: UserReactiveFormComponent},
+  {path: 'connexion', component: ConnexionReactiveFormComponent},
   {path: 'updateUser/:id', component: UserReactiveFormComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserReactiveFormComponent
+    UserReactiveFormComponent,
+    ConnexionReactiveFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,9 @@ const route: Routes =
     DropdownModule,
     TabMenuModule,
     BrowserAnimationsModule,
-    PanelMenuModule
+    PanelMenuModule,
+    ChipsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
