@@ -15,7 +15,6 @@ export class ConnexionReactiveFormComponent implements OnInit {
     password: ['']
   });
 
-
   constructor(private fb: FormBuilder, private co: ConnexionService) { }
 
   ngOnInit() {
@@ -24,7 +23,14 @@ export class ConnexionReactiveFormComponent implements OnInit {
 
   onSubmit(){
     let user = new MyUser(this.userForm.value.login , this.userForm.value.password, 'ROLE_USER', 'nom', 'prenom','email', 'adresse', 'ville', '12345');
-    this.co.connexion(user);
+    this.co.connexion(user).subscribe(b => {
+      if(b)
+      {
+        localStorage.setItem("login", this.userForm.value.login);
+        localStorage.setItem("password", this.userForm.value.password);
+        localStorage.setItem("role", this.userForm.value.role);
+      }
+    });
   }
 
 }
