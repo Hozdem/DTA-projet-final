@@ -16,7 +16,7 @@ export class AppComponent {
 
   constructor() {
     this.profil = [
-      { label: 'Acceuil', icon: 'fa fa-fw fa-bar-chart'},
+      { label: 'Accueil', icon: 'fa fa-fw fa-bar-chart'},
       { label: 'Produit', icon: 'fa fa-fw fa-calendar' },
       { label: 'Panier', icon: 'fa fa-fw fa-book' }
     ];
