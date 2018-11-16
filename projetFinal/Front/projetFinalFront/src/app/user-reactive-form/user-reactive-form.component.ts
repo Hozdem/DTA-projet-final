@@ -2,17 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MyUser } from '../my-user';
 import { UserService } from '../user.service';
+import {SelectItem} from 'primeng/api';
+
+
+interface Role {
+  name: string;
+}
 
 @Component({
   selector: 'app-user-reactive-form',
   templateUrl: './user-reactive-form.component.html',
   styleUrls: ['./user-reactive-form.component.css']
 })
+
+
 export class UserReactiveFormComponent implements OnInit {
   userForm = this.fb.group({
     login: ['', Validators.required],
     password: ['', Validators.required],
-		role: ['', Validators.required],
+		role: [{name: ""}, Validators.required],
 		nom: ['', Validators.required],
 		prenom: ['', Validators.required],
 		email: ['', Validators.required],
@@ -22,8 +30,15 @@ export class UserReactiveFormComponent implements OnInit {
 		numTel: ['']
   });
 
+  
+
+  roles : SelectItem[];
 
   constructor(private fb: FormBuilder, private serviceUser: UserService) { 
+    this.roles = [
+      {label: "ROLE_USER", value: {id: 1, name:"ROLE_USER"}},
+      {label: "ROLE_ADMIN", value: {id: 2, name:"ROLE_ADMIN"}}
+    ];
   }
 
   ngOnInit() {

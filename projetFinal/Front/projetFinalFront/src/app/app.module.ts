@@ -17,9 +17,12 @@ import {HttpClientModule} from '@angular/common/http';
 
 // primeNG
 import {AccordionModule} from 'primeng/accordion';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PasswordModule} from 'primeng/password';
 import {InputMaskModule} from 'primeng/inputmask';
 import { ProduitComponent } from './produit/produit.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 const route: Routes = 
 [
@@ -41,7 +44,10 @@ const route: Routes =
     HttpClientModule,
     AccordionModule,
     PasswordModule,
-    InputMaskModule
+    InputMaskModule,
+    DropdownModule,
+    TabMenuModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
