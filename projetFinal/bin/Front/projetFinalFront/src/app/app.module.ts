@@ -19,7 +19,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {AccordionModule} from 'primeng/accordion';
 import {PasswordModule} from 'primeng/password';
 import {InputMaskModule} from 'primeng/inputmask';
-import { ProduitComponent } from './produit/produit.component';
 
 const route: Routes = 
 [
@@ -29,8 +28,7 @@ const route: Routes =
 @NgModule({
   declarations: [
     AppComponent,
-    UserReactiveFormComponent,
-    ProduitComponent
+    UserReactiveFormComponent
   ],
   imports: [
     BrowserModule,
