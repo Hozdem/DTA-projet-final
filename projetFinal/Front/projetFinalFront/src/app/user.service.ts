@@ -26,7 +26,7 @@ export class UserService {
     this.http.post(this.url + '/addMyUser',user, this.httpOptions).subscribe(() => this.router.navigate(['/addUser']));
   }
 
-  updateRace(user: MyUser)
+  updateUser(user: MyUser)
   {
     this.http.put<MyUser>(this.url +'/updateMyUser/' ,user,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }

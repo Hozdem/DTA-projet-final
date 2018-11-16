@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MyUser } from '../my-user';
 import { UserService } from '../user.service';
-import {SelectItem} from 'primeng/api';
-import { Password } from 'primeng/password';
-import { EmailValidator } from '@angular/forms'; 
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,50 +17,41 @@ export class AddUserReactiveFormComponent implements OnInit {
     verificationPassword: [''],
 		nom: ['', Validators.required],
 		prenom: ['', Validators.required],
-		email: ['', [Validators.required, EmailValidator]],
+		email: ['', [Validators.required, Validators.email]],
 		adresse: ['', Validators.required],
 		ville: ['', Validators.required],
-		codePostal: ['', Validators.required],
-		numTel: ['']
+		codePostal: ['', Validators.compose([Validators.minLength(5),Validators.maxLength(5), Validators.required])],
+		numTel: ['', Validators.maxLength(10)]
   }, {validator: this.verifierPassword('password', 'verificationPassword')});
   
   
   add: boolean = false;
   id: number;
-  ancienPassword: string;
   
   // le num de tel doit avoir une taill 10 fixe
   // le code postal doit avoir une taille 5
-  // test de verification de lemail
 
   constructor(private fb: FormBuilder, private serviceUser: UserService, private activatedRoute: ActivatedRoute) { 
+    this.userForm.setValue({
+      login: 'test',
+      password: '1234',
+      verificationPassword: '1234',
+      nom: 'test',
+      prenom: 'test',
+      email: 'email@email',
+      adresse: 'zegzg',
+      ville: 'zegzg',
+      codePostal: '', 
+      numTel: '0000000000'
+    }) ;
   }
   
   ngOnInit() {
-    if (this.activatedRoute.snapshot.paramMap.get('id') === null) {
-      // en cas dajout d'utilisateur
-      this.add = true;
-    }
-    else {
-      // en cas de modification dutilisateur
-      this.add  = false;
-      this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-
-      // recuperation des poneys de la course et du trie des poneys ny participants pas
-      /*this.serviceUser.getUser(this.id).subscribe(u => {
-
-        this.userForm.setValue({
-          location: r.location,
-          date: r.date,
-          ponies: r.ponies
-        });
-      });*/
-    }
+    
   }
   
   onSubmit()
   {
-    // en cas d'ajout
     let leRole = "ROLE_USER";
     let user = new MyUser(this.userForm.value.login, this.userForm.value.password, leRole, this.userForm.value.nom
       , this.userForm.value.prenom, this.userForm.value.email, this.userForm.value.adresse, this.userForm.value.ville

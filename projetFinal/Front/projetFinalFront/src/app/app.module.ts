@@ -21,6 +21,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import {ButtonModule} from 'primeng/button';
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
@@ -50,7 +51,8 @@ const route: Routes =
     DropdownModule,
     TabMenuModule,
     BrowserAnimationsModule,
-    PanelMenuModule
+    PanelMenuModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
