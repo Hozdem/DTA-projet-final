@@ -33,6 +33,17 @@ public class MyUserService
 		
 		return myUserRepository.save(user);
 	}
+	
+	public boolean verifPassword(MyUser args)
+	{
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		Optional<MyUser> userOption = findBylogin(args.getLogin());
+		if(userOption.isPresent()) {
+			MyUser user = userOption.get();
+			return passwordEncoder.matches(args.getPassword(),user.getPassword());
+		}
+		return false;
+	}
 
 	public List<MyUser> findAll() {
 		// TODO Auto-generated method stub
