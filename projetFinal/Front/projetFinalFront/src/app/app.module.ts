@@ -25,18 +25,21 @@ import {ButtonModule} from 'primeng/button';
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 const route: Routes = 
 [
   {path: 'addUser', component: AddUserReactiveFormComponent},
-  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent}
+  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent},
+  {path: 'deleteUser/:id', component: DeleteUserComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     AddUserReactiveFormComponent,
-    UpdateUserReactiveFormComponent
+    UpdateUserReactiveFormComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,
