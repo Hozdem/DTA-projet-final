@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +8,30 @@ import {MenuItem} from 'primeng/api';
 })
 export class AppComponent {
   title = 'projetFinalFront';
+  
   visiteur: MenuItem[];
-  constructor(){
+  utilisateur: MenuItem[];
+  administrateur: MenuItem[];
+  profil: MenuItem[];
+
+  constructor() {
+    this.profil = [
+      { label: 'Acceuil', icon: 'fa fa-fw fa-bar-chart'},
+      { label: 'Produit', icon: 'fa fa-fw fa-calendar' },
+      { label: 'Panier', icon: 'fa fa-fw fa-book' }
+    ];
+
     this.visiteur = [
-      {label: 'Acceuil', icon: 'fa fa-fw fa-bar-chart'},
-      {label: 'Produit', icon: 'fa fa-fw fa-calendar'},
-      {label: 'Mon profil', icon: 'fa fa-fw fa-book'},
-      {label: 'Panier', icon: 'fa fa-fw fa-book'}
-  ];
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connection'}]}
+    ];
+
+    this.utilisateur = [
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connection'}]}
+    ];
+
+    this.administrateur = [
+      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connection'}]}
+    ];
   }
 }
+

@@ -22,6 +22,7 @@ import {PasswordModule} from 'primeng/password';
 import {InputMaskModule} from 'primeng/inputmask';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 const route: Routes = 
 [
@@ -45,7 +46,8 @@ const route: Routes =
     InputMaskModule,
     DropdownModule,
     TabMenuModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PanelMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
