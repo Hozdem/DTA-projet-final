@@ -21,6 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PasswordModule} from 'primeng/password';
 import {InputMaskModule} from 'primeng/inputmask';
 import {DropdownModule} from 'primeng/dropdown';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 const route: Routes = 
 [
@@ -43,6 +44,7 @@ const route: Routes =
     PasswordModule,
     InputMaskModule,
     DropdownModule,
+    TabMenuModule,
     BrowserAnimationsModule
   ],
   providers: [],
