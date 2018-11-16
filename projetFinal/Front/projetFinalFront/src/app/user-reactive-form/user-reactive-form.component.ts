@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import {SelectItem} from 'primeng/api';
 import { Password } from 'primeng/password';
 import { EmailValidator } from '@angular/forms'; 
+import { ActivatedRoute } from '@angular/router';
 
 
 interface Role {
@@ -36,10 +37,11 @@ export class UserReactiveFormComponent implements OnInit {
   }, {validator: this.verifierPassword('password', 'verificationPassword')});
   
   
-  
+  add: boolean = false;
+  id: number;
   roles : SelectItem[];
   
-  constructor(private fb: FormBuilder, private serviceUser: UserService) { 
+  constructor(private fb: FormBuilder, private serviceUser: UserService, private activatedRoute: ActivatedRoute) { 
     this.roles = [
       {label: "ROLE_USER", value: {id: 1, name:"ROLE_USER"}},
       {label: "ROLE_ADMIN", value: {id: 2, name:"ROLE_ADMIN"}}
@@ -47,6 +49,25 @@ export class UserReactiveFormComponent implements OnInit {
   }
   
   ngOnInit() {
+    if (this.activatedRoute.snapshot.paramMap.get('id') === null) {
+      // en cas dajout d'utilisateur
+      this.add = true;
+    }
+    else {
+      // en cas de modification dutilisateur
+      this.add  = false;
+      this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+
+      // recuperation des poneys de la course et du trie des poneys ny participants pas
+      /*this.serviceUser.getUser(this.id).subscribe(u => {
+
+        this.userForm.setValue({
+          location: r.location,
+          date: r.date,
+          ponies: r.ponies
+        });
+      });*/
+    }
   }
   
   onSubmit()

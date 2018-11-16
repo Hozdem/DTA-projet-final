@@ -25,7 +25,8 @@ import {TabMenuModule} from 'primeng/tabmenu';
 
 const route: Routes = 
 [
-  {path: 'addUser', component: UserReactiveFormComponent}
+  {path: 'addUser', component: UserReactiveFormComponent},
+  {path: 'updateUser/:id', component: UserReactiveFormComponent}
 ];
 
 @NgModule({
