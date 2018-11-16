@@ -18,9 +18,11 @@ import {AccordionModule} from 'primeng/accordion';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PasswordModule} from 'primeng/password';
 import {InputMaskModule} from 'primeng/inputmask';
+import { ProduitComponent } from './produit/produit.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
 import {ButtonModule} from 'primeng/button';
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
@@ -29,6 +31,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 const route: Routes = 
 [
+  {path: 'connexion', component: ConnexionReactiveFormComponent},
   {path: 'addUser', component: AddUserReactiveFormComponent},
   {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent},
   {path: 'deleteUser/:id', component: DeleteUserComponent}
@@ -37,6 +40,7 @@ const route: Routes =
 @NgModule({
   declarations: [
     AppComponent,
+    ConnexionReactiveFormComponent,
     AddUserReactiveFormComponent,
     UpdateUserReactiveFormComponent,
     DeleteUserComponent
