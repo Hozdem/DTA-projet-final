@@ -22,24 +22,30 @@ import { ProduitComponent } from './produit/produit.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
 import {ButtonModule} from 'primeng/button';
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
 import { ProduitDetailsComponent } from './produit-details/produit-details.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 const route: Routes = 
 [
+  {path: 'connexion', component: ConnexionReactiveFormComponent},
   {path: 'addUser', component: AddUserReactiveFormComponent},
-  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent}
+  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent},
+  {path: 'deleteUser/:id', component: DeleteUserComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConnexionReactiveFormComponent,
     AddUserReactiveFormComponent,
     UpdateUserReactiveFormComponent,
-    ProduitDetailsComponent
+    ProduitDetailsComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,

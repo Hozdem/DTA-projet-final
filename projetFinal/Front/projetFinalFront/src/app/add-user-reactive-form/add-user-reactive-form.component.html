@@ -1,4 +1,4 @@
-<h1>Entrer un nouvel utilisateur</h1>
+<h1>Ajout d'un nouvel utilisateur</h1>
 <form [formGroup]='userForm' (ngSubmit)="onSubmit()">
     <div class="ui-g ui-g-md-12 ui-g-sm-12">
         <div class="ui-md-5 ui-sm-5"></div>
@@ -10,7 +10,7 @@
             <br>
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
-                <input type="password" pPassword placeholder="Nouveau password" formControlName="password" />
+                <input type="password" pPassword placeholder="Password" formControlName="password" />
             </div>
             <br>
             <div class="ui-inputgroup">
@@ -53,7 +53,7 @@
                 <input type="text" pInputText placeholder="numTel" formControlName="numTel">
             </div>
             <br>
-            <div class="ui-inputgroup centrer">
+            <div class="ui-inputgroup">
                 <button [disabled]='!userForm.valid' pButton type="submit" label="Enregistrer" class="ui-button-raised"></button>
             </div>
         </div>
