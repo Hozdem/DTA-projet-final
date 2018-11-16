@@ -1,0 +1,19 @@
+{{produit.nomProd}}
+<br>
+<ul *ngIf="produit.genreProd.length > 0">
+    <li *ngFor="let g of produit.genreProd">
+        {{g}}
+    </li>
+</ul>
+<br>
+<ul *ngIf="produit.supportProd.length > 0">
+  <li *ngFor="let s of produit.supportProd">
+      {{s}}
+  </li>
+</ul>
+<br>
+{{produit.genreprod}}
+<br>
+{{produit.supportProd}}
+<br>
+{{produit.prixProd}}

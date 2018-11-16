@@ -26,6 +26,7 @@ import {ButtonModule} from 'primeng/button';
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
+import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 
 const route: Routes = 
 [
@@ -37,7 +38,8 @@ const route: Routes =
   declarations: [
     AppComponent,
     AddUserReactiveFormComponent,
-    UpdateUserReactiveFormComponent
+    UpdateUserReactiveFormComponent,
+    ProduitDetailsComponent
   ],
   imports: [
     BrowserModule,
