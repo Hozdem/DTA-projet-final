@@ -11,8 +11,6 @@ import { RouterModule, Routes, Router} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { UserReactiveFormComponent } from './user-reactive-form/user-reactive-form.component';
-
 import {HttpClientModule} from '@angular/common/http';
 
 // primeNG
@@ -24,16 +22,20 @@ import {DropdownModule} from 'primeng/dropdown';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
 
+import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
+import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
+
 const route: Routes = 
 [
-  {path: 'addUser', component: UserReactiveFormComponent},
-  {path: 'updateUser/:id', component: UserReactiveFormComponent}
+  {path: 'addUser', component: AddUserReactiveFormComponent},
+  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserReactiveFormComponent
+    AddUserReactiveFormComponent,
+    UpdateUserReactiveFormComponent
   ],
   imports: [
     BrowserModule,
