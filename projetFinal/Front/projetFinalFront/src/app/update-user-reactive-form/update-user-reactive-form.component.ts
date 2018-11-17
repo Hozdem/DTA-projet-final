@@ -26,8 +26,13 @@ export class UpdateUserReactiveFormComponent implements OnInit {
   
  
   id: number;
+  loginAffichage: string;
 
   constructor(private fb: FormBuilder, private serviceUser: UserService, private activatedRoute: ActivatedRoute) { 
+    
+  }
+
+  ngOnInit() {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.serviceUser.getUser(this.id).subscribe(u => {
       this.userForm.setValue({
@@ -43,10 +48,9 @@ export class UpdateUserReactiveFormComponent implements OnInit {
         codePostal: u.codePostal, 
         numTel: u.numTel
       }) ;
+      
+      this.loginAffichage = u.login;
     });
-  }
-
-  ngOnInit() {
   }
 
   onSubmit()
@@ -55,6 +59,12 @@ export class UpdateUserReactiveFormComponent implements OnInit {
     let user = new MyUser(this.userForm.value.login, this.userForm.value.password, leRole, this.userForm.value.nom
       , this.userForm.value.prenom, this.userForm.value.email, this.userForm.value.adresse, this.userForm.value.ville
       , this.userForm.value.codePostal, this.userForm.value.numTel);
-    this.serviceUser.updateUser(user);
+    user.id = this.id;
+    this.serviceUser.verifierLoginAndPassword(this.id, this.userForm.value.ancienPassword).subscribe( b=> {
+      if(b === true)
+      {
+        this.serviceUser.updateUser(user);
+      }
+    });
   }
 }

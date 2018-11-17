@@ -24,7 +24,7 @@ export class UserService {
 
   addUser(user: MyUser)
   { 
-    this.http.post(this.url + '/addMyUser',user, this.httpOptions).subscribe(() => this.router.navigate(['/addUser']));
+    this.http.post(this.url + '/addMyUser',user, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
   updateUser(user: MyUser)
@@ -34,7 +34,12 @@ export class UserService {
 
   deleteUser(id: number)
   {
-    this.http.delete<MyUser>(this.url +'/updateMyUser/' + id,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.delete<MyUser>(this.url +'/deleteMyUser/' + id,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
+  }
+
+  verifierLoginAndPassword(id: number, password: string): Observable<Object>
+  {
+    return this.http.post(this.url + '/connexionAuto/' + id,password,  this.httpOptions);
   }
 
   verifierPassword(passwordKey: string, passwordConfirmationKey: string)

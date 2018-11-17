@@ -47,10 +47,6 @@ public class MyUser
 		
 	}
 
-	public MyUser(String login, String password, String role, String nom, String prenom, String email,
-			String adresse, String ville, String codePostal) {
-		this(login, password, role, nom, prenom, email, adresse, ville, codePostal, "");
-	}
 	
 	
 
@@ -69,6 +65,10 @@ public class MyUser
 		this.numTel = numTel;
 	}
 
+	public MyUser(String login, String password, String role, String nom, String prenom, String email,
+			String adresse, String ville, String codePostal) {
+		this(login, password, role, nom, prenom, email, adresse, ville, codePostal, "");
+	}
 
 
 	public long getId()

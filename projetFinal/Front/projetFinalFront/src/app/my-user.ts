@@ -22,6 +22,7 @@ export class MyUser {
 		this.adresse = adresse;
 		this.ville = ville;
 		this.codePostal = codePostal;
-		this.numTel = this.numTel === undefined? "" : numTel;
+		
+		numTel === undefined ? this.numTel="" : this.numTel=numTel;
 	}
 }
