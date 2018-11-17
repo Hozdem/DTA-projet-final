@@ -49,6 +49,13 @@ public class MyUserController
     }
 	
 	@CrossOrigin(origins = "*")
+	@PostMapping("/connexionAuto/{id}")
+    public boolean verifierConnexionAuto(@PathVariable long id, @RequestBody String password)
+	{
+        return myUserService.verifPassword(id, password);
+    }
+	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/findUser/{login}")
     public Optional<MyUser> findBylogin(@PathVariable String login)
 	{
@@ -67,7 +74,7 @@ public class MyUserController
 	@PutMapping("/updateMyUser")
     public MyUser updateMyUser(@RequestBody MyUser user)
 	{
-		return myUserService.insertMyUser(user);
+		return myUserService.updateMyUser(user);
     }
 	
 
