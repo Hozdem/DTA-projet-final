@@ -10,12 +10,17 @@ export class MenuReactiveFormComponent implements OnInit {
 
   menu: MenuItem[];
 
+<<<<<<< HEAD
   constructor() {}
 
+=======
+  constructor() { }
+ 
+>>>>>>> fe9b7fd5cbef94718325dee6a861cb18230fc66e
   ngOnInit() {
     if (localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null && localStorage.getItem("roleVK") ==='ROLE_USER') {
       this.menu = [
-        { label: 'UTILISATEUR', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits' }, { label: 'Deconnxion' , url: '/deconnexion' }] }
+        { label: 'UTILISATEUR', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits' }, { label: 'Deconnexion' , url: '/deconnexion' }] }
       ];
     } else if (localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null && localStorage.getItem("roleVK") ==='ROLE_ADMIN') {
       this.menu = [
@@ -26,7 +31,5 @@ export class MenuReactiveFormComponent implements OnInit {
         { label: 'Mon profil', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits', url: '/' }, { label: 'Inscription', url: '/addUser' }, { label: 'Connexion', url: '/connexion' }] }
       ];
     }
-
   }
-
 }

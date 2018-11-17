@@ -35,8 +35,7 @@ export class ConnexionReactiveFormComponent implements OnInit {
         localStorage.setItem("passwordVK", b.password );
         localStorage.setItem("roleVK", b.role);
       }
+      this.router.navigate(['/addUser']);
     });
-    this.router.navigate(['/']);
   }
-
 }
