@@ -41,15 +41,17 @@ public class MyUserService
 		return myUserRepository.save(user);
 	}
 	
-	public boolean verifPassword(MyUser args)
+	public MyUser verifPassword(MyUser args)
 	{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Optional<MyUser> userOption = findBylogin(args.getLogin());
 		if(userOption.isPresent()) {
 			MyUser user = userOption.get();
-			return passwordEncoder.matches(args.getPassword(),user.getPassword());
+			if(passwordEncoder.matches(args.getPassword(),user.getPassword())) {
+				return user;
+			};
 		}
-		return false;
+		return null;
 	}
 	
 	public boolean verifPassword(long id, String password)

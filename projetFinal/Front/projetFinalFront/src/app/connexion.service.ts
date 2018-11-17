@@ -19,8 +19,7 @@ export class ConnexionService {
   bool: any;
   constructor(private http: HttpClient, private router: Router) { }
 
-  connexion(user: MyUser) : Observable<Object>{
-
+  connexion(user: MyUser) : Observable<any>{
     return this.http.post(this.url + '/connexion', user, this.httpOptions);
   }
 }

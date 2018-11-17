@@ -43,7 +43,7 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/connexion")
-    public boolean verifPassword(@RequestBody MyUser user)
+    public MyUser verifPassword(@RequestBody MyUser user)
 	{
         return myUserService.verifPassword(user);
     }
