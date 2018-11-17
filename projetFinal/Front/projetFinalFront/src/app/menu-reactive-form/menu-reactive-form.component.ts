@@ -10,7 +10,7 @@ export class MenuReactiveFormComponent implements OnInit {
 
   menu: MenuItem[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     if (localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null && localStorage.getItem("roleVK") ==='ROLE_USER') {

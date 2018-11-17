@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConnexionService } from '../connexion.service';
 import { MyUser } from '../my-user';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 import { UserService } from '../user.service';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-connection-reactive-form',
