@@ -29,6 +29,7 @@ import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
 import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { MenuComponent } from './menu/menu.component';
 
 const route: Routes = 
 [
@@ -45,7 +46,8 @@ const route: Routes =
     AddUserReactiveFormComponent,
     UpdateUserReactiveFormComponent,
     ProduitDetailsComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
