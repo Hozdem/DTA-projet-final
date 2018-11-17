@@ -8,29 +8,14 @@ import { MenuItem } from 'primeng/api';
 })
 export class AppComponent {
   title = 'projetFinalFront';
-  
-  visiteur: MenuItem[];
-  utilisateur: MenuItem[];
-  administrateur: MenuItem[];
-  profil: MenuItem[];
+
+  menuGlobal: MenuItem[];
 
   constructor() {
-    this.profil = [
+    this.menuGlobal = [
       { label: 'Accueil', icon: 'fa fa-fw fa-bar-chart'},
       { label: 'Produit', icon: 'fa fa-fw fa-calendar' },
       { label: 'Panier', icon: 'fa fa-fw fa-book' }
-    ];
-
-    this.visiteur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits', url: '/'},{ label: 'Inscription', url: '/addUser' },{ label: 'Connexion', url: '/connexion'}]}
-    ];
-
-    this.utilisateur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connexion'}]}
-    ];
-
-    this.administrateur = [
-      { label: 'Mon profil', icon: 'fa fa-fw fa-book' , items: [{ label: 'Les produits'},{ label: 'Inscription'},{ label: 'Connexion'}]}
     ];
   }
 }
