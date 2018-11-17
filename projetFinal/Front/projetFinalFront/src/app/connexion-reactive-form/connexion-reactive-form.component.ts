@@ -30,12 +30,13 @@ export class ConnexionReactiveFormComponent implements OnInit {
     this.co.connexion(user).subscribe(b => { console.log(b);
       if(b !== null)
       {
-        console.log(b.login);
         localStorage.setItem("loginVK", b.login  );
         localStorage.setItem("passwordVK", b.password );
         localStorage.setItem("roleVK", b.role);
+        this.router.navigate(['/']);
+      }else{
+        this.router.navigate(['/addUser']);
       }
-      this.router.navigate(['/addUser']);
     });
   }
 }
