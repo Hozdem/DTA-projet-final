@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.dta.projetFinal.enums.EnumRole;
+import fr.dta.projetFinal.enums.EnumRoles;
 import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.service.MyUserService;
 
@@ -39,10 +39,10 @@ public class AuthentificationService implements UserDetailsService{
 	private List<GrantedAuthority> getUserCredentials(MyUser user) {
 		 List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		 
-		 authorities.add(new SimpleGrantedAuthority(EnumRole.ROLE_USER.getRole()));
-		 if(user.getRole().equals(EnumRole.ROLE_ADMIN.getRole()))
+		 authorities.add(new SimpleGrantedAuthority(EnumRoles.ROLE_USER.getRole()));
+		 if(user.getRole().equals(EnumRoles.ROLE_ADMIN.getRole()))
 		 {
-			 authorities.add(new SimpleGrantedAuthority(EnumRole.ROLE_ADMIN.getRole()));
+			 authorities.add(new SimpleGrantedAuthority(EnumRoles.ROLE_ADMIN.getRole()));
 		 }
 		 
 		return authorities;

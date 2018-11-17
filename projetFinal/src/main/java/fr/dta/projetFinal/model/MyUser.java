@@ -3,7 +3,7 @@ package fr.dta.projetFinal.model;
 import javax.persistence.*;
 
 
-import fr.dta.projetFinal.enums.EnumRole;
+import fr.dta.projetFinal.enums.EnumRoles;
 
 @Entity
 public class MyUser
