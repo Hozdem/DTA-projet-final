@@ -26,15 +26,14 @@ export class ConnexionReactiveFormComponent implements OnInit {
 
   onSubmit(){
     let user = new MyUser(this.userForm.value.login , this.userForm.value.password, 'ROLE_USER', 'nom', 'prenom','email', 'adresse', 'ville', '12345');
-    this.co.connexion(user).subscribe(b => { console.log(b);
+    this.co.connexion(user).subscribe(b => {
       if(b !== null)
       {
-        console.log(b.login);
         localStorage.setItem("loginVK", b.login  );
         localStorage.setItem("passwordVK", b.password );
         localStorage.setItem("roleVK", b.role);
       }
-      this.router.navigate(['/addUser']);
+      this.router.navigate(['/']);
     });
   }
 }

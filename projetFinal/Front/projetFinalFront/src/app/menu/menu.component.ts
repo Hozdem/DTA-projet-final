@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,14 +10,28 @@ import { MenuItem } from 'primeng/api';
 export class MenuComponent implements OnInit {
 
   menuGlobal: MenuItem[];
-  constructor() { 
-    this.menuGlobal = [
-      { label: 'Accueil', icon: 'fa fa-fw fa-bar-chart'},
-      { label: 'Produit', icon: 'fa fa-fw fa-calendar' },
-      { label: 'Panier', icon: 'fa fa-fw fa-book' }
-    ];}
+  pageActuel: MenuItem;
+  constructor(private activatedRoute: ActivatedRoute) { 
+  }
 
   ngOnInit() {
+    this.menuGlobal = [
+      { label: 'Accueil', url: '/'},
+      { label: 'Produit' },
+      { label: 'Panier'}
+    ];
+    if(this.activatedRoute.snapshot.url.length === 0)
+    {
+      // on est sur la page d'accueil
+      this.pageActuel = this.menuGlobal[0];
+    }
+    else
+    {
+      /*if(this.activatedRoute.snapshot.url[0].path === 'rechercherProduit')
+      {
+          // on est dans la recherche de produit
+      }*/
+    }
   }
 
 }

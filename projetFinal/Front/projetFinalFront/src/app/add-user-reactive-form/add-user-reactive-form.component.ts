@@ -38,6 +38,9 @@ export class AddUserReactiveFormComponent implements OnInit {
     let user = new MyUser(this.userForm.value.login, this.userForm.value.password, leRole, this.userForm.value.nom
       , this.userForm.value.prenom, this.userForm.value.email, this.userForm.value.adresse, this.userForm.value.ville
       , this.userForm.value.codePostal, this.userForm.value.numTel);
+    localStorage.setItem("loginVK", user.login  );
+    localStorage.setItem("passwordVK", user.password );
+    localStorage.setItem("roleVK", user.role);
     this.serviceUser.addUser(user);
   }
 }

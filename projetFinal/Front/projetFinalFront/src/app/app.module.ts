@@ -28,10 +28,11 @@ import { ProduitDetailsComponent } from './produit-details/produit-details.compo
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { MenuComponent } from './menu/menu.component';
 import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
-import { ProduitComponent } from './produit/produit.component';
 import { MenuReactiveFormComponent } from './menu-reactive-form/menu-reactive-form.component';
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AdministrationReactiveFormComponent } from './administration-reactive-form/administration-reactive-form.component';
+import { AddProduitReactiveFormComponent } from './add-produit-reactive-form/add-produit-reactive-form.component';
 
 const route: Routes =
   [
@@ -41,6 +42,7 @@ const route: Routes =
     { path: 'addUser', component: AddUserReactiveFormComponent },
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
     { path: 'deleteUser/:id', component: DeleteUserComponent },
+    { path: 'administration', component: AdministrationReactiveFormComponent },
     { path: 'produit', component: ProduitDetailsComponent }
   ];
 
@@ -53,11 +55,12 @@ const route: Routes =
     ProduitDetailsComponent,
     DeleteUserComponent,
     MenuComponent,
-    ProduitComponent,
     ProduitDetailsComponent,
     MenuReactiveFormComponent,
     DeconnexionComponent,
-    AccueilComponent
+    AccueilComponent,
+    AdministrationReactiveFormComponent,
+    AddProduitReactiveFormComponent
   ],
   imports: [
     BrowserModule,

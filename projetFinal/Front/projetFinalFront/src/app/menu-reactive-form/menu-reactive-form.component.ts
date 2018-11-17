@@ -10,20 +10,50 @@ export class MenuReactiveFormComponent implements OnInit {
 
   menu: MenuItem[];
 
+  labelProduit = 'Les produits';
+  urlProduit = '/';
+
+  labelDeconnexion = 'Deconnexion';
+  urlDeconnexion = '/deconnexion';
+
   constructor() { }
  
   ngOnInit() {
-    if (localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null && localStorage.getItem("roleVK") ==='ROLE_USER') {
+    let visiteur = false;
+    if(localStorage.getItem("loginVK") !==null)
+    {
+      if(localStorage.getItem("passwordVK") !==null)
+      {
+        if(localStorage.getItem("roleVK") ==='ROLE_USER')
+        {
+          this.menu = [
+            { label: 'UTILISATEUR', items: [{ label: this.labelProduit, url: this.urlProduit }, { label: this.labelDeconnexion , url: this.urlDeconnexion }] }
+          ];
+        }
+        else if(localStorage.getItem("roleVK") ==='ROLE_ADMIN')
+        {
+          this.menu = [
+            { label: 'ADMIN', items: [{ label: this.labelProduit, url: this.urlProduit }, {label: 'Administrations', url: 'administration' }, { label: this.labelDeconnexion , url: this.urlDeconnexion  }] }
+          ];
+        }
+        else
+        {
+          visiteur = true;
+        }
+      }
+      else
+      {
+        visiteur = true;
+      }
+    }
+    else
+    {
+      visiteur = true;
+    }
+
+    if (visiteur) {
       this.menu = [
-        { label: 'UTILISATEUR', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits' }, { label: 'Deconnexion' , url: '/deconnexion' }] }
-      ];
-    } else if (localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null && localStorage.getItem("roleVK") ==='ROLE_ADMIN') {
-      this.menu = [
-        { label: 'ADMIN', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits' }, { label: 'Deconnexion', url: '/deconnexion'  }] }
-      ];
-    } else {
-      this.menu = [
-        { label: 'Mon profil', icon: 'fa fa-fw fa-book', items: [{ label: 'Les produits', url: '/' }, { label: 'Inscription', url: '/addUser' }, { label: 'Connexion', url: '/connexion' }] }
+        { label: 'Mon profil', items: [{ label: this.labelProduit, url: this.urlProduit }, { label: 'Inscription', url: '/addUser' }, { label: 'Connexion', url: '/connexion' }] }
       ];
     }
   }
