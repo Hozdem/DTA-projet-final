@@ -31,9 +31,11 @@ import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connex
 import { ProduitComponent } from './produit/produit.component';
 import { MenuReactiveFormComponent } from './menu-reactive-form/menu-reactive-form.component';
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const route: Routes =
   [
+    { path: '', component: AccueilComponent },
     { path: 'connexion', component: ConnexionReactiveFormComponent },
     { path: 'deconnexion', component: DeconnexionComponent },
     { path: 'addUser', component: AddUserReactiveFormComponent },
@@ -54,7 +56,8 @@ const route: Routes =
     ProduitComponent,
     ProduitDetailsComponent,
     MenuReactiveFormComponent,
-    DeconnexionComponent
+    DeconnexionComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
