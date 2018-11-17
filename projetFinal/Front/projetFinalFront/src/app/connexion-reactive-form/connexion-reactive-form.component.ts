@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConnexionService } from '../connexion.service';
 import { MyUser } from '../my-user';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 import { UserService } from '../user.service';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-connection-reactive-form',
@@ -32,8 +33,10 @@ export class ConnexionReactiveFormComponent implements OnInit {
         localStorage.setItem("loginVK", b.login  );
         localStorage.setItem("passwordVK", b.password );
         localStorage.setItem("roleVK", b.role);
+        this.router.navigate(['/']);
+      }else{
+        this.router.navigate(['/connexion']);
       }
-      this.router.navigate(['/']);
     });
   }
 }
