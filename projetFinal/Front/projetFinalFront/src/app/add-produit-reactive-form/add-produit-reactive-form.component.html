@@ -1,10 +1,62 @@
 <app-menu></app-menu>
 <h1>Ajout d'un nouveau produit</h1>
-<form [formGroup]='userForm' (ngSubmit)="onSubmit()">
+<form [formGroup]='produitForm' (ngSubmit)="onSubmit()">
   <div class="ui-g ui-g-md-12 ui-g-sm-12">
-      <div class="ui-md-5 ui-sm-5"></div>
-      <div class="ui-md-1 ui-sm-5">
-      
+    <div class="ui-md-5 ui-sm-5"></div>
+    <div class="ui-md-1 ui-sm-5">
+
+
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <input type="text" pInputText placeholder="nomProd" formControlName="nomProd">
       </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <p-multiSelect [options]="genres" formControlName="genreProd" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+        <p>{{genreProd}}</p>
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <p-multiSelect [options]="supports" formControlName="supportProd" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+        <p>{{supportProd}}</p>
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <p-inputMask mask="9999-99-99" formControlName="dateSortieProd" slotChar="yyyy-MM-dd"></p-inputMask>
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <input type="number" pInputText placeholder="prixProd" formControlName="prixProd">
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <input type="text" placeholder="lienImage" formControlName="lienImage" />
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <input type="text" placeholder="editeur" formControlName="editeur" />
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+        <input type="text" placeholder="description" formControlName="description" />
+      </div>
+      <br>
+      <div class="ui-inputgroup">
+        <button [disabled]='!produitForm.valid' pButton type="submit" label="Enregistrer" class="ui-button-raised"></button>
+      </div>
+
+
+
+
+
+
+    </div>
   </div>
 </form>

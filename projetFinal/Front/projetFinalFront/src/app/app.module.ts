@@ -21,6 +21,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
@@ -39,9 +41,14 @@ const route: Routes =
     { path: '', component: AccueilComponent },
     { path: 'connexion', component: ConnexionReactiveFormComponent },
     { path: 'deconnexion', component: DeconnexionComponent },
+
     { path: 'addUser', component: AddUserReactiveFormComponent },
+    { path: 'addProduit', component: AddProduitReactiveFormComponent },
+
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
+
     { path: 'deleteUser/:id', component: DeleteUserComponent },
+
     { path: 'administration', component: AdministrationReactiveFormComponent },
     { path: 'produit', component: ProduitDetailsComponent }
   ];
@@ -76,7 +83,8 @@ const route: Routes =
     TabMenuModule,
     BrowserAnimationsModule,
     PanelMenuModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

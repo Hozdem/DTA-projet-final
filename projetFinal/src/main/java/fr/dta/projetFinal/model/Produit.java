@@ -10,25 +10,24 @@ import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.enums.EnumSupports;
 
 @Entity
-public class Produit
-{
+public class Produit {
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	@Column
-	private String nom;
 
 	@Column
-	@ElementCollection(targetClass=String.class)
-	private List<String> genres = new ArrayList<String>();
+	private String nomProd;
 
 	@Column
-	private String support;
-	
+	@ElementCollection(targetClass = String.class)
+	private List<String> genreProd = new ArrayList<String>();
+
+	@Column
+	private String supportProd;
+
 	@Column
 	private Date dateSortieProd;
-	
+
 	@Column
 	private float prixProd;
 
@@ -37,28 +36,25 @@ public class Produit
 
 	@Column
 	private String editeur;
-	
+
 	@Column
 	private String description;
 
-	public Produit()
-	{
-		
-	}
+	public Produit() {
 
-	public Produit(String nom, List<String> genres, String support, Date dateSortieProd, float prixProd,
-			String lienImage, String editeur, String description) {
+	}
+	
+	public Produit(String nom, List<String> genres, String support, Date dateSortieProd, float prixProd, String lienImage, String editeur, String description) {
 		super();
-		this.nom = nom;
-		this.genres = genres;
-		this.support = support;
+		this.nomProd = nom;
+		this.genreProd = genres;
+		this.supportProd = support;
 		this.dateSortieProd = dateSortieProd;
 		this.prixProd = prixProd;
 		this.lienImage = lienImage;
 		this.editeur = editeur;
 		this.description = description;
 	}
-
 
 	public long getId() {
 		return id;
@@ -69,27 +65,27 @@ public class Produit
 	}
 
 	public String getNom() {
-		return nom;
+		return nomProd;
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom;
+		this.nomProd = nom;
 	}
 
 	public List<String> getGenres() {
-		return genres;
+		return genreProd;
 	}
 
 	public void setGenres(List<String> genres) {
-		this.genres = genres;
+		this.genreProd = genres;
 	}
 
 	public String getSupport() {
-		return support;
+		return supportProd;
 	}
 
 	public void setSupport(String support) {
-		this.support = support;
+		this.supportProd = support;
 	}
 
 	public Date getDateSortieProd() {
@@ -134,7 +130,7 @@ public class Produit
 
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", nom=" + nom + ", genres=" + genres + ", support=" + support
+		return "Produit [id=" + id + ", nom=" + nomProd + ", genres=" + genreProd + ", support=" + supportProd
 				+ ", dateSortieProd=" + dateSortieProd + ", prixProd=" + prixProd + ", lienImage=" + lienImage
 				+ ", editeur=" + editeur + ", description=" + description + "]";
 	}

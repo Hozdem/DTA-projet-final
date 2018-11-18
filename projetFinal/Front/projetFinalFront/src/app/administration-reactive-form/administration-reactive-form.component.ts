@@ -15,6 +15,7 @@ export class AdministrationReactiveFormComponent implements OnInit {
 
   addProduit()
   {
+    console.log('add');
     this.router.navigate(['/addProduit']);
   }
 

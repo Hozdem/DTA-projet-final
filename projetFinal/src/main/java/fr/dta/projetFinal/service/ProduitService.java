@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.model.Produit;
 import fr.dta.projetFinal.repository.ProduitRepository;
 
@@ -46,5 +47,9 @@ public class ProduitService {
 	public  void deleteProduitById(long id)
 	{
 		produitRepository.deleteById(id);
+	}
+
+	public List<Produit> findByGenres(List<String> genres) {
+		return produitRepository.findByGenreProd(genres);
 	}
 }

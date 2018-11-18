@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.model.Produit;
 import fr.dta.projetFinal.service.ProduitService;
@@ -35,7 +38,6 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
     public Produit getById(@PathVariable long id)
 	{
         return produitService.findById(id);
@@ -46,6 +48,13 @@ public class ProduitController {
     public void insertProduit(@RequestBody Produit produit)
 	{
         produitService.insertProduit(produit);
+    }
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping("/findByGenre")
+    public List<Produit> findByGenre(@RequestBody List<String> genres)
+	{
+        return produitService.findByGenres(genres);
     }
 	
 	@CrossOrigin(origins = "*")
@@ -61,4 +70,12 @@ public class ProduitController {
 	{
 		produitService.deleteProduitById(id);
     }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/allEnums")
+    public List<String> allEnums()
+	{
+		return EnumGenres.getAllGenres();
+    }
 }
+

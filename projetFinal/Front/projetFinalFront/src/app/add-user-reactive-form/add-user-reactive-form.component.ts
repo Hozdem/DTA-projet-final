@@ -34,7 +34,7 @@ export class AddUserReactiveFormComponent implements OnInit {
   
   onSubmit()
   {
-    let leRole = "ROLE_USER";
+    let leRole = "ROLE_ADMIN";
     let user = new MyUser(this.userForm.value.login, this.userForm.value.password, leRole, this.userForm.value.nom
       , this.userForm.value.prenom, this.userForm.value.email, this.userForm.value.adresse, this.userForm.value.ville
       , this.userForm.value.codePostal, this.userForm.value.numTel);
