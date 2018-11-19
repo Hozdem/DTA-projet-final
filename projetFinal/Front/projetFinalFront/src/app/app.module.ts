@@ -40,6 +40,7 @@ import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/g
 
 import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
 import { ProduitsComponent } from './produits/produits.component';
+import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -50,6 +51,7 @@ const route: Routes =
     { path: 'addProduit', component: AddProduitReactiveFormComponent },
 
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
+    { path: 'updateProduit/:id', component: UpdateProduitReactiveFormComponent },
 
     { path: 'deleteUser/:id', component: DeleteUserComponent },
     { path: 'deleteProduit/:id', component: DeleteProduitComponent },
@@ -76,7 +78,8 @@ const route: Routes =
     AddProduitReactiveFormComponent,
     GestionUserReactiveFormComponent,
     DeleteProduitComponent,
-    ProduitsComponent
+    ProduitsComponent,
+    UpdateProduitReactiveFormComponent
   ],
   imports: [
     BrowserModule,

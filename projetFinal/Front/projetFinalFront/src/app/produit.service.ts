@@ -44,7 +44,6 @@ export class ProduitService
 
   addProduit(prod: Produit)
   {
-    console.log(prod);
     this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
