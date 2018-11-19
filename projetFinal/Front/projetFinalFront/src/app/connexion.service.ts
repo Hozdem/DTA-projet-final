@@ -10,13 +10,13 @@ import { Observable } from 'rxjs';
 export class ConnexionService {
 
   url = 'http://localhost:8091/api/MyUsers';
+  bool:any;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-type': 'application/json' })
 
   };
 
-  bool: any;
   constructor(private http: HttpClient, private router: Router) { }
 
   connexion(user: MyUser) : Observable<any>{

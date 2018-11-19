@@ -11,15 +11,15 @@ import { SelectItem } from 'primeng/api';
 })
 export class AddProduitReactiveFormComponent implements OnInit {
 
-  genres: SelectItem[];
-  supports: SelectItem[];
+  genresTab: SelectItem[];
+  supportTab: SelectItem[];
 
   produitForm = this.fb.group({
-    nomProd: ['', Validators.required],
-    genreProd: ['', Validators.required],
-    supportProd: ['', Validators.required],
-    dateSortieProd: ['', Validators.required],
-    prixProd: ['', Validators.required],
+    titre: ['', Validators.required],
+    genres: [[], Validators.required],
+    support: ['', Validators.required],
+    dateSortie: ['', Validators.required],
+    prix: ['', Validators.required],
     lienImage: ['', Validators.required],
     editeur: ['', Validators.required],
     description: ['', Validators.required]
@@ -27,27 +27,27 @@ export class AddProduitReactiveFormComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder, private serviceProduit: ProduitService) {
-    this.genres = [];
+    this.genresTab = [];
+    this.supportTab = [];
+  }
+
+  ngOnInit() {
     this.serviceProduit.allEnums().subscribe( g => {
       for(let s of Object.values(g))
       {
-          this.genres.push({ label: s, value: { name: s}});
+          this.genresTab.push({ label: s, value: { name: s}});
       }
     }); 
 
-    this.supports = [
+    this.supportTab = [
       { label: 'PS4', value: { name: 'SUPPORT_PS4' } },
       { label: 'Xbox One', value: { name: 'SUPPORT_XBOXONE' } },
       { label: 'PC', value: { name: 'SUPPORT_PC' } }
     ];
   }
 
-  ngOnInit() {
-
-  }
-
   onSubmit() {
-    let produit = new Produit(this.produitForm.value.nomProd, this.produitForm.value.genreProd, this.produitForm.value.supportProd, this.produitForm.value.dateSortieProd, this.produitForm.value.prixProd, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description);
+    let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description);
     this.serviceProduit.addProduit(produit);
   }
 }
