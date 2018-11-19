@@ -6,98 +6,132 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.dta.projetFinal.enums.EnumGenreProd;
-import fr.dta.projetFinal.enums.EnumSupportProd;
+import fr.dta.projetFinal.enums.EnumGenres;
+import fr.dta.projetFinal.enums.EnumSupports;
 
 @Entity
-public class Produit
-{
+public class Produit {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@Column
 	private String nomProd;
 
-	@ElementCollection
 	@Column
-	private List<String> genreProd = new ArrayList<>();
+	@ElementCollection(targetClass = String.class)
+	private List<String> genreProd = new ArrayList<String>();
 
-	@ElementCollection
 	@Column
-	private List<String> supportProd  = new ArrayList<>();
-	
+	private String supportProd;
+
 	@Column
 	private Date dateSortieProd;
-	
+
 	@Column
 	private float prixProd;
 
-	public Produit()
-	{
-		
+	@Column
+	private String lienImage;
+
+	@Column
+	private String editeur;
+
+	@Column
+	private String description;
+
+	public Produit() {
+
+	}
+	
+	public Produit(String nom, List<String> genres, String support, Date dateSortieProd, float prixProd, String lienImage, String editeur, String description) {
+		super();
+		this.nomProd = nom;
+		this.genreProd = genres;
+		this.supportProd = support;
+		this.dateSortieProd = dateSortieProd;
+		this.prixProd = prixProd;
+		this.lienImage = lienImage;
+		this.editeur = editeur;
+		this.description = description;
 	}
 
-	public long getId()
-	{
+	public long getId() {
 		return id;
 	}
 
-	public void setId(long id)
-	{
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getNomProd()
-	{
+	public String getNom() {
 		return nomProd;
 	}
 
-	public void setNomProd(String nomProd)
-	{
-		this.nomProd = nomProd;
+	public void setNom(String nom) {
+		this.nomProd = nom;
 	}
 
-	public List<String> getGenreProd()
-	{
+	public List<String> getGenres() {
 		return genreProd;
 	}
 
-	public void setGenreProd(List<String> genreProd)
-	{
-		this.genreProd = genreProd;
+	public void setGenres(List<String> genres) {
+		this.genreProd = genres;
 	}
 
-	public List<String> getSuppProd()
-	{
+	public String getSupport() {
 		return supportProd;
 	}
 
-	public void setSuppProd(List<String> suppProd)
-	{
-		this.supportProd = suppProd;
+	public void setSupport(String support) {
+		this.supportProd = support;
 	}
 
-	public Date getDateSortieProd()
-	{
+	public Date getDateSortieProd() {
 		return dateSortieProd;
 	}
 
-	public void setDateSortieProd(Date dateSortieProd)
-	{
+	public void setDateSortieProd(Date dateSortieProd) {
 		this.dateSortieProd = dateSortieProd;
 	}
 
-	public float getPrixProd()
-	{
+	public float getPrixProd() {
 		return prixProd;
 	}
 
-	public void setPrixProd(float prixProd)
-	{
+	public void setPrixProd(float prixProd) {
 		this.prixProd = prixProd;
 	}
-	
-	
-	
+
+	public String getLienImage() {
+		return lienImage;
+	}
+
+	public void setLienImage(String lienImage) {
+		this.lienImage = lienImage;
+	}
+
+	public String getEditeur() {
+		return editeur;
+	}
+
+	public void setEditeur(String editeur) {
+		this.editeur = editeur;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", nom=" + nomProd + ", genres=" + genreProd + ", support=" + supportProd
+				+ ", dateSortieProd=" + dateSortieProd + ", prixProd=" + prixProd + ", lienImage=" + lienImage
+				+ ", editeur=" + editeur + ", description=" + description + "]";
+	}
 }

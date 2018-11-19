@@ -34,13 +34,33 @@ public class MyUserService
 		return myUserRepository.save(user);
 	}
 	
-	public boolean verifPassword(MyUser args)
+	public MyUser updateMyUser(MyUser user)
+	{
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return myUserRepository.save(user);
+	}
+	
+	public MyUser verifPassword(MyUser args)
 	{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Optional<MyUser> userOption = findBylogin(args.getLogin());
 		if(userOption.isPresent()) {
 			MyUser user = userOption.get();
-			return passwordEncoder.matches(args.getPassword(),user.getPassword());
+			if(passwordEncoder.matches(args.getPassword(),user.getPassword())) {
+				return user;
+			};
+		}
+		return null;
+	}
+	
+	public boolean verifPassword(long id, String password)
+	{
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		Optional<MyUser> userOption = findById(id);
+		if(userOption.isPresent()) {
+			MyUser user = userOption.get();
+			return passwordEncoder.matches(password, user.getPassword());
 		}
 		return false;
 	}

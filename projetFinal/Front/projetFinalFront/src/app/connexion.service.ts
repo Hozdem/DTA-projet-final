@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MyUser } from './my-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,7 @@ export class ConnexionService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  connexion(user: MyUser): boolean {
-    this.http.post(this.url + '/connexion', user, this.httpOptions).subscribe(b => b?this.bool=true:this.bool=false);
-    console.log(this.bool);
-    return this.bool;
+  connexion(user: MyUser) : Observable<any>{
+    return this.http.post(this.url + '/connexion', user, this.httpOptions);
   }
 }

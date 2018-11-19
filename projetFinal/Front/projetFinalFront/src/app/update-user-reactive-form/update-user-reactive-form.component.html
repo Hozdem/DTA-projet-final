@@ -1,3 +1,68 @@
-<p>
-  update-user-reactive-form works!
-</p>
+<app-menu></app-menu>
+<h1>Modification de l'utilisateur {{this.loginAffichage}}</h1>
+<form [formGroup]='userForm' (ngSubmit)="onSubmit()">
+    <div class="ui-g ui-g-md-12 ui-g-sm-12">
+        <div class="ui-md-5 ui-sm-5"></div>
+        <div class="ui-md-1 ui-sm-5">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text" pInputText placeholder="Pseudo" formControlName="login">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+                <input type="password" pPassword placeholder="Ancien password" formControlName="ancienPassword" />
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+                <input type="password" pPassword placeholder="Password" formControlName="password" />
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+                <input type="password" pPassword placeholder="Verification password" formControlName="verificationPassword" />
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text" pInputText placeholder="Nom" formControlName="nom">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text" pInputText placeholder="Prenom" formControlName="prenom">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">@</span>
+                <input type="email" pInputText placeholder="Email" formControlName="email">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-home"></i></span>
+                <input type="text" pInputText placeholder="Adresse" formControlName="adresse">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-home"></i></span>
+                <input type="text" pInputText placeholder="Ville" formControlName="ville">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+                <input type="text" pInputText placeholder="codePostal" formControlName="codePostal">
+            </div>
+            <br>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
+                <input type="text" pInputText placeholder="numTel" formControlName="numTel">
+            </div>
+            <br>
+            <div class="ui-inputgroup centrer">
+                <button [disabled]='!userForm.valid' pButton type="submit" label="Enregistrer" class="ui-button-raised"></button>
+            </div>
+        </div>
+    </div>
+</form>
+

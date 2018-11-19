@@ -5,50 +5,75 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { RouterModule, Routes, Router} from '@angular/router';
+import { RouterModule, Routes, Route } from '@angular/router';
 
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 // primeNG
-import {AccordionModule} from 'primeng/accordion';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PasswordModule} from 'primeng/password';
-import {InputMaskModule} from 'primeng/inputmask';
-import { ProduitComponent } from './produit/produit.component';
-import {DropdownModule} from 'primeng/dropdown';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {PanelMenuModule} from 'primeng/panelmenu';
-import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
-import {ButtonModule} from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';
+import { PasswordModule } from 'primeng/password';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
+import { ProduitDetailsComponent } from './produit-details/produit-details.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { MenuComponent } from './menu/menu.component';
+import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
+import { MenuReactiveFormComponent } from './menu-reactive-form/menu-reactive-form.component';
+import { DeconnexionComponent } from './deconnexion/deconnexion.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { AdministrationReactiveFormComponent } from './administration-reactive-form/administration-reactive-form.component';
+import { AddProduitReactiveFormComponent } from './add-produit-reactive-form/add-produit-reactive-form.component';
 
-const route: Routes = 
-[
-  {path: 'connexion', component: ConnexionReactiveFormComponent},
-  {path: 'addUser', component: AddUserReactiveFormComponent},
+const route: Routes =
+  [
+    { path: '', component: AccueilComponent },
+    { path: 'connexion', component: ConnexionReactiveFormComponent },
+    { path: 'deconnexion', component: DeconnexionComponent },
 
-  {path: 'updateUser/:id', component: UpdateUserReactiveFormComponent}
+    { path: 'addUser', component: AddUserReactiveFormComponent },
+    { path: 'addProduit', component: AddProduitReactiveFormComponent },
 
-];
+    { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
+
+    { path: 'deleteUser/:id', component: DeleteUserComponent },
+
+    { path: 'administration', component: AdministrationReactiveFormComponent },
+    { path: 'produit', component: ProduitDetailsComponent }
+  ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionReactiveFormComponent,
     AddUserReactiveFormComponent,
-    UpdateUserReactiveFormComponent
+    UpdateUserReactiveFormComponent,
+    ProduitDetailsComponent,
+    DeleteUserComponent,
+    MenuComponent,
+    ProduitDetailsComponent,
+    MenuReactiveFormComponent,
+    DeconnexionComponent,
+    AccueilComponent,
+    AdministrationReactiveFormComponent,
+    AddProduitReactiveFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(route),
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AccordionModule,
@@ -58,7 +83,8 @@ const route: Routes =
     TabMenuModule,
     BrowserAnimationsModule,
     PanelMenuModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,12 @@
 package fr.dta.projetFinal.enums;
 
-public enum EnumRole {
+public enum EnumRoles {
 	ROLE_ADMIN("ROLE_ADMIN"),
 	ROLE_USER("ROLE_USER");
 	
 	private String role;
 	
-	private EnumRole(String s)
+	private EnumRoles(String s)
 	{
 		this.role = s;
 	}

@@ -10,7 +10,7 @@ import { Observable, of } from 'rxjs';
 
 export class ProduitService
 {
-  url = 'http://localhost:8091/api/Produit';
+  url = 'http://localhost:8091/api/Produits';
 
   httpOptions = { headers: new HttpHeaders({'Content-type': 'application/json'}) };
   produits: Array<Produit>;
@@ -23,6 +23,11 @@ export class ProduitService
   getProduit(id: number): Observable<Produit>
   {
     return this.http.get<Produit>(this.url +'/' + id, this.httpOptions);
+  }
+
+  allEnums()
+  {
+    return this.http.get(this.url + '/allEnums', this.httpOptions);
   }
 
   getAllProduit(): Observable<Array<Produit>>

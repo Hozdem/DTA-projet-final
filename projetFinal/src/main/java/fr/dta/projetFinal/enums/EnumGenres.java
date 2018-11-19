@@ -1,8 +1,9 @@
 package fr.dta.projetFinal.enums;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public enum EnumGenreProd
+public enum EnumGenres
 {
 	GENRE_COMBAT("GENRE_COMBAT"),
 	GENRE_PLATEFORME("GENRE_PLATEFORME"),
@@ -31,24 +32,30 @@ public enum EnumGenreProd
 	GENRE_SPORT("GENRE_SPORT"),
 	GENRE_RACING("GENRE_RACING"),
 	GENRE_RHYTHM("GENRE_RHYTHM");
+
+	private String genre;
 	
-	private List<String> genres;
-	
-	private EnumGenreProd(String s)
+	private EnumGenres(String s)
 	{
-		this.genres.add(s);
+		this.genre = s;
 	}
 
-	public List<String> getGenres()
+	public String getGenre()
 	{
-		return this.genres;
+		return this.genre.toString();
 	}
 
-	public void setGenres(List<String> genre)
+	public void setGenre(String genre)
 	{
-		this.genres = genre;
+		this.genre = genre;
 	}
 
-	
-	
+	public static List<String> getAllGenres()
+	{
+		List<String> list = new ArrayList<String>();
+		for(EnumGenres genre: EnumGenres.values()) {
+			list.add(genre.getGenre());
+		}
+		return list;
+	}
 }
