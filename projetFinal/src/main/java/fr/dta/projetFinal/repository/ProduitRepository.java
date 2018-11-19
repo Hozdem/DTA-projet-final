@@ -12,5 +12,5 @@ import fr.dta.projetFinal.model.Produit;
 @Transactional
 public interface ProduitRepository extends CrudRepository<Produit, Long>{
 
-	public List<Produit> findByGenreProd(List<String> genres);
+	public List<Produit> findByGenres(List<String> genres);
 }
