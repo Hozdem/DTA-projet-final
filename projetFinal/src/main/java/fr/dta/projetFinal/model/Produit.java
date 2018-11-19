@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.dta.projetFinal.enums.EnumGenres;
-import fr.dta.projetFinal.enums.EnumSupports;
 
 @Entity
 public class Produit {

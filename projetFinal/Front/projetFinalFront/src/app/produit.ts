@@ -1,20 +1,20 @@
 export class Produit {
     id: number;
-    nomProd: string;
-    genreProd: Array<string>;
-    supportProd: Array<string>;
-    dateSortieProd: Date;
-    prixProd: number;
+    titre: string;
+    genres: Array<string>;
+    support: string;
+    dateSortie: Date;
+    prix: number;
     lienImage: string;
     editeur: string;
     description: string;
 
-    constructor(nomProd: string, genreProd: Array<string>, supportProd: Array<string>, dateSortieProd: Date, prixProd: number, lienImage: string, editeur: string, description: string) {
-        this.nomProd = nomProd;
-        this.genreProd = genreProd;
-        this.supportProd = supportProd;
-        this.dateSortieProd = dateSortieProd;
-        this.prixProd = prixProd;
+    constructor(titre: string, genres: Array<string>, support: string, dateSortie: Date, prix: number, lienImage: string, editeur: string, description: string) {
+        this.titre = titre;
+        this.genres = genres;
+        this.support = support;
+        this.dateSortie = dateSortie;
+        this.prix = prix;
         this.lienImage = lienImage;
         this.editeur = editeur;
         this.description = description;
