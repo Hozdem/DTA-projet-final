@@ -23,6 +23,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {PickListModule} from 'primeng/picklist';
+import {CarouselModule} from 'primeng/carousel';
 
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
@@ -97,7 +98,8 @@ const route: Routes =
     PanelMenuModule,
     ButtonModule,
     MultiSelectModule,
-    PickListModule
+    PickListModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
