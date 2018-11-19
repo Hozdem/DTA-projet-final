@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Produit } from './produit';
 import { Observable, of } from 'rxjs';
+import { MyUser } from './my-user';
 
 @Injectable({
   providedIn: 'root'
@@ -55,4 +56,5 @@ export class ProduitService
   {
     this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
+
 }

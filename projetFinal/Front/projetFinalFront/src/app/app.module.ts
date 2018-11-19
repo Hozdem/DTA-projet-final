@@ -54,6 +54,7 @@ const route: Routes =
     { path: 'deleteProduit/:id', component: DeleteProduitComponent },
 
     { path: 'administration', component: AdministrationReactiveFormComponent },
+    { path: 'gererUser', component: GestionUserReactiveFormComponent },
     { path: 'produit', component: ProduitDetailsComponent }
   ];
 
