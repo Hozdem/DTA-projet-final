@@ -49,6 +49,6 @@ public class ProduitService {
 	}
 
 	public List<Produit> findByGenres(List<String> genres) {
-		return produitRepository.findByGenreProd(genres);
+		return produitRepository.findByGenres(genres);
 	}
 }

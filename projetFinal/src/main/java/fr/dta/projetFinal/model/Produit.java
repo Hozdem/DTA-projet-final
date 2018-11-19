@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Produit {
 	@Id
@@ -14,20 +13,20 @@ public class Produit {
 	private long id;
 
 	@Column
-	private String nomProd;
+	private String titre;
 
 	@Column
 	@ElementCollection(targetClass = String.class)
-	private List<String> genreProd = new ArrayList<String>();
+	private List<String> genres = new ArrayList<String>();
 
 	@Column
-	private String supportProd;
+	private String support;
 
 	@Column
-	private Date dateSortieProd;
+	private Date dateSortie;
 
 	@Column
-	private float prixProd;
+	private float prix;
 
 	@Column
 	private String lienImage;
@@ -42,13 +41,13 @@ public class Produit {
 
 	}
 	
-	public Produit(String nom, List<String> genres, String support, Date dateSortieProd, float prixProd, String lienImage, String editeur, String description) {
+	public Produit(String nom, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description) {
 		super();
-		this.nomProd = nom;
-		this.genreProd = genres;
-		this.supportProd = support;
-		this.dateSortieProd = dateSortieProd;
-		this.prixProd = prixProd;
+		this.titre = nom;
+		this.genres = genres;
+		this.support = support;
+		this.dateSortie = dateSortie;
+		this.prix = prix;
 		this.lienImage = lienImage;
 		this.editeur = editeur;
 		this.description = description;
@@ -63,43 +62,43 @@ public class Produit {
 	}
 
 	public String getNom() {
-		return nomProd;
+		return titre;
 	}
 
 	public void setNom(String nom) {
-		this.nomProd = nom;
+		this.titre = nom;
 	}
 
 	public List<String> getGenres() {
-		return genreProd;
+		return genres;
 	}
 
 	public void setGenres(List<String> genres) {
-		this.genreProd = genres;
+		this.genres = genres;
 	}
 
 	public String getSupport() {
-		return supportProd;
+		return support;
 	}
 
 	public void setSupport(String support) {
-		this.supportProd = support;
+		this.support = support;
 	}
 
 	public Date getDateSortieProd() {
-		return dateSortieProd;
+		return dateSortie;
 	}
 
 	public void setDateSortieProd(Date dateSortieProd) {
-		this.dateSortieProd = dateSortieProd;
+		this.dateSortie = dateSortieProd;
 	}
 
 	public float getPrixProd() {
-		return prixProd;
+		return prix;
 	}
 
 	public void setPrixProd(float prixProd) {
-		this.prixProd = prixProd;
+		this.prix = prixProd;
 	}
 
 	public String getLienImage() {
@@ -128,8 +127,8 @@ public class Produit {
 
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", nom=" + nomProd + ", genres=" + genreProd + ", support=" + supportProd
-				+ ", dateSortieProd=" + dateSortieProd + ", prixProd=" + prixProd + ", lienImage=" + lienImage
+		return "Produit [id=" + id + ", nom=" + titre + ", genres=" + genres + ", support=" + support
+				+ ", dateSortieProd=" + dateSortie + ", prixProd=" + prix + ", lienImage=" + lienImage
 				+ ", editeur=" + editeur + ", description=" + description + "]";
 	}
 }
