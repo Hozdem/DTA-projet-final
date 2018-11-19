@@ -22,13 +22,13 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {PickListModule} from 'primeng/picklist';
 
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
 import { UpdateUserReactiveFormComponent } from './update-user-reactive-form/update-user-reactive-form.component';
 import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
-import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
 import { MenuComponent } from './menu/menu.component';
 import { ConnexionReactiveFormComponent } from './connexion-reactive-form/connexion-reactive-form.component';
 import { MenuReactiveFormComponent } from './menu-reactive-form/menu-reactive-form.component';
@@ -38,6 +38,7 @@ import { AdministrationReactiveFormComponent } from './administration-reactive-f
 import { AddProduitReactiveFormComponent } from './add-produit-reactive-form/add-produit-reactive-form.component';
 import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/gestion-user-reactive-form.component';
 
+import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -89,7 +90,8 @@ const route: Routes =
     BrowserAnimationsModule,
     PanelMenuModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    PickListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

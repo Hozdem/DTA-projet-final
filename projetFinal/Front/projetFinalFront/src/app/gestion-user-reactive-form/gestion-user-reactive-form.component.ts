@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-gestion-user-reactive-form',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestion-user-reactive-form.component.css']
 })
 export class GestionUserReactiveFormComponent implements OnInit {
-
-  constructor() { }
+  
+  
+  roleForm = this.fb.group({
+    admins: [null],
+  });
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }

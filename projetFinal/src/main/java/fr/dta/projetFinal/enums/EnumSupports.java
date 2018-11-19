@@ -5,9 +5,9 @@ import java.util.List;
 
 public enum EnumSupports
 {
-	SUPPORT_PC("SUPPORT_PC"),
-	SUPPORT_XBOXONE("SUPPORT_XBOXONE"),
-	SUPPORT_PS4("SUPPORT_PS4");
+	PC("PC"),
+	XBOXONE("XBOXONE"),
+	PS4("PS4");
 	
 	private String support;
 	private List<String> supports = new ArrayList<String>();
@@ -29,13 +29,11 @@ public enum EnumSupports
 	}
 
 	public static List<String> getAllSupports()
-	{		
-		List<String> liste = new ArrayList<String>();
-
-		liste.add(SUPPORT_PC.toString());
-		liste.add(SUPPORT_XBOXONE.toString());
-		liste.add(SUPPORT_PS4.toString());
-		
-		return liste;
+	{
+		List<String> list = new ArrayList<String>();
+		for(EnumSupports supports: EnumSupports.values()) {
+			list.add(supports.getSupport());
+		}
+		return list;
 	}
 }

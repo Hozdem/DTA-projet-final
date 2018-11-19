@@ -1,3 +1,10 @@
-<p>
-  gestion-user-reactive-form works!
-</p>
+<form  [formGroup]='roleForm' (ngSubmit) = "onSubmit()">
+  <p-pickList sourceHeader="Utilisateurs" targetHeader="Administrateurs" [source]="administrateurs" [target]="adminSelected" [responsive]="true" dragdrop="true" dragdropScope="administrateurs">
+    <ng-template let-admin pTemplate="administrateurs">
+      <div class="ui-helper-clearfix">
+        {{admin.login}}
+      </div>
+    </ng-template>
+  </p-pickList>  
+  <button type='submit' [disabled]='!roleForm.valid'>Enregistrer</button>
+</form>

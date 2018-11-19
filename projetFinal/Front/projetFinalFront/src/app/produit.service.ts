@@ -25,9 +25,14 @@ export class ProduitService
     return this.http.get<Produit>(this.url +'/' + id, this.httpOptions);
   }
 
-  allEnums()
+  allGenres()
   {
-    return this.http.get(this.url + '/allEnums', this.httpOptions);
+    return this.http.get(this.url + '/allGenres', this.httpOptions);
+  }
+
+  allSupports()
+  {
+    return this.http.get(this.url + '/allSupports', this.httpOptions);
   }
 
   getAllProduit(): Observable<Array<Produit>>
