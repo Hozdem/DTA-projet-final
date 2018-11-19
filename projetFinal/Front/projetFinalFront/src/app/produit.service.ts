@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Produit } from './produit';
 import { Observable, of } from 'rxjs';
 import { MyUser } from './my-user';
+import { TestBed } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,8 @@ export class ProduitService
 
   addProduit(prod: Produit)
   {
-    this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/addProduit']));
+    console.log(prod);
+    this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
   // Après validation du formulaire de la page 'updateProduit', redirection vers l'accueil.
