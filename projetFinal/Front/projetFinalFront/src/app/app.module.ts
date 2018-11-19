@@ -55,7 +55,8 @@ const route: Routes =
     { path: 'deleteProduit/:id', component: DeleteProduitComponent },
 
     { path: 'administration', component: AdministrationReactiveFormComponent },
-    { path: 'produit', component: ProduitsComponent }
+    { path: 'produit', component: ProduitsComponent },
+    { path: 'gererUser', component: GestionUserReactiveFormComponent }
   ];
 
 @NgModule({

@@ -124,6 +124,30 @@ public class Produit {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public Date getDateSortie() {
+		return dateSortie;
+	}
+
+	public void setDateSortie(Date dateSortie) {
+		this.dateSortie = dateSortie;
+	}
+
+	public float getPrix() {
+		return prix;
+	}
+
+	public void setPrix(float prix) {
+		this.prix = prix;
+	}
 
 	@Override
 	public String toString() {

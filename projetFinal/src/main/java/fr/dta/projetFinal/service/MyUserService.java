@@ -38,6 +38,17 @@ public class MyUserService
 		return myUserRepository.save(user);
 	}
 	
+	public List<MyUser> updateMyUser(List<MyUser> users)
+	{
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		for(MyUser u : users)
+		{
+			u.setPassword(passwordEncoder.encode(u.getPassword()));
+		}
+		
+		return (List<MyUser>) myUserRepository.saveAll(users);
+	}
+	
 	public MyUser verifPassword(MyUser args)
 	{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

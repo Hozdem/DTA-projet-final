@@ -1,7 +1,7 @@
 export class Produit {
     id: number;
     titre: string;
-    genres: Array<string>;
+    genres: Array<string> = [];
     support: string;
     dateSortie: Date;
     prix: number;

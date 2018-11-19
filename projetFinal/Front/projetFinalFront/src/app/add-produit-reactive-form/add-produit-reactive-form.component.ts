@@ -35,19 +35,20 @@ export class AddProduitReactiveFormComponent implements OnInit {
     this.serviceProduit.allGenres().subscribe( g => {
       for(let s of Object.values(g))
       {
-          this.genresTab.push({ label: s, value: { name: s}});
+          this.genresTab.push({ label: s, value: s});
       }
     }); 
 
     this.serviceProduit.allSupports().subscribe( support => {
       for(let s of Object.values(support))
       {
-          this.supportTab.push({ label: s, value: { name: s } });
+          this.supportTab.push({ label: s, value: s });
       }
     }); 
   }
 
   onSubmit() {
+   
     let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description);
     this.serviceProduit.addProduit(produit);
   }
