@@ -39,6 +39,7 @@ import { AddProduitReactiveFormComponent } from './add-produit-reactive-form/add
 import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/gestion-user-reactive-form.component';
 
 import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
+import { ProduitsComponent } from './produits/produits.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -54,7 +55,7 @@ const route: Routes =
     { path: 'deleteProduit/:id', component: DeleteProduitComponent },
 
     { path: 'administration', component: AdministrationReactiveFormComponent },
-    { path: 'produit', component: ProduitDetailsComponent }
+    { path: 'produit', component: ProduitsComponent }
   ];
 
 @NgModule({
@@ -73,7 +74,8 @@ const route: Routes =
     AdministrationReactiveFormComponent,
     AddProduitReactiveFormComponent,
     GestionUserReactiveFormComponent,
-    DeleteProduitComponent
+    DeleteProduitComponent,
+    ProduitsComponent
   ],
   imports: [
     BrowserModule,
