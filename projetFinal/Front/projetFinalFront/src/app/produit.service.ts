@@ -43,11 +43,11 @@ export class ProduitService
   // Après validation du formulaire de la page 'updateProduit', redirection vers l'accueil.
   updateProduit(prod: Produit)
   {
-    this.http.post(this.url + '/updateProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.put(this.url + '/updateProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
   
-  deleteProduit(prod: Produit)
+  deleteProduit(id: number)
   {
-    this.http.post(this.url + '/deleteProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 }
