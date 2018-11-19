@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.service.MyUserService;
 
@@ -35,18 +36,16 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
     public Optional<MyUser> greeting(@PathVariable long id)
 	{
         return myUserService.findById(id);
     }
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping("/connexion")
-    public MyUser verifPassword(@RequestBody MyUser user)
+	@PostMapping("/connexion")
+    public boolean verifPassword(@RequestBody MyUser user)
 	{
-        //return myUserService.verifPassword(user);
-		return user;
+        return myUserService.verifPassword(user);
     }
 	
 	@CrossOrigin(origins = "*")

@@ -22,9 +22,13 @@ export class ConnexionReactiveFormComponent implements OnInit {
 
   }
 
-  onSubmit(){
-    let user = new MyUser(this.userForm.value.login , this.userForm.value.password, 'ROLE_USER', 'nom', 'prenom','email', 'adresse', 'ville', '12345');
-    this.co.connexion(user);
+  onSubmit() {
+    let user = new MyUser(this.userForm.value.login, this.userForm.value.password, 'ROLE_USER', 'nom', 'prenom', 'email', 'adresse', 'ville', '12345');
+    let bool = this.co.connexion(user);
+    if (bool) {
+    } else {
+    }
+
   }
 
 }
