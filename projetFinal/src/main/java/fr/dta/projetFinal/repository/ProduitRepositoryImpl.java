@@ -26,8 +26,12 @@ public class ProduitRepositoryImpl implements ProduitRepositoryCustom {
 		CriteriaQuery<Produit> query = builder.createQuery(Produit.class);
 		Root<Produit> root = query.from(Produit.class);
 
+		Predicate titrePredicate = builder.and();
+		Predicate genrePredicate = builder.and();
+		Predicate supportPredicate = builder.and();
+				
 		if (titre != null && !StringUtils.isEmpty(titre)) {
-			query.where(builder.like(builder.upper(root.get("titre")), "%" + titre.toUpperCase() + "%"));
+			titrePredicate = builder.like(builder.upper(root.get("titre")), "%" + titre.toUpperCase() + "%");
 		}
 
 		if (genres != null && !genres.isEmpty()) {
@@ -35,21 +39,22 @@ public class ProduitRepositoryImpl implements ProduitRepositoryCustom {
 			for (String genre : genres) {
 				genresRestriction.add(builder.isMember(genre, root.get("genres")));
 			}
-			query.where(builder.or(genresRestriction.toArray(new Predicate[genresRestriction.size()])));
+			genrePredicate = builder.or(genresRestriction.toArray(new Predicate[genresRestriction.size()]));
 		}
-
+		
 		if (supports != null && !supports.isEmpty()) {
 			List<Predicate> supportsPredicate = new ArrayList<>();
-
 			for (String support : supports) {
-				supportsPredicate.add(builder.like(root.get("support"),support));
+				supportsPredicate.add(builder.equal(root.get("support"), support));
 			}
-			query.where(builder.or(supportsPredicate.toArray(new Predicate[supportsPredicate.size()])));
+			supportPredicate = builder.or(supportsPredicate.toArray(new Predicate[supportsPredicate.size()]));
 		}
-
-		if (titre != null && !StringUtils.isEmpty(titre) && genres != null && !genres.isEmpty()) {
-			query.select(query.from(Produit.class));
-		}
+		
+		query.where(builder.and(
+				titrePredicate,
+				genrePredicate,
+				supportPredicate
+			));
 
 		TypedQuery<Produit> userQuery = em.createQuery(query);
 
