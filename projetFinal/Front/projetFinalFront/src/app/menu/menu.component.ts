@@ -14,6 +14,8 @@ export class MenuComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) { 
   }
 
+
+
   ngOnInit() {
     this.menuGlobal = [
       { label: 'Accueil', url: '/'},

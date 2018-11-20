@@ -22,6 +22,9 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
+import {MenubarModule} from 'primeng/menubar';
 
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
@@ -84,7 +87,9 @@ const route: Routes =
     BrowserAnimationsModule,
     PanelMenuModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    AutoCompleteModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
