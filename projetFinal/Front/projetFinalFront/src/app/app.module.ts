@@ -53,7 +53,7 @@ const route: Routes =
 
     { path: 'addUser', component: AddUserReactiveFormComponent },
     { path: 'addProduit', component: AddProduitReactiveFormComponent },
-
+    
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
     { path: 'updateProduit/:id', component: UpdateProduitReactiveFormComponent },
 
