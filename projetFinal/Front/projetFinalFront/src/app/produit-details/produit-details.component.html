@@ -1,19 +1,15 @@
-{{produit.nomProd}}
+{{produit.titre}}
 <br>
-<ul *ngIf="produit.genreProd.length > 0">
-    <li *ngFor="let g of produit.genreProd">
+<ul *ngIf="produit.genres.length > 0">
+    <li *ngFor="let g of produit.genres">
         {{g}}
     </li>
 </ul>
 <br>
-<ul *ngIf="produit.supportProd.length > 0">
-  <li *ngFor="let s of produit.supportProd">
-      {{s}}
-  </li>
-</ul>
+{{produit.support}}
 <br>
-{{produit.genreprod}}
+<!-- <img src={{produit.lienImage}}> -->
 <br>
-{{produit.supportProd}}
+{{produit.genres}}
 <br>
 {{produit.prixProd}}

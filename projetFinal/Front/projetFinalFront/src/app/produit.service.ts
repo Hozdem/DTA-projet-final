@@ -15,7 +15,7 @@ export class ProduitService
   url = 'http://localhost:8091/api/Produits';
 
   httpOptions = { headers: new HttpHeaders({'Content-type': 'application/json'}) };
-  produits: Array<Produit>;
+
 
   constructor(private http: HttpClient, private router: Router)
   { 
@@ -37,14 +37,13 @@ export class ProduitService
     return this.http.get(this.url + '/allSupports', this.httpOptions);
   }
 
-  getAllProduit(): Observable<Array<Produit>>
+  getAllProduit()
   {
-    return of(this.produits);
+    return this.http.get(this.url + '/', this.httpOptions);
   }
 
   addProduit(prod: Produit)
   {
-    console.log(prod);
     this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
