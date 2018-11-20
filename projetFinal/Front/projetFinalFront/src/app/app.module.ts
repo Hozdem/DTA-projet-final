@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { RouterModule, Routes, Route } from '@angular/router';
+
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DataViewModule} from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
 import {DialogModule} from 'primeng/dialog';
+import {MenuModule} from 'primeng/menu';
+import {TableModule} from 'primeng/table';
 
 import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
@@ -48,6 +51,7 @@ import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/g
 import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
+import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -86,7 +90,8 @@ const route: Routes =
     GestionUserReactiveFormComponent,
     DeleteProduitComponent,
     ProduitsComponent,
-    UpdateProduitReactiveFormComponent
+    UpdateProduitReactiveFormComponent,
+    MenuAccueilComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +115,9 @@ const route: Routes =
     CarouselModule,
     DataViewModule,
     PanelModule,
-    DialogModule
+    DialogModule,
+    MenuModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
