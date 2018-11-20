@@ -1,5 +1,6 @@
 package fr.dta.projetFinal.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.enums.EnumSupports;
 import fr.dta.projetFinal.model.Produit;
+import fr.dta.projetFinal.repository.ProduitRepositoryCustom;
 import fr.dta.projetFinal.service.ProduitService;
 
 
@@ -25,6 +28,9 @@ public class ProduitController {
 
 	@Autowired
 	ProduitService produitService;
+	
+	@Autowired
+	private ProduitRepositoryCustom produitRepository;
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
@@ -81,5 +87,15 @@ public class ProduitController {
 	{
 		return EnumSupports.getAllSupports();
     }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/search")
+	public List<Produit> getProduits(
+			@RequestParam(required = false) String titre,
+			@RequestParam(required = false) List<String> genres,
+			@RequestParam(required = false) List<String> supports) {
+		
+		return produitRepository.search(titre, genres, supports);
+	}
 }
 
