@@ -1,0 +1,12 @@
+<app-menu></app-menu>
+<form  [formGroup]='roleForm' (ngSubmit) = "onSubmit()">
+  <p-pickList sourceHeader="Utilisateurs" targetHeader="Administrateurs" [source]="utilisateurs" [target]="adminSelected" [responsive]="true" dragdrop="true" dragdropScope="utilisateurs">
+    <ng-template let-admin pTemplate="utilisateurs">
+      <div class="ui-helper-clearfix">
+        {{admin.login}}
+      </div>
+    </ng-template>
+  </p-pickList>  
+  <br><br>
+  <button pButton label="Enregistrer" class="ui-button-raised droite"></button>
+</form>

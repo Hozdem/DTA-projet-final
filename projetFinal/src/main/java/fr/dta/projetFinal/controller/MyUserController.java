@@ -14,37 +14,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.dta.projetFinal.model.MyUser;
-import fr.dta.projetFinal.repository.MyUserRepository;
+import fr.dta.projetFinal.model.MyUser; 	 	
+import fr.dta.projetFinal.service.MyUserService;
 
 @RestController
-@RequestMapping("/api/MyUser")
+@RequestMapping("/api/MyUsers")
 public class MyUserController
 {
 
 	@Autowired
-	MyUserRepository myuserrepos;
+	MyUserService myUserService;
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
     public List<MyUser> greeting()
 	{
-        return (List<MyUser>) myuserrepos.findAll();
+        return myUserService.findAll();
     }
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/{id}")
     public Optional<MyUser> greeting(@PathVariable long id)
 	{
-        return myuserrepos.findById(id);
+        return myUserService.findById(id);
     }
 	
-
+	@CrossOrigin(origins = "*")
+	@PostMapping("/connexion")
+    public MyUser verifPassword(@RequestBody MyUser user)
+	{
+        return myUserService.verifPassword(user);
+    }
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping("/connexionAuto/{id}")
+    public boolean verifierConnexionAuto(@PathVariable long id, @RequestBody String password)
+	{
+        return myUserService.verifPassword(id, password);
+    }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/findUser/{login}")
+    public Optional<MyUser> findBylogin(@PathVariable String login)
+	{
+        return myUserService.findBylogin(login);
+    }
+	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addMyUser")
     public MyUser insertMyUser(@RequestBody MyUser user)
 	{
-        return myuserrepos.save(user);
+        return myUserService.insertMyUser(user);
     }
 	
 
@@ -52,7 +72,15 @@ public class MyUserController
 	@PutMapping("/updateMyUser")
     public MyUser updateMyUser(@RequestBody MyUser user)
 	{
-		return myuserrepos.save(user);
+		return myUserService.updateMyUser(user);
+    }
+	
+
+	@CrossOrigin(origins = "*")
+	@PutMapping("/updateListMyUser")
+    public List<MyUser> updateListMyUser(@RequestBody List<MyUser> users)
+	{
+		return myUserService.updateMyUser(users);
     }
 	
 
@@ -60,7 +88,6 @@ public class MyUserController
 	@DeleteMapping("/deleteMyUser/{id}")
     public void deleteMyUser(@PathVariable long id)
 	{
-		myuserrepos.deleteById(id);
+		myUserService.deleteById(id);
     }
-	
 }
