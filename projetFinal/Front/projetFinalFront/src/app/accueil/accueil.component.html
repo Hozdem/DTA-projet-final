@@ -1,1 +1,6 @@
 <app-menu></app-menu>
+<p-carousel [value]="nouveautesProduit">
+    <ng-template let-produit pTemplate="nouveautesProduit">
+        <app-produit-details [produit]="produits"></app-produit-details>
+    </ng-template>
+</p-carousel>

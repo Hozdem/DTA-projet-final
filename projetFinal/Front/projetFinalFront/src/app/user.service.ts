@@ -17,6 +17,11 @@ export class UserService {
   };
   constructor(private http: HttpClient, private router: Router) { }
 
+  getAllUser()
+  {
+    return this.http.get<Array<MyUser>>(this.url +'/', this.httpOptions);
+  }
+
   getUser(id: number): Observable<MyUser>
   {
     return this.http.get<MyUser>(this.url +'/' + id, this.httpOptions);
@@ -30,6 +35,11 @@ export class UserService {
   updateUser(user: MyUser)
   {
     this.http.put<MyUser>(this.url +'/updateMyUser/' ,user,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
+  }
+  
+  updateListUser(users: Array<MyUser>)
+  {
+    this.http.put(this.url + '/updateListMyUser/' , users, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
   deleteUser(id: number)

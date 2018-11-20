@@ -32,22 +32,24 @@ export class AddProduitReactiveFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.serviceProduit.allEnums().subscribe( g => {
+    this.serviceProduit.allGenres().subscribe( g => {
       for(let s of Object.values(g))
       {
-          this.genresTab.push({ label: s, value: { name: s}});
+          this.genresTab.push({ label: s, value: s});
       }
     }); 
 
-    this.supportTab = [
-      { label: 'PS4', value: { name: 'SUPPORT_PS4' } },
-      { label: 'Xbox One', value: { name: 'SUPPORT_XBOXONE' } },
-      { label: 'PC', value: { name: 'SUPPORT_PC' } }
-    ];
+    this.serviceProduit.allSupports().subscribe( support => {
+      for(let s of Object.values(support))
+      {
+          this.supportTab.push({ label: s, value: s });
+      }
+    }); 
   }
 
   onSubmit() {
-    let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description);
+   
+    let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description, true);
     this.serviceProduit.addProduit(produit);
   }
 }

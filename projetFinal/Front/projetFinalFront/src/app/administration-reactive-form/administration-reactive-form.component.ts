@@ -20,6 +20,7 @@ export class AdministrationReactiveFormComponent implements OnInit {
 
   gererRoles()
   {
-
+    this.router.navigate(['/gererUser']);
   }
 }
+

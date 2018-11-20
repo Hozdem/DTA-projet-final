@@ -36,12 +36,15 @@ public class Produit {
 
 	@Column
 	private String description;
+	
+	@Column
+	private boolean activated;
 
 	public Produit() {
 
 	}
 	
-	public Produit(String nom, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description) {
+	public Produit(String nom, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description, boolean activated) {
 		super();
 		this.titre = nom;
 		this.genres = genres;
@@ -51,6 +54,7 @@ public class Produit {
 		this.lienImage = lienImage;
 		this.editeur = editeur;
 		this.description = description;
+		this.activated = activated;
 	}
 
 	public long getId() {
@@ -124,11 +128,44 @@ public class Produit {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public Date getDateSortie() {
+		return dateSortie;
+	}
+
+	public void setDateSortie(Date dateSortie) {
+		this.dateSortie = dateSortie;
+	}
+
+	public float getPrix() {
+		return prix;
+	}
+
+	public void setPrix(float prix) {
+		this.prix = prix;
+	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
 
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", nom=" + titre + ", genres=" + genres + ", support=" + support
-				+ ", dateSortieProd=" + dateSortie + ", prixProd=" + prix + ", lienImage=" + lienImage
-				+ ", editeur=" + editeur + ", description=" + description + "]";
+		return "Produit [id=" + id + ", titre=" + titre + ", genres=" + genres + ", support=" + support
+				+ ", dateSortie=" + dateSortie + ", prix=" + prix + ", lienImage=" + lienImage + ", editeur=" + editeur
+				+ ", description=" + description + ", activated=" + activated + "]";
 	}
+
 }

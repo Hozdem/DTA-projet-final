@@ -22,9 +22,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-
-import {MenubarModule} from 'primeng/menubar';
+import {PickListModule} from 'primeng/picklist';
+import {CarouselModule} from 'primeng/carousel';
 
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
@@ -38,7 +37,11 @@ import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AdministrationReactiveFormComponent } from './administration-reactive-form/administration-reactive-form.component';
 import { AddProduitReactiveFormComponent } from './add-produit-reactive-form/add-produit-reactive-form.component';
+import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/gestion-user-reactive-form.component';
 
+import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
+import { ProduitsComponent } from './produits/produits.component';
+import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -49,11 +52,14 @@ const route: Routes =
     { path: 'addProduit', component: AddProduitReactiveFormComponent },
 
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
+    { path: 'updateProduit/:id', component: UpdateProduitReactiveFormComponent },
 
     { path: 'deleteUser/:id', component: DeleteUserComponent },
+    { path: 'deleteProduit/:id', component: DeleteProduitComponent },
 
     { path: 'administration', component: AdministrationReactiveFormComponent },
-    { path: 'produit', component: ProduitDetailsComponent }
+    { path: 'produit', component: ProduitsComponent },
+    { path: 'gererUser', component: GestionUserReactiveFormComponent }
   ];
 
 @NgModule({
@@ -70,7 +76,11 @@ const route: Routes =
     DeconnexionComponent,
     AccueilComponent,
     AdministrationReactiveFormComponent,
-    AddProduitReactiveFormComponent
+    AddProduitReactiveFormComponent,
+    GestionUserReactiveFormComponent,
+    DeleteProduitComponent,
+    ProduitsComponent,
+    UpdateProduitReactiveFormComponent
   ],
   imports: [
     BrowserModule,
@@ -88,8 +98,8 @@ const route: Routes =
     PanelMenuModule,
     ButtonModule,
     MultiSelectModule,
-    AutoCompleteModule,
-    MenubarModule
+    PickListModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

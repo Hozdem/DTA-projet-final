@@ -77,6 +77,14 @@ public class MyUserController
 	
 
 	@CrossOrigin(origins = "*")
+	@PutMapping("/updateListMyUser")
+    public List<MyUser> updateListMyUser(@RequestBody List<MyUser> users)
+	{
+		return myUserService.updateMyUser(users);
+    }
+	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/deleteMyUser/{id}")
     public void deleteMyUser(@PathVariable long id)
 	{

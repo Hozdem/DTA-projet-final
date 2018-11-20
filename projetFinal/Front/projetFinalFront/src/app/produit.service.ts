@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Produit } from './produit';
 import { Observable, of } from 'rxjs';
+import { MyUser } from './my-user';
+import { TestBed } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ProduitService
   url = 'http://localhost:8091/api/Produits';
 
   httpOptions = { headers: new HttpHeaders({'Content-type': 'application/json'}) };
-  produits: Array<Produit>;
+
 
   constructor(private http: HttpClient, private router: Router)
   { 
@@ -25,29 +27,35 @@ export class ProduitService
     return this.http.get<Produit>(this.url +'/' + id, this.httpOptions);
   }
 
-  allEnums()
+  allGenres()
   {
-    return this.http.get(this.url + '/allEnums', this.httpOptions);
+    return this.http.get(this.url + '/allGenres', this.httpOptions);
   }
 
-  getAllProduit(): Observable<Array<Produit>>
+  allSupports()
   {
-    return of(this.produits);
+    return this.http.get(this.url + '/allSupports', this.httpOptions);
+  }
+
+  getAllProduit()
+  {
+    return this.http.get(this.url + '/', this.httpOptions);
   }
 
   addProduit(prod: Produit)
   {
-    this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/addProduit']));
+    this.http.post(this.url + '/addProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
   // Après validation du formulaire de la page 'updateProduit', redirection vers l'accueil.
   updateProduit(prod: Produit)
   {
-    this.http.post(this.url + '/updateProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.put(this.url + '/updateProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
   
-  deleteProduit(prod: Produit)
+  deleteProduit(id: number)
   {
-    this.http.post(this.url + '/deleteProduit',prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
+
 }

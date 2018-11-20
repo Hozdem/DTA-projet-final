@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dta.projetFinal.enums.EnumGenres;
+import fr.dta.projetFinal.enums.EnumSupports;
 import fr.dta.projetFinal.model.Produit;
 import fr.dta.projetFinal.service.ProduitService;
 
@@ -68,10 +69,17 @@ public class ProduitController {
     }
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping("/allEnums")
-    public List<String> allEnums()
+	@GetMapping("/allGenres")
+    public List<String> allGenres()
 	{
 		return EnumGenres.getAllGenres();
+    }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/allSupports")
+    public List<String> allSupports()
+	{
+		return EnumSupports.getAllSupports();
     }
 }
 

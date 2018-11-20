@@ -20,10 +20,8 @@ export class MenuReactiveFormComponent implements OnInit {
  
   ngOnInit() {
     let visiteur = false;
-    if(localStorage.getItem("loginVK") !==null)
+    if(localStorage.getItem("loginVK") !==null && localStorage.getItem("passwordVK") !==null)
     {
-      if(localStorage.getItem("passwordVK") !==null)
-      {
         if(localStorage.getItem("roleVK") ==='ROLE_USER')
         {
           this.menu = [
@@ -36,15 +34,6 @@ export class MenuReactiveFormComponent implements OnInit {
             { label: 'ADMIN', items: [{ label: this.labelProduit, url: this.urlProduit }, {label: 'Administrations', url: 'administration' }, { label: this.labelDeconnexion , url: this.urlDeconnexion  }] }
           ];
         }
-        else
-        {
-          visiteur = true;
-        }
-      }
-      else
-      {
-        visiteur = true;
-      }
     }
     else
     {
