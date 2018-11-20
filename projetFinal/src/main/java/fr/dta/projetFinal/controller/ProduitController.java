@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.enums.EnumSupports;
 import fr.dta.projetFinal.model.Produit;
-import fr.dta.projetFinal.repository.ProduitRepositoryCustom;
+//import fr.dta.projetFinal.repository.ProduitRepositoryCustom;
 import fr.dta.projetFinal.service.ProduitService;
 
 
@@ -29,8 +29,8 @@ public class ProduitController {
 	@Autowired
 	ProduitService produitService;
 	
-	@Autowired
-	private ProduitRepositoryCustom produitRepository;
+	/*@Autowired
+	private ProduitRepositoryCustom produitRepository;*/
 	
 	@GetMapping("/")
 	@CrossOrigin(origins = "*")
@@ -88,7 +88,7 @@ public class ProduitController {
 		return EnumSupports.getAllSupports();
     }
 	
-	@CrossOrigin(origins = "*")
+	/*@CrossOrigin(origins = "*")
 	@GetMapping("/search")
 	public List<Produit> getProduits(
 			@RequestParam(required = false) String titre,
@@ -96,6 +96,6 @@ public class ProduitController {
 			@RequestParam(required = false) List<String> supports) {
 		
 		return produitRepository.search(titre, genres, supports);
-	}
+	}*/
 }
 
