@@ -5,16 +5,16 @@
   </li>
 </ul> -->
 
-<p-dataView #dv [value]="produits" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand" [sortField]="sortField" [sortOrder]="sortOrder">
+<p-dataView #dv [value]="produits" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[10,20,30]" paginatorPosition="both" filterBy="titre" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
                 </div>
                 <div class="ui-g-6 ui-md-4 filter-container">
                     <div style="position:relative">
-                        <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
+                        <input type="search" pInputText placeholder="Rechercher par titre" (keyup)="dv.filter($event.target.value)">
                     </div>
                 </div>
                 <div class="ui-g-6 ui-md-4" style="text-align:right">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="ui-g-12 ui-md-1 search-icon">
-                <button pButton type="button" icon="pi pi-search" (click)="selectProduit($event, car)"></button>
+                <button pButton type="button" icon="pi pi-search" (click)="selectProduit($event, produit)"></button>
             </div>
         </div>
     </ng-template>
@@ -56,14 +56,14 @@
                 <img src={{produit.lienImage}} width="60">
                 <div class="car-detail">{{produit.titre}} sur {{produit.support}}</div>
                 <hr class="ui-widget-content" style="border-top:0">
-                <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+                <button pButton type="button" icon="pi pi-search" (click)="selectProduit($event, produit)" style="margin-top:0"></button>
             </p-panel>
         </div>
     </ng-template>
 </p-dataView>
 
 <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225" (onAfterHide)="onDialogHide()">
-    <div class="ui-g">
+    <div class="ui-g" *ngIf="selectedProduit">
         <div class="ui-g-4"><a href="">Modifier</a></div>
 
         <div class="ui-g-4"><a href="">Supprimer</a></div>
