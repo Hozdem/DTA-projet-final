@@ -22,6 +22,9 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
+import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
 import {CarouselModule} from 'primeng/carousel';
 
@@ -98,6 +101,8 @@ const route: Routes =
     PanelMenuModule,
     ButtonModule,
     MultiSelectModule,
+    AutoCompleteModule,
+    MenubarModule,
     PickListModule,
     CarouselModule
   ],
