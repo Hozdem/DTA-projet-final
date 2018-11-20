@@ -40,6 +40,7 @@ export class ProduitService
   getAllProduit()
   {
     return this.http.get(this.url + '/', this.httpOptions);
+    
   }
 
   addProduit(prod: Produit)

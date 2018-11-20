@@ -9,7 +9,7 @@ import { Produit } from '../produit';
 export class AccueilComponent implements OnInit {
 
   nouveautesProduit: Array<Produit> = [];
-
+ 
   constructor() { }
 
   ngOnInit() {

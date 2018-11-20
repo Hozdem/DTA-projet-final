@@ -23,6 +23,9 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
 
 import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
@@ -104,7 +107,10 @@ const route: Routes =
     AutoCompleteModule,
     MenubarModule,
     PickListModule,
-    CarouselModule
+    CarouselModule,
+    DataViewModule,
+    PanelModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

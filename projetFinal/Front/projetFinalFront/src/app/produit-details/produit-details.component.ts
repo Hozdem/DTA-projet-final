@@ -17,6 +17,6 @@ export class ProduitDetailsComponent implements OnInit
 
   ngOnInit()
   {
-
+    
   }
 }

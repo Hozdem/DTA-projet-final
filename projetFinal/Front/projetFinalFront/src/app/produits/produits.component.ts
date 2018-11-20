@@ -10,14 +10,21 @@ import { ProduitService } from '../produit.service';
 export class ProduitsComponent implements OnInit
 {
   produits: Array<Produit> = [];
+
   constructor(private service: ProduitService)
   { 
+
   }
 
   ngOnInit()
   {
-    /*this.service.getAllProduit().subscribe( p => {
-      this.produits.push();
-    });*/
+    this.service.getAllProduit().subscribe( p => {
+      for(let prod of Object.values(p))
+      {
+        this.produits.push(prod);
+      }
+      console.log(p);
+    });
+    
   }
 }

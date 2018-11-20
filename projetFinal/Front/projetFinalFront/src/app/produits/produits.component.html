@@ -1,5 +1,73 @@
-<ul>
+<app-menu></app-menu>
+<!-- <ul>
   <li *ngFor="let p of produits">
      <app-produit-details [produit]="p" ></app-produit-details>
   </li>
-</ul>
+</ul> -->
+
+<p-dataView #dv [value]="produits" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand" [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </div>
+        </div>
+    </p-header>
+
+    <ng-template let-produit pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-3" style="text-align:center;">
+                <img src={{produit.lienImage}}>
+            </div>
+            <div class="ui-g-12 ui-md-8 car-details">
+                <div class="ui-g">
+                    <div class="ui-g-2 ui-sm-6">Titre: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{produit.titre}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Support: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{produit.support}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Date de sortie: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{produit.dateSortie}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Prix de l'article: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{produit.prixProd}}</b></div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-1 search-icon">
+                <button pButton type="button" icon="pi pi-search" (click)="selectProduit($event, car)"></button>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template let-produit pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="produit.titre" [style]="{'text-align':'center'}">
+                <img src={{produit.lienImage}} width="60">
+                <div class="car-detail">{{produit.titre}} sur {{produit.support}}</div>
+                <hr class="ui-widget-content" style="border-top:0">
+                <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
+
+<p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225" (onAfterHide)="onDialogHide()">
+    <div class="ui-g">
+        <div class="ui-g-4"><a href="">Modifier</a></div>
+
+        <div class="ui-g-4"><a href="">Supprimer</a></div>
+
+        <div class="ui-g-4"><a href="">Activer/Désactiver</a></div>
+    </div>
+</p-dialog>

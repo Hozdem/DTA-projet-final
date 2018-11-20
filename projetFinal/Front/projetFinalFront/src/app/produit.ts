@@ -21,4 +21,6 @@ export class Produit {
         this.description = description;
         this.activated = activated;
     }
+
+    FormatDeDate
 }
