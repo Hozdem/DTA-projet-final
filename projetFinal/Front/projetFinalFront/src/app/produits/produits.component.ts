@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
 import { SelectItem } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 
 @Component({
@@ -10,7 +10,10 @@ import { promise } from 'protractor';
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css']
 })
-export class ProduitsComponent implements OnInit {
+
+export class ProduitsComponent implements OnInit
+{
+
   produits: Array<Produit> = [];
 
   selectedProduit: Produit;
@@ -25,7 +28,10 @@ export class ProduitsComponent implements OnInit {
 
   sortOrder: number;
 
-  constructor(private service: ProduitService, private activatedRoute: ActivatedRoute) {
+  activated: boolean = false;
+
+  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute)
+  { 
 
   }
 
@@ -68,8 +74,30 @@ export class ProduitsComponent implements OnInit {
     }
   }
 
-  onDialogHide() {
+  onDialogHide()
+  {
     this.selectedProduit = null;
   }
 
+  onClickDetails()
+  {
+    this.router.navigate(['/']);
+  }
+
+  //TODO RAJOUTER TOUTES LES METHODES: MODIFICATION , SUPPRESSION , ACTIVATION/DESACTIVATION DU PRODUIT 
+
+  modifierProduit()
+  {
+
+  }
+
+  supprimerProduit()
+  {
+
+  }
+  
+  eventActivatedProduit()
+  {
+
+  }
 }

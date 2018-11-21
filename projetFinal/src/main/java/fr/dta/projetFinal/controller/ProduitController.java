@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addProduit")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public void insertProduit(@RequestBody Produit produit)
 	{
         produitService.insertProduit(produit);
@@ -62,6 +64,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PutMapping("/updateProduit")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateProduit(@RequestBody Produit produit)
 	{
 		produitService.updateProduit(produit);
@@ -69,6 +72,7 @@ public class ProduitController {
 
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/deleteProduit/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteProduit(@PathVariable long id)
 	{
 		produitService.deleteProduitById(id);
