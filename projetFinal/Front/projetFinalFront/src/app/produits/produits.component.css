@@ -2,3 +2,20 @@ img
 {
     width:40%;
 }
+
+#divBtnAdmin
+{
+    width: auto;
+    text-align: center;
+    margin: auto;
+}
+
+#fenetreGestionAdmin
+{
+    text-align: center;
+}
+
+#fenetreGestionAdmin, button
+{
+    margin: 10px; 
+}

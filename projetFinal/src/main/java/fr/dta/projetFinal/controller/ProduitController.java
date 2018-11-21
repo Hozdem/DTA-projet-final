@@ -1,6 +1,6 @@
 package fr.dta.projetFinal.controller;
 
-import java.util.Collection;
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +98,7 @@ public class ProduitController {
 			@RequestParam(required = false) String titre,
 			@RequestParam(required = false) List<String> genres,
 			@RequestParam(required = false) List<String> supports) {
-		
+		//System.out.println("titre = "+titre+" genres = "+genres+" supports = "+supports);
 		return produitRepository.search(titre, genres, supports);
 	}
 }
