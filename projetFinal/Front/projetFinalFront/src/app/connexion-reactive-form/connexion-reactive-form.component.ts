@@ -31,7 +31,7 @@ export class ConnexionReactiveFormComponent implements OnInit {
       if(b !== null)
       {
         localStorage.setItem("loginVK", b.login  );
-        localStorage.setItem("passwordVK", b.password );
+        localStorage.setItem("passwordVK", this.userForm.value.password );
         localStorage.setItem("roleVK", b.role);
         this.router.navigate(['/']);
       }else{

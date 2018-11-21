@@ -19,7 +19,7 @@ export class MenuAccueilComponent implements OnInit {
     this.service.allSupports().subscribe( s => {
       for(let value of Object.values(s))
       {
-        this.itemTmp.push({label: value, url: '/addProduit'});
+        this.itemTmp.push({label: value, url: 'supports/'+value});
       }
 
       this.items = [{
@@ -31,7 +31,7 @@ export class MenuAccueilComponent implements OnInit {
         this.itemTmp = [];
         for(let value of Object.values(g))
         {
-          this.itemTmp.push({label: value});
+          this.itemTmp.push({label: value, url:'genres/'+value});
         }
 
         this.items.push({
@@ -40,5 +40,9 @@ export class MenuAccueilComponent implements OnInit {
         });
       });
     });
+  }
+
+  onClick(){
+
   }
 }

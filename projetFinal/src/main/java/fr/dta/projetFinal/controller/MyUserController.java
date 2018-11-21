@@ -55,7 +55,7 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/findUser/{login}")
-    public Optional<MyUser> findBylogin(@PathVariable String login)
+    public MyUser findBylogin(@PathVariable String login)
 	{
         return myUserService.findBylogin(login);
     }
