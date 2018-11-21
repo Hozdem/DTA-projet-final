@@ -2,9 +2,6 @@ package fr.dta.projetFinal.model;
 
 import javax.persistence.*;
 
-
-
-
 @Entity
 public class MyUser
 {	
@@ -46,9 +43,6 @@ public class MyUser
 	{
 		
 	}
-
-	
-	
 
 	public MyUser(String login, String password, String role, String nom, String prenom, String email,
 			String adresse, String ville, String codePostal, String numTel) {
