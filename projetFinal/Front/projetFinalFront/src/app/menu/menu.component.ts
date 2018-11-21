@@ -29,10 +29,20 @@ export class MenuComponent implements OnInit {
     }
     else
     {
-      /*if(this.activatedRoute.snapshot.url[0].path === 'rechercherProduit')
+      if(this.activatedRoute.snapshot.url[0].path === 'produit')
       {
           // on est dans la recherche de produit
-      }*/
+          this.pageActuel = this.menuGlobal[1];
+      }
+      else
+      {
+        /*
+        if(this.activatedRoute.snapshot.url[0].path === 'panier')
+        {
+            // on est dans la recherche de produit
+            this.pageActuel = this.menuGlobal[1];
+        }*/
+      }
     }
   }
 
