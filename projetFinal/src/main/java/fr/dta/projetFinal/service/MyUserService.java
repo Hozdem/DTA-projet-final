@@ -15,12 +15,20 @@ public class MyUserService
 {
 	@Autowired
 	MyUserRepository myUserRepository;
+
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
-	
-	public Optional<MyUser> findBylogin(String login)
+	public MyUser findBylogin(String login)
 	{
-		return myUserRepository.findByLogin(login);
-		
+		Optional<MyUser> u = myUserRepository.findByLogin(login);
+		if(u.isPresent())
+		{
+			return u.get();
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	public MyUser insertMyUser(MyUser user)
@@ -51,20 +59,15 @@ public class MyUserService
 	
 	public MyUser verifPassword(MyUser args)
 	{
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		Optional<MyUser> userOption = findBylogin(args.getLogin());
-		if(userOption.isPresent()) {
-			MyUser user = userOption.get();
-			if(passwordEncoder.matches(args.getPassword(),user.getPassword())) {
-				return user;
-			};
+		MyUser user = findBylogin(args.getLogin());
+		if(passwordEncoder.matches(args.getPassword(),user.getPassword())) {
+			return user;
 		}
 		return null;
 	}
 	
 	public boolean verifPassword(long id, String password)
 	{
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Optional<MyUser> userOption = findById(id);
 		if(userOption.isPresent()) {
 			MyUser user = userOption.get();

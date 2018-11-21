@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MyUser } from '../my-user';
 
 @Component({
@@ -28,28 +28,49 @@ export class UpdateUserReactiveFormComponent implements OnInit {
   id: number;
   loginAffichage: string;
 
-  constructor(private fb: FormBuilder, private serviceUser: UserService, private activatedRoute: ActivatedRoute) { 
+  constructor(private router: Router, private fb: FormBuilder, private serviceUser: UserService, private activatedRoute: ActivatedRoute) { 
     
   }
 
   ngOnInit() {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+
+
     this.serviceUser.getUser(this.id).subscribe(u => {
-      this.userForm.setValue({
-        login: u.login,
-        ancienPassword: '',
-        password: '',
-        verificationPassword: '',
-        nom: u.nom,
-        prenom: u.prenom,
-        email: u.email,
-        adresse: u.adresse,
-        ville: u.ville,
-        codePostal: u.codePostal, 
-        numTel: u.numTel
-      }) ;
+      this.serviceUser.findUserIdByLogin(localStorage.getItem('loginVK')).subscribe(user =>{
+        this.serviceUser.verifierLoginAndPassword(user.id, localStorage.getItem('passwordVK')).subscribe(b =>{
+          if(b)
+          {
+            // si je suis connecté
+            if(u.id === user.id)
+            {
+              // je suis le bon user
+              this.userForm.setValue({
+                login: u.login,
+                ancienPassword: '',
+                password: '',
+                verificationPassword: '',
+                nom: u.nom,
+                prenom: u.prenom,
+                email: u.email,
+                adresse: u.adresse,
+                ville: u.ville,
+                codePostal: u.codePostal, 
+                numTel: u.numTel
+              }) ;
+              
+              this.loginAffichage = u.login;
+            }
+            else
+            {
+              // je ne suis pas le bon user ou je suis deconnecté
+              this.router.navigate(['/']);
+            }
+          }
+        });
+      });
       
-      this.loginAffichage = u.login;
+      
     });
   }
 
@@ -63,6 +84,9 @@ export class UpdateUserReactiveFormComponent implements OnInit {
     this.serviceUser.verifierLoginAndPassword(this.id, this.userForm.value.ancienPassword).subscribe( b=> {
       if(b === true)
       {
+        localStorage.setItem("loginVK", user.login  );
+        localStorage.setItem("passwordVK", user.password );
+        localStorage.setItem("roleVK", user.role);
         this.serviceUser.updateUser(user);
       }
     });

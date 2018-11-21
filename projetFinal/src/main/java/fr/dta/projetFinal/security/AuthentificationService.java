@@ -26,14 +26,11 @@ public class AuthentificationService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(final String login) {
-		Optional<MyUser> option = myuserservice.findBylogin(login);
-		if (option.isPresent()) {
-			MyUser user = option.get();
-			List<GrantedAuthority> rules = this.getUserCredentials(user);
+		MyUser user =myuserservice.findBylogin(login);
+		List<GrantedAuthority> rules = this.getUserCredentials(user);
 		
-			return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), rules);
-		}
-		throw new UsernameNotFoundException("username.not.found");
+		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), rules);
+		
 	}
 
 	private List<GrantedAuthority> getUserCredentials(MyUser user) {
