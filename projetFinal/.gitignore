@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-/target/
-=======
 .classpath
 .project
 /target
 /.settings
->>>>>>> master
+/node_modules
+/bin
