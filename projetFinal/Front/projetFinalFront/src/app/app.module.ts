@@ -30,6 +30,7 @@ import {DialogModule} from 'primeng/dialog';
 import {MenuModule} from 'primeng/menu';
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
@@ -119,7 +120,8 @@ const route: Routes =
     DialogModule,
     MenuModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    InputSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

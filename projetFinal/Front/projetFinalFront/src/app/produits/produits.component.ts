@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css']
 })
+
 export class ProduitsComponent implements OnInit
 {
+
   produits: Array<Produit> = [];
 
   selectedProduit: Produit;
@@ -24,7 +27,9 @@ export class ProduitsComponent implements OnInit
 
   sortOrder: number;
 
-  constructor(private service: ProduitService)
+  activated: boolean = false;
+
+  constructor(private service: ProduitService, private router: Router)
   { 
 
   }
@@ -71,7 +76,28 @@ export class ProduitsComponent implements OnInit
 
   onDialogHide()
   {
-      this.selectedProduit   = null;
+    this.selectedProduit = null;
   }
 
+  onClickDetails()
+  {
+    this.router.navigate(['/']);
+  }
+
+  //TODO RAJOUTER TOUTES LES METHODES: MODIFICATION , SUPPRESSION , ACTIVATION/DESACTIVATION DU PRODUIT 
+
+  modifierProduit()
+  {
+
+  }
+
+  supprimerProduit()
+  {
+
+  }
+  
+  eventActivatedProduit()
+  {
+
+  }
 }
