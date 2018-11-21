@@ -1,14 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-
 import { RouterModule, Routes } from '@angular/router';
-
-
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +47,7 @@ import { DeleteProduitComponent } from './delete-produit/delete-produit.componen
 import { ProduitsComponent } from './produits/produits.component';
 import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
 import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
+
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
