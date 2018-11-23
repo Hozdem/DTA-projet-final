@@ -13,8 +13,10 @@ export class AddProduitReactiveFormComponent implements OnInit {
 
   genresTab: SelectItem[];
   supportTab: SelectItem[]; 
+  imageTab: SelectItem[];
   uploadedFiles: any[] = [];
-  url = 'http://localhost:8091/api/MyUsers/stocker/';
+  urlSauvegardeImage = 'http://localhost:8091/api/Produits/stocker/';
+  urlImageSelectionne = './assets/images/raw/uploaded/';
 
   produitForm = this.fb.group({
     titre: ['', Validators.required],
@@ -47,11 +49,21 @@ export class AddProduitReactiveFormComponent implements OnInit {
           this.supportTab.push({ label: s, value: s });
       }
     }); 
+
+    this.serviceProduit.getAllPathPictures().subscribe( pictures => {
+      this.imageTab = [];
+      for(let p of pictures)
+      {
+        p = p.substring(0, p.length-4);
+        this.imageTab.push({label: p, value: p});
+      }
+    });
+    
   }
 
   onSubmit() {
+    this.produitForm.value.lienImage = this.urlImageSelectionne + this.produitForm.value.lienImage + '.png';
     let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description, true);
-    //console.log(this.uploadedFiles);
     this.serviceProduit.addProduit(produit);
   }
 
@@ -59,7 +71,8 @@ export class AddProduitReactiveFormComponent implements OnInit {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
-
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 }
+
+

@@ -58,4 +58,9 @@ export class ProduitService
     this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
+  getAllPathPictures()
+  {
+    return this.http.get<Array<string>>(this.url + '/allPicturesPath', this.httpOptions);
+  }
+
 }

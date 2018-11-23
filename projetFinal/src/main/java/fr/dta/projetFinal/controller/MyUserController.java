@@ -86,21 +86,4 @@ public class MyUserController
 	{
 		return myUserService.updateMyUser(users);
     }
-	
-
-	@CrossOrigin(origins = "*")
-	@DeleteMapping("/deleteMyUser/{id}")
-    public void deleteMyUser(@PathVariable long id)
-	{
-		myUserService.deleteById(id);
-    }
-	
-	
-	
-
-	@CrossOrigin(origins = "*")
-	@PostMapping("/stocker/")
-    public void stocker(@RequestParam MultipartFile file) {
-		System.out.println(file.getOriginalFilename());
-    }
 }
