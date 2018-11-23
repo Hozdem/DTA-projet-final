@@ -143,6 +143,11 @@ values ('true','2015-10-27', 'lien/desc','Microsoft Studios','../../assets/image
 insert into produit_genres (produit_id, genres) 
 values (20, 'FPS');
 
+insert into produit (activated, date_sortie, description, editeur, lien_image, prix, support, titre, id) 
+values ('true','2015-10-27', 'lien/desc','Microsoft Studios','../../assets/images/png/XBOXONE/Halo 5 Guardians.png', 65, 'XBOXONE', 'CLONE Halo 5: Guardians CLONE ', 21);
+insert into produit_genres (produit_id, genres) 
+values (21, 'FPS');
+
 insert into my_user (adresse, code_postal, email, login, nom, num_tel, password, prenom, role, ville, id) values ('5 rue bou', 75000, 'jean@email.com', 'progamer123', 'Durant', 0123456789, '$2a$10$wZmrH2fPNONMB6MOayp18OeEUTBgT6bOdYOYX3efqp5Pm4ijfxnh2', 'Jean', 'ROLE_USER', 'Paris', 100);
 insert into my_user (adresse, code_postal, email, login, nom, num_tel, password, prenom, role, ville, id) values ('256 avenue très grande', 34080, 'micheline@email.com', 'login', 'Cheval', 9874563210, '$2a$10$o4fRWSP0qo00nzyPJM5LauWG0Kl8K7YRiqFBLci77bE3BceN4uP7i', 'Micheline', 'ROLE_USER', 'Montpellier', 200);
 insert into my_user (adresse, code_postal, email, login, nom, num_tel, password, prenom, role, ville, id) values ('16 chemin de nul part', 34080, 'maurice@email.com', 'pseudo', 'Pouik', 0000000000, '$2a$10$qfmMn.21TKwxcSLEv.MjeOUaYxPU.75OGK3OtDgzoBHqO0WwgjtAu', 'Maurice', 'ROLE_USER', 'Montpellier', 300);

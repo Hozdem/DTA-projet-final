@@ -44,11 +44,11 @@ export class ProduitService {
 
   // Après validation du formulaire de la page 'updateProduit', redirection vers l'accueil.
   updateProduit(prod: Produit) {
-    this.http.put(this.url + '/updateProduit', prod, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.put(this.url + '/updateProduit', prod, this.httpOptions).subscribe(() => this.router.navigate(['/produit']));
   }
 
   deleteProduit(id: number) {
-    this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+    this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/produit']));
   }
 
   searchProduit(titre?: string, genres?: Array<string>, supports?: Array<string>): Promise<Produit[]> {
@@ -73,5 +73,12 @@ export class ProduitService {
       params: parameters
     }).toPromise();
   }
+
+  /*
+  activateProduit(id:number)
+  {
+    this.http.put(this.url + '/activateProduit' + id, this.httpOptions).subscribe(() => this.router.navigate(['/produit']));
+  }
+  */
 
 }

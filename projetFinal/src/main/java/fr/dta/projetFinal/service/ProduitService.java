@@ -43,7 +43,7 @@ public class ProduitService {
 		produitRepository.save(produit);
 	}
 	
-	public  void deleteProduitById(long id)
+	public void deleteProduitById(long id)
 	{
 		produitRepository.deleteById(id);
 	}

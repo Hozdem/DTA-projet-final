@@ -52,7 +52,6 @@ export class ProduitsComponent implements OnInit
       { label: 'Tri alphabétique décroissant', value: 'titre' },
       { label: 'Tri par support', value: 'support' }
     ];
-
   }
 
   selectProduit(event: Event, produit: Produit) {
@@ -84,20 +83,13 @@ export class ProduitsComponent implements OnInit
     this.router.navigate(['/']);
   }
 
-  //TODO RAJOUTER TOUTES LES METHODES: MODIFICATION , SUPPRESSION , ACTIVATION/DESACTIVATION DU PRODUIT 
-
-  modifierProduit()
+  onClickModifProduit(id:number)
   {
-
+    this.router.navigate(['/updateProduit/'+id]);
   }
 
-  supprimerProduit()
+  onClickDeleteProduit(id:number)
   {
-
-  }
-  
-  eventActivatedProduit()
-  {
-
+    this.router.navigate(['deleteProduit/'+id]);
   }
 }

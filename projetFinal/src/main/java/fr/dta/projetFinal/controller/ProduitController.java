@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,7 +50,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addProduit")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Secured("hasRole('ROLE_ADMIN')")
     public void insertProduit(@RequestBody Produit produit)
 	{
         produitService.insertProduit(produit);
