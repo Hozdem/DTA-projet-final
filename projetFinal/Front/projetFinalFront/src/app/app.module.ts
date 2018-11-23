@@ -51,6 +51,7 @@ import { ProduitsComponent } from './produits/produits.component';
 import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
 import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
 import { MessageService } from 'primeng/api';
+import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -70,6 +71,7 @@ const route: Routes =
     { path: 'gererUser', component: GestionUserReactiveFormComponent },
 
     { path: 'produit', component: ProduitsComponent },
+    { path: 'ficheProduit/:id', component: FicheProduitComponent },
     { path: 'titre/:titre', component: ProduitsComponent},
     { path: 'genres/:genres', component: ProduitsComponent},
     { path: 'supports/:supports', component: ProduitsComponent}
@@ -94,7 +96,8 @@ const route: Routes =
     DeleteProduitComponent,
     ProduitsComponent,
     UpdateProduitReactiveFormComponent,
-    MenuAccueilComponent
+    MenuAccueilComponent,
+    FicheProduitComponent
   ],
   imports: [
     BrowserModule,
