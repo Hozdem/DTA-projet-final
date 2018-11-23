@@ -75,5 +75,3 @@ export class AddProduitReactiveFormComponent implements OnInit {
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
 }
-
-
