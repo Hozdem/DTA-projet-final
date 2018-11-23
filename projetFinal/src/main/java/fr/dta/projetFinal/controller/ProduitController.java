@@ -52,7 +52,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addProduit")
-	@Secured("ROLE_ADMIN")
+	@Secured("hasRole('ROLE_ADMIN')")
     public void insertProduit(@RequestBody Produit produit)
 	{
         produitService.insertProduit(produit);
@@ -67,7 +67,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PutMapping("/updateProduit")
-	@Secured("ROLE_ADMIN")
+	@Secured("hasRole('ROLE_ADMIN')")
     public void updateProduit(@RequestBody Produit produit)
 	{
 		produitService.updateProduit(produit);

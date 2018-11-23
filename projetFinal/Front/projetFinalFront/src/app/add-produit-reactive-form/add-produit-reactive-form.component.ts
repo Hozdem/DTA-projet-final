@@ -14,6 +14,7 @@ export class AddProduitReactiveFormComponent implements OnInit {
   genresTab: SelectItem[];
   supportTab: SelectItem[]; 
   imageTab: SelectItem[];
+  
   uploadedFiles: any[] = [];
   urlSauvegardeImage = 'http://localhost:8091/api/Produits/stocker/';
   urlImageSelectionne = './assets/images/raw/uploaded/';
@@ -72,7 +73,7 @@ export class AddProduitReactiveFormComponent implements OnInit {
         this.uploadedFiles.push(file);
     }
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
+  }
 }
 
 
