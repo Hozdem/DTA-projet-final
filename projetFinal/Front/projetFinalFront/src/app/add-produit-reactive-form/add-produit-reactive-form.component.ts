@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProduitService } from '../produit.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Produit } from '../produit';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-produit-reactive-form',
@@ -12,7 +12,9 @@ import { SelectItem } from 'primeng/api';
 export class AddProduitReactiveFormComponent implements OnInit {
 
   genresTab: SelectItem[];
-  supportTab: SelectItem[];
+  supportTab: SelectItem[]; 
+  uploadedFiles: any[] = [];
+  url = 'http://localhost:8091/api/MyUsers/stocker/';
 
   produitForm = this.fb.group({
     titre: ['', Validators.required],
@@ -26,7 +28,7 @@ export class AddProduitReactiveFormComponent implements OnInit {
 
   });
 
-  constructor(private fb: FormBuilder, private serviceProduit: ProduitService) {
+  constructor(private fb: FormBuilder, private serviceProduit: ProduitService, private messageService: MessageService) {
     this.genresTab = [];
     this.supportTab = [];
   }
@@ -48,8 +50,16 @@ export class AddProduitReactiveFormComponent implements OnInit {
   }
 
   onSubmit() {
-   
     let produit = new Produit(this.produitForm.value.titre, this.produitForm.value.genres, this.produitForm.value.support, this.produitForm.value.dateSortie, this.produitForm.value.prix, this.produitForm.value.lienImage, this.produitForm.value.editeur, this.produitForm.value.description, true);
+    //console.log(this.uploadedFiles);
     this.serviceProduit.addProduit(produit);
   }
+
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
 }

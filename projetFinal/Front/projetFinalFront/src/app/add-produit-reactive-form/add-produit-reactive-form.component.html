@@ -33,7 +33,7 @@
       <br>
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-info-circle"></i></span>
-        <input type="text" placeholder="lienImage" formControlName="lienImage" />
+        <input type="text" pInputText placeholder="prix" formControlName="lienImage">
       </div>
       <br>
       <div class="ui-inputgroup">
@@ -47,8 +47,10 @@
       </div>
       <br>
       <div class="ui-inputgroup">
-        <button [disabled]='!produitForm.valid' pButton type="submit" label="Enregistrer" class="ui-button-raised"></button>
+        <button pButton type="submit" label="Enregistrer" class="ui-button-raised"></button>
       </div>
     </div>
   </div>
 </form>
+
+<!-- [disabled]='!produitForm.valid'  -->
