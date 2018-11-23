@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http'
 
 // primeNG
 import { AccordionModule } from 'primeng/accordion';
@@ -26,6 +27,7 @@ import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import {InputSwitchModule} from 'primeng/inputswitch';
 
+import {FileUploadModule} from 'primeng/fileupload';
 import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
 import {CarouselModule} from 'primeng/carousel';
@@ -48,7 +50,7 @@ import { DeleteProduitComponent } from './delete-produit/delete-produit.componen
 import { ProduitsComponent } from './produits/produits.component';
 import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
 import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
-
+import { MessageService } from 'primeng/api';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -120,9 +122,11 @@ const route: Routes =
     MenuModule,
     TableModule,
     PaginatorModule,
-    InputSwitchModule
+    InputSwitchModule,
+    FileUploadModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

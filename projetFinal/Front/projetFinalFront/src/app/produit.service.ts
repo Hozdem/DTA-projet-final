@@ -72,6 +72,11 @@ export class ProduitService {
       headers: this.headers,
       params: parameters
     }).toPromise();
+  
+  }
+  getAllPathPictures()
+  {
+    return this.http.get<Array<string>>(this.url + '/allPicturesPath', this.httpOptions);
   }
 
 }

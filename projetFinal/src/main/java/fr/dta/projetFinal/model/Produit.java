@@ -41,7 +41,6 @@ public class Produit {
 	private boolean activated;
 
 	public Produit() {
-
 	}
 	
 	public Produit(String nom, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description, boolean activated) {
