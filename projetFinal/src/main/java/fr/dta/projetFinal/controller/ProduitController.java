@@ -1,6 +1,7 @@
 package fr.dta.projetFinal.controller;
 
-import java.io.Console;
+
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.dta.projetFinal.enums.EnumGenres;
 import fr.dta.projetFinal.enums.EnumSupports;
@@ -65,7 +67,7 @@ public class ProduitController {
 	
 	@CrossOrigin(origins = "*")
 	@PutMapping("/updateProduit")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Secured("hasRole('ROLE_ADMIN')")
     public void updateProduit(@RequestBody Produit produit)
 	{
 		produitService.updateProduit(produit);
@@ -73,7 +75,7 @@ public class ProduitController {
 
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("/deleteProduit/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Secured("ROLE_ADMIN")
     public void deleteProduit(@PathVariable long id)
 	{
 		produitService.deleteProduitById(id);
@@ -91,6 +93,23 @@ public class ProduitController {
     public List<String> allSupports()
 	{
 		return EnumSupports.getAllSupports();
+    }
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/allPicturesPath")
+    public String[] allPicturesPath()
+	{
+		return this.produitService.getAllPathPictures();
+    }
+
+	@CrossOrigin(origins = "*")
+	@PostMapping("/stocker/")
+    public void stocker(@RequestParam MultipartFile file) {
+		try {
+			this.produitService.sauvegarderImage(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 	
 	@CrossOrigin(origins = "*")

@@ -1,4 +1,3 @@
-<app-menu></app-menu>
 <form  [formGroup]='roleForm' (ngSubmit) = "onSubmit()">
   <p-pickList sourceHeader="Utilisateurs" targetHeader="Administrateurs" [source]="utilisateurs" [target]="adminSelected" [responsive]="true" dragdrop="true" dragdropScope="utilisateurs">
     <ng-template let-admin pTemplate="utilisateurs">

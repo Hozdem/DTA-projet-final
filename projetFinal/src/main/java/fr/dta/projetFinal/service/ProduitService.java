@@ -1,10 +1,15 @@
 package fr.dta.projetFinal.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.dta.projetFinal.model.Produit;
 import fr.dta.projetFinal.repository.ProduitRepository;
@@ -35,6 +40,7 @@ public class ProduitService {
 	
 	public void insertProduit(Produit produit)
 	{
+		
 		produitRepository.save(produit);
 	}
 	
@@ -51,5 +57,32 @@ public class ProduitService {
 	public List<Produit> findByGenres(List<String> genres) {
 		return produitRepository.findByGenres(genres);
 	}
+	
+	// retourne vrai si la sauvegarde a reussi sinon faux
+	public boolean sauvegarderImage(MultipartFile f) throws IOException
+	{
+		FileOutputStream sortie = null;
+		try 
+		{
+			File file = new File("./Front/projetFinalFront/src/assets/images/raw/uploaded/" + f.getOriginalFilename());
+			sortie = new FileOutputStream(file);
+			sortie.write(f.getBytes());
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			sortie.close();
+		}
+		return false;
+	}
 
+	public String[] getAllPathPictures()
+	{
+		File f = new File("./Front/projetFinalFront/src/assets/images/raw/uploaded/");
+		
+		return f.list();
+	}
 }
