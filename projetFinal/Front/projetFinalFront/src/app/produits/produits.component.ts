@@ -38,18 +38,6 @@ export class ProduitsComponent implements OnInit
   }
 
   ngOnInit() {
-    const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
-
-    const genres: Array<string> = [];
-    genres.push(this.activatedRoute.snapshot.paramMap.get('genres') !== undefined ? this.activatedRoute.snapshot.paramMap.get('genres') : '');
-
-    const supports: Array<string> = [];
-    supports.push(this.activatedRoute.snapshot.paramMap.get('supports') !== undefined ? this.activatedRoute.snapshot.paramMap.get('supports') : '');
-   
-    if (!this.getProduits()) {
-      this.searchProduits(titre, genres, supports);
-    }
-
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
@@ -101,7 +89,7 @@ export class ProduitsComponent implements OnInit
 
   modifierProduit()
   {
-
+    
   }
 
   supprimerProduit()
