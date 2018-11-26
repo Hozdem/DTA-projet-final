@@ -47,9 +47,13 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/connexionAuto/{id}")
-    public boolean verifierConnexionAuto(@PathVariable long id, @RequestBody String password)
+    public boolean verifierConnexionAuto(@PathVariable(required = false) Long id, @RequestBody(required = false) String password)
 	{
-        return myUserService.verifPassword(id, password);
+		if( id == null || password == null) {
+			return false;
+		}else {
+			return myUserService.verifPassword(id, password);
+		}
     }
 	
 	@CrossOrigin(origins = "*")
