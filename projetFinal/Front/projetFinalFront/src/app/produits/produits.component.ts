@@ -30,19 +30,35 @@ export class ProduitsComponent implements OnInit
 
   sortOrder: number;
 
-  activated: boolean = false;
+  activated: boolean;
 
   constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
   { 
 
   }
 
+<<<<<<< HEAD
   ngOnInit() {
+=======
+  ngOnInit()
+  {
+    const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
+
+    const genres: Array<string> = [];
+    genres.push(this.activatedRoute.snapshot.paramMap.get('genres') !== undefined ? this.activatedRoute.snapshot.paramMap.get('genres') : '');
+
+    const supports: Array<string> = [];
+    supports.push(this.activatedRoute.snapshot.paramMap.get('supports') !== undefined ? this.activatedRoute.snapshot.paramMap.get('supports') : '');
+
+    this.service.searchProduit(titre, genres, supports).then(produits => this.produits = produits);
+
+>>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
       { label: 'Tri par support', value: 'support' }
     ];
+<<<<<<< HEAD
   }
 
   searchProduits(titre: string, genres: string[], supports: string[]) {
@@ -54,15 +70,19 @@ export class ProduitsComponent implements OnInit
 
   getProduits(): Produit[] {
     return this.listeProduitsService.getProduits();
+=======
+>>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
   }
 
   selectProduit(event: Event, produit: Produit) {
     this.selectedProduit = produit;
     this.displayDialog = true;
+    this.activated = produit.activated;
     event.preventDefault();
   }
 
-  onSortChange(event) {
+  onSortChange(event)
+  {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -85,20 +105,23 @@ export class ProduitsComponent implements OnInit
     this.router.navigate(['/']);
   }
 
-  //TODO RAJOUTER TOUTES LES METHODES: MODIFICATION , SUPPRESSION , ACTIVATION/DESACTIVATION DU PRODUIT 
-
-  modifierProduit()
+  onClickModifProduit()
   {
+<<<<<<< HEAD
     
+=======
+    this.router.navigate(['/updateProduit/' + this.selectedProduit.id]);
+>>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
   }
 
-  supprimerProduit()
+  onClickDeleteProduit()
   {
-
+    this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
   }
-  
+
   eventActivatedProduit()
   {
-
+    this.selectedProduit.activated = !this.selectedProduit.activated;
+    this.service.updateProduit(this.selectedProduit);
   }
 }

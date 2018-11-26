@@ -28,7 +28,6 @@ public class AuthentificationService implements UserDetailsService{
 	public UserDetails loadUserByUsername(final String login) {
 		MyUser user =myuserservice.findBylogin(login);
 		List<GrantedAuthority> rules = this.getUserCredentials(user);
-		
 		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), rules);
 		
 	}
