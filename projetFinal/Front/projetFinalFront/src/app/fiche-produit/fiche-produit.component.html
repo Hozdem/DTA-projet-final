@@ -9,27 +9,44 @@
       <div class="ui-g-3">
         <img src="{{this.produit.lienImage}}" alt="Erreur de chargement de l'image"/>
       </div>
-      <div class="ui-g-6">
+      <div class="ui-g-5">
         <h3>{{produit.titre}}</h3>
         <label><b>Descriptions : </b></label>
         <p>
           {{produit.description}}
         </p>
       </div>
-      <div class="ui-g-1">
+      <div class="ui-g-2 rose">
         
       </div>
     </div>
     <div class="ui-g">
-      <div class="ui-g-3">
-        <img src="{{this.produit.lienImage}}" alt="Erreur de chargement de l'image"/>
+      <div class="ui-g-1">
+        
       </div>
-      <div class="ui-g-6">
-        <h3>{{produit.titre}}</h3>
-        <label><b>Descriptions : </b></label>
-        <p>
-          {{produit.description}}
-        </p>
+      <div class="ui-g-8">
+          <br>
+        <div>
+            <label><b>Date de sortie : </b></label>
+            <span>
+              {{produit.dateSortie | date:'dd/MM/yyyy'}}
+            </span>
+        </div>
+        <br>
+        <div>
+            <label><b>Editeur : </b></label>
+            <span>
+              {{produit.editeur}}
+            </span>
+        </div>
+        <br>
+        <div>
+            <label><b>Prix : </b></label>
+            <span>
+              {{produit.prix}} €
+            </span>
+        </div>
+        <br>
       </div>
       <div class="ui-g-1">
         

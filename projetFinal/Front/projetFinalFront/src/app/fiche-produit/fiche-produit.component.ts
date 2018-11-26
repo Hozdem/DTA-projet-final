@@ -30,5 +30,4 @@ export class FicheProduitComponent implements OnInit {
       }
     });
   }
-
 }

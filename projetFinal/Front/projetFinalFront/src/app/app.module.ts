@@ -52,6 +52,7 @@ import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-fo
 import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
 import { MessageService } from 'primeng/api';
 import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
+import { FichePanierComponent } from './fiche-panier/fiche-panier.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -97,7 +98,8 @@ const route: Routes =
     ProduitsComponent,
     UpdateProduitReactiveFormComponent,
     MenuAccueilComponent,
-    FicheProduitComponent
+    FicheProduitComponent,
+    FichePanierComponent
   ],
   imports: [
     BrowserModule,

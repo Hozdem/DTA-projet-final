@@ -4,3 +4,7 @@ img{
  p{
     overflow-wrap: break-word;
  }
+
+ .rose{
+    background-color: pink;
+ }
