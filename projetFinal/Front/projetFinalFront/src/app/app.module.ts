@@ -26,6 +26,7 @@ import {MenuModule} from 'primeng/menu';
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {SpinnerModule} from 'primeng/spinner';
 
 import {FileUploadModule} from 'primeng/fileupload';
 import {MenubarModule} from 'primeng/menubar';
@@ -52,6 +53,8 @@ import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-fo
 import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
 import { MessageService } from 'primeng/api';
 import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
+import { FichePanierComponent } from './fiche-panier/fiche-panier.component';
+import { AfficherPanierComponent } from './afficher-panier/afficher-panier.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -97,7 +100,9 @@ const route: Routes =
     ProduitsComponent,
     UpdateProduitReactiveFormComponent,
     MenuAccueilComponent,
-    FicheProduitComponent
+    FicheProduitComponent,
+    FichePanierComponent,
+    AfficherPanierComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +132,8 @@ const route: Routes =
     PaginatorModule,
     InputSwitchModule,
     FileUploadModule,
-    HttpModule
+    HttpModule,
+    SpinnerModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
