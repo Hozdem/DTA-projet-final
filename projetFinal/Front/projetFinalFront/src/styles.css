@@ -1,3 +1,16 @@
 h1{
     text-align: center;
+} 
+.rose{
+    background-color: pink;
+ }
+ .centrer{
+    text-align: center;
+ }
+
+ .gauche{
+   float: left;
+}
+.droite{
+   float: right;
 }
