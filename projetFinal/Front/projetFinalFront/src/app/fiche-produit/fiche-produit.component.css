@@ -8,3 +8,17 @@ img{
  .rose{
     background-color: pink;
  }
+ .centrer{
+    text-align: center;
+ }
+
+ .gauche{
+   float: left;
+}
+.droite{
+   float: right;
+}
+
+h2{
+   color: blue
+}

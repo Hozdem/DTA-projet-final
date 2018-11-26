@@ -83,13 +83,19 @@ export class ProduitsComponent implements OnInit
     this.router.navigate(['/']);
   }
 
-  onClickModifProduit(id:number)
+  onClickModifProduit()
   {
-    this.router.navigate(['/updateProduit/'+id]);
+    this.router.navigate(['/updateProduit/'+this.selectedProduit.id]);
   }
 
-  onClickDeleteProduit(id:number)
+  onClickDeleteProduit()
   {
-    this.router.navigate(['deleteProduit/'+id]);
+    this.router.navigate(['deleteProduit/'+ this.selectedProduit.id]);
+  }
+  eventActivatedProduit()
+  {
+    this.selectedProduit.activated = !this.selectedProduit.activated;
+    console.log(this.selectedProduit.activated);
+    this.service.updateProduit(this.selectedProduit);
   }
 }

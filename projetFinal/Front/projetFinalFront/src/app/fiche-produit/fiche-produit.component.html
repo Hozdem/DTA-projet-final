@@ -16,8 +16,24 @@
           {{produit.description}}
         </p>
       </div>
-      <div class="ui-g-2 rose">
-        
+      <div class="ui-g-2 centrer">
+        <h3>Panier</h3>
+        <div>
+          <span>Nombre d'exemplaire : </span>
+          <br><br>
+          <button pButton class="ui-button-raised gauche" label='<' (click)="retirerExemplaire()"></button>
+          <label>{{this.nombreExemplaire}}</label>
+          <button pButton class="ui-button-raised droite" label=">"(click)="ajouterExemplaire()"></button>
+        </div>
+        <br>
+        <br>
+        <div>
+          <label><b>Prix total : </b></label>
+          <h2>{{this.nombreExemplaire}} * {{this.produit.prix}} = {{this.nombreExemplaire*this.produit.prix}} €</h2>
+        </div>
+        <div>
+          <button pButton (click)="ajouterPanier()" type="submit" label="Ajouter au panier" class="ui-button-raised"></button>  
+        </div>
       </div>
     </div>
     <div class="ui-g">
@@ -25,26 +41,26 @@
         
       </div>
       <div class="ui-g-8">
-          <br>
+        <br>
         <div>
-            <label><b>Date de sortie : </b></label>
-            <span>
-              {{produit.dateSortie | date:'dd/MM/yyyy'}}
-            </span>
+          <label><b>Date de sortie : </b></label>
+          <span>
+            {{produit.dateSortie | date:'dd/MM/yyyy'}}
+          </span>
         </div>
         <br>
         <div>
-            <label><b>Editeur : </b></label>
-            <span>
-              {{produit.editeur}}
-            </span>
+          <label><b>Editeur : </b></label>
+          <span>
+            {{produit.editeur}}
+          </span>
         </div>
         <br>
         <div>
-            <label><b>Prix : </b></label>
-            <span>
-              {{produit.prix}} €
-            </span>
+          <label><b>Prix : </b></label>
+          <span>
+            {{produit.prix}} €
+          </span>
         </div>
         <br>
       </div>
