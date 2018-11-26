@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from "primeng/api";
 import { ProduitService } from '../produit.service';
-import { TestBed } from '@angular/core/testing';
+import { ListeProduitsService } from '../liste-produits.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-accueil',
@@ -9,19 +10,17 @@ import { TestBed } from '@angular/core/testing';
   styleUrls: ['./menu-accueil.component.css']
 })
 export class MenuAccueilComponent implements OnInit {
-  
+
   items: MenuItem[];
   itemTmp = [];
-  compteur = 0;
-  constructor(private service: ProduitService) { }
-  
+  constructor(private service: ProduitService, private listeProduitsService: ListeProduitsService, private route: Router) { }
+
   ngOnInit() {
     this.items = [];
 
-    this.service.allSupports().subscribe( s => {
-      for(let value of Object.values(s))
-      {
-        this.itemTmp.push({label: value, command: (onclick) => this.onClick(value)});
+    this.service.allSupports().subscribe(s => {
+      for (let value of Object.values(s)) {
+        this.itemTmp.push({ label: value, command: (onClick) => this.searchSupport(value)});
       }
 
       this.items = [{
@@ -29,11 +28,10 @@ export class MenuAccueilComponent implements OnInit {
         items: this.itemTmp
       }];
 
-      this.service.allGenres().subscribe( g => {
+      this.service.allGenres().subscribe(g => {
         this.itemTmp = [];
-        for(let value of Object.values(g))
-        {
-          this.itemTmp.push({label: value, url:'genres/'+value});
+        for (let value of Object.values(g)) {
+          this.itemTmp.push({ label: value , command: (onClick) => this.searchGenre(value)});
         }
 
         this.items.push({
@@ -44,7 +42,17 @@ export class MenuAccueilComponent implements OnInit {
     });
   }
 
-  onClick(nom: string){
-    console.log(nom);
+  searchSupport(value: string) {
+    this.service.searchProduit('', [], [value]).subscribe(p => {
+      this.listeProduitsService.setProduits(p);
+      this.route.navigate(['produit']);
+    })
+  }
+
+  searchGenre(value: string) {
+    this.service.searchProduit('', [value], []).subscribe(p => {
+      this.listeProduitsService.setProduits(p);
+      this.route.navigate(['produit']);
+    })
   }
 }

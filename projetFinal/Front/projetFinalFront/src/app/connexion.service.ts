@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MyUser } from './my-user';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,6 @@ export class ConnexionService {
   constructor(private http: HttpClient, private router: Router) { }
 
   connexion(user: MyUser) : Observable<any>{
-    return this.http.post(this.url + '/connexion', user, this.httpOptions);
+      return this.http.post(this.url + '/connexion', user, this.httpOptions);
   }
 }

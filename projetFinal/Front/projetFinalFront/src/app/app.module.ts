@@ -26,7 +26,7 @@ import {MenuModule} from 'primeng/menu';
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import {InputSwitchModule} from 'primeng/inputswitch';
-import {SpinnerModule} from 'primeng/spinner';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 import {FileUploadModule} from 'primeng/fileupload';
 import {MenubarModule} from 'primeng/menubar';
@@ -137,7 +137,7 @@ const route: Routes =
     InputSwitchModule,
     FileUploadModule,
     HttpModule,
-    SpinnerModule
+    ContextMenuModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
