@@ -1,10 +1,26 @@
-<p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <input type="submit">
+    <ul *ngFor="let item of items">
+        {{item.label}}
+        <label *ngFor="let value of item.items">
+            <input type="checkbox" [formControlName]="item.label" (change)="test(item.label,value.label)">
+            {{value.label}}
+        </label>
+    </ul>
+</form>
+
+
+
+
+<p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10" [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]"
+    paginatorPosition="both" filterBy="titre" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <h1>LISTE DES PRODUITS</h1>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par:" (onChange)="onSortChange($event)" [autoWidth]="true" [style]="{'min-width':'15em'}"></p-dropdown>
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par:" (onChange)="onSortChange($event)"
+                        [autoWidth]="true" [style]="{'min-width':'15em'}"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align:right">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -12,8 +28,7 @@
             </div>
         </div>
     </p-header>
-
-    <ng-template let-produit pTemplate="listItem" >
+    <ng-template let-produit pTemplate="listItem">
         <div class="ui-g" style="padding: 0em;border-bottom: 1px solid #292929">
             <div class="ui-g-11" (click)="onClickDetails(produit.id)">
                 <div class="ui-g-12 ui-md-4" style="text-align:center;">
@@ -23,19 +38,19 @@
                     <div class="ui-g">
                         <div class="ui-g-2 ui-sm-6">Titre: </div>
                         <div class="ui-g-10 ui-sm-6"><b>{{produit.titre}}</b></div>
-    
+
                         <div class="ui-g-2 ui-sm-6">Support: </div>
                         <div class="ui-g-10 ui-sm-6"><b>{{produit.support}}</b></div>
-    
+
                         <div class="ui-g-2 ui-sm-6">Date de sortie: </div>
                         <div class="ui-g-10 ui-sm-6"><b>{{produit.dateSortie | date:'dd/MM/yyyy'}}</b></div>
-    
+
                         <div class="ui-g-2 ui-sm-6">Prix de l'article: </div>
                         <div class="ui-g-10 ui-sm-6"><b>{{produit.prixProd.toFixed(2)}}€</b></div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="ui-g-1 search-icon" id="divBtnAdmin">
                 <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
             </div>
@@ -57,7 +72,8 @@
 
 </p-dataView>
 
-<p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="250" (onAfterHide)="onDialogHide()">
+<p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    width="250" (onAfterHide)="onDialogHide()">
     <div id="fenetreGestionAdmin" *ngIf="selectedProduit">
         <div>
             <button pButton label="Modifier" type="button" icon="pi pi-pencil" (click)="onClickModifProduit()"></button>
@@ -67,9 +83,9 @@
             <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="onClickDeleteProduit()"></button>
         </div>
 
-        <div >
+        <div>
             {{activated}}
             <p-inputSwitch (click)="eventActivatedProduit()" [(ngModel)]="activated"></p-inputSwitch>
-        </div>       
+        </div>
     </div>
 </p-dialog>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MenuItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
 import { empty } from 'rxjs';
+import { FormGroup, FormBuilder, FormArrayName } from '@angular/forms';
 
 @Component({
   selector: 'app-produits',
@@ -13,8 +14,7 @@ import { empty } from 'rxjs';
   styleUrls: ['./produits.component.css']
 })
 
-export class ProduitsComponent implements OnInit
-{
+export class ProduitsComponent implements OnInit {
 
   produits: Array<Produit> = [];
 
@@ -32,13 +32,46 @@ export class ProduitsComponent implements OnInit
 
   activated: boolean;
 
-  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
-  { 
+  items: MenuItem[];
+  itemTmp = [];
+
+  itemSelected: FormArrayName;
+
+  form = this.formBuilder.group({
+    Supports: [],
+    Genres: []
+  });
+
+  constructor(private service: ProduitService, private router: Router, private listeProduitsService: ListeProduitsService, private formBuilder: FormBuilder) {
 
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
+    this.items = [];
+
+    this.service.allSupports().subscribe(s => {
+      for (let value of Object.values(s)) {
+        this.itemTmp.push({ label: value });
+      }
+
+      this.items = [{
+        label: 'Supports',
+        items: this.itemTmp
+      }];
+
+      this.service.allGenres().subscribe(g => {
+        this.itemTmp = [];
+        for (let value of Object.values(g)) {
+          this.itemTmp.push({ label: value });
+        }
+
+        this.items.push({
+          label: 'Genres',
+          items: this.itemTmp
+        });
+      });
+
+    });
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
@@ -64,8 +97,7 @@ export class ProduitsComponent implements OnInit
     event.preventDefault();
   }
 
-  onSortChange(event)
-  {
+  onSortChange(event) {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -78,32 +110,45 @@ export class ProduitsComponent implements OnInit
     }
   }
 
-  onDialogHide()
-  {
+  onDialogHide() {
     this.selectedProduit = null;
   }
 
-  onClickDetails(id:number)
-  {
-    this.router.navigate(['/ficheProduit/'+id]);
+  onClickDetails(id: number) {
+    this.router.navigate(['/ficheProduit/' + id]);
   }
 
-  onClickModifProduit()
-  {
+  onClickModifProduit() {
     this.router.navigate(['/updateProduit/' + this.selectedProduit.id]);
   }
 
-  onClickDeleteProduit()
-  {
+  onClickDeleteProduit() {
     let list = this.listeProduitsService.getProduits();
-    list = list.filter(item => item != this.selectedProduit );
+    list = list.filter(item => item != this.selectedProduit);
     this.listeProduitsService.setProduits(list);
     this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
   }
 
-  eventActivatedProduit()
-  {
+  eventActivatedProduit() {
     this.selectedProduit.activated = !this.selectedProduit.activated;
     this.service.updateProduit(this.selectedProduit);
+  }
+
+  submit() {
+    this.searchProduits('',this.genre,this.support);
+  }
+
+
+  support=[];
+  genre=[];
+  test(type, value) {
+    console.log(type+' '+value);
+    if (type === 'Supports') {
+      this.support.push(value);
+    } else {
+      this.genre.push(value);
+    }
+    console.log(this.support);
+    console.log(this.genre);
   }
 }

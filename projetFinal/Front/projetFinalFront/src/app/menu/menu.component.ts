@@ -14,6 +14,7 @@ import { ListeProduitsService } from '../liste-produits.service';
 export class MenuComponent implements OnInit {
   menuGlobal: MenuItem[];
   pageActuelle: MenuItem;
+  path: string;
 
   searchForm = this.fb.group({
     titre:[''],
@@ -25,20 +26,21 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.path = window.location.pathname;
     this.search();
     this.menuGlobal = [
       { label: 'Accueil', url: '/'},
       { label: 'Produit', url: '/produit'},
       { label: 'Panier', url: '/panier'}
     ];
-    if(this.activatedRoute.snapshot.url.length === 0)
+    if(this.path === '/')
     {
       // on est sur la page d'accueil
       this.pageActuelle = this.menuGlobal[0];
     }
     else
     {
-      if(this.activatedRoute.snapshot.url[0].path === 'produit')
+      if(this.path === '/produit')
       {
           // on est dans la recherche de produit
           this.pageActuelle = this.menuGlobal[1];
@@ -46,10 +48,10 @@ export class MenuComponent implements OnInit {
       else
       {
         
-        if(this.activatedRoute.snapshot.url[0].path === 'panier')
+        if(this.path === '/panier')
         {
-            // on est dans la recherche de produit
-            this.pageActuelle = this.menuGlobal[1];
+            // on est dans la recherche de panier
+            this.pageActuelle = this.menuGlobal[2];
         }
       }
     }
