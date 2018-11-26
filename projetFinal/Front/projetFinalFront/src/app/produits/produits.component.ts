@@ -4,6 +4,8 @@ import { ProduitService } from '../produit.service';
 import { SelectItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
+import { ListeProduitsService } from '../liste-produits.service';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-produits',
@@ -30,28 +32,28 @@ export class ProduitsComponent implements OnInit
 
   activated: boolean;
 
-  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute)
+  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
   { 
 
   }
 
-  ngOnInit()
-  {
-    const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
-
-    const genres: Array<string> = [];
-    genres.push(this.activatedRoute.snapshot.paramMap.get('genres') !== undefined ? this.activatedRoute.snapshot.paramMap.get('genres') : '');
-
-    const supports: Array<string> = [];
-    supports.push(this.activatedRoute.snapshot.paramMap.get('supports') !== undefined ? this.activatedRoute.snapshot.paramMap.get('supports') : '');
-
-    this.service.searchProduit(titre, genres, supports).then(produits => this.produits = produits);
-
+  ngOnInit() {
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
       { label: 'Tri par support', value: 'support' }
     ];
+  }
+
+  searchProduits(titre: string, genres: string[], supports: string[]) {
+    this.service.searchProduit(titre, genres, supports).subscribe(
+      produits => {
+        this.listeProduitsService.setProduits(produits);
+      });
+  }
+
+  getProduits(): Produit[] {
+    return this.listeProduitsService.getProduits();
   }
 
   selectProduit(event: Event, produit: Produit) {
@@ -92,6 +94,9 @@ export class ProduitsComponent implements OnInit
 
   onClickDeleteProduit()
   {
+    let list = this.listeProduitsService.getProduits();
+    list = list.filter(item => item != this.selectedProduit );
+    this.listeProduitsService.setProduits(list);
     this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
   }
 
