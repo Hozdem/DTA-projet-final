@@ -14,8 +14,6 @@ export class AfficherPanierComponent implements OnInit {
     this.panier = JSON.parse(localStorage.getItem('panier'));
     if(this.panier !== null)
     {
-
     }
   }
-
 }
