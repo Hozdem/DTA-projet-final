@@ -1,4 +1,3 @@
-
 <!-- <ul>
   <li *ngFor="let p of produits">
      <app-produit-details [produit]="p" ></app-produit-details>
@@ -6,13 +5,13 @@
 </ul> -->
 <p-dataView #dv [value]="produits" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
+        <h1>LISTE DES PRODUITS</h1>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
-                <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par:" (onChange)="onSortChange($event)" [autoWidth]="true" [style]="{'min-width':'15em'}"></p-dropdown>
                 </div>
-                
-                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                <div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align:right">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </div>
             </div>
@@ -60,6 +59,7 @@
             </p-panel>
         </div>
     </ng-template>
+
 </p-dataView>
 
 <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="250" (onAfterHide)="onDialogHide()">
@@ -76,6 +76,6 @@
             <label><span>{{this.activated}}</span></label>
             <p-inputSwitch [(ngModel)]="this.selectedProduit.activated" (onChange)="eventActivatedProduit()"></p-inputSwitch>
         </div>
-        
     </div>
 </p-dialog>
+
