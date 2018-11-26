@@ -28,7 +28,7 @@ export class ProduitsComponent implements OnInit
 
   sortOrder: number;
 
-  activated: boolean = false;
+  activated: boolean;
 
   constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute)
   { 
@@ -37,7 +37,6 @@ export class ProduitsComponent implements OnInit
 
   ngOnInit()
   {
-
     const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
 
     const genres: Array<string> = [];
@@ -58,6 +57,7 @@ export class ProduitsComponent implements OnInit
   selectProduit(event: Event, produit: Produit) {
     this.selectedProduit = produit;
     this.displayDialog = true;
+    this.activated = produit.activated;
     event.preventDefault();
   }
 
@@ -98,7 +98,6 @@ export class ProduitsComponent implements OnInit
   eventActivatedProduit()
   {
     this.selectedProduit.activated = !this.selectedProduit.activated;
-    console.log(this.selectedProduit.activated);
     this.service.updateProduit(this.selectedProduit);
   }
 }
