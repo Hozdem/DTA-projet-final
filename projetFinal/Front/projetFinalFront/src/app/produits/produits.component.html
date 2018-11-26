@@ -1,11 +1,4 @@
-<app-menu></app-menu>
-<!-- <ul>
-  <li *ngFor="let p of produits">
-     <app-produit-details [produit]="p" ></app-produit-details>
-  </li>
-</ul> -->
-
-<p-dataView #dv [value]="produits" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
+<p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">

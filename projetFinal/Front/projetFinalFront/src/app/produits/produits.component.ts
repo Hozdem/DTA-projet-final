@@ -4,6 +4,8 @@ import { ProduitService } from '../produit.service';
 import { SelectItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
+import { ListeProduitsService } from '../liste-produits.service';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-produits',
@@ -30,13 +32,12 @@ export class ProduitsComponent implements OnInit
 
   activated: boolean = false;
 
-  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute)
+  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
   { 
 
   }
 
   ngOnInit() {
-
     const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
 
     const genres: Array<string> = [];
@@ -44,15 +45,27 @@ export class ProduitsComponent implements OnInit
 
     const supports: Array<string> = [];
     supports.push(this.activatedRoute.snapshot.paramMap.get('supports') !== undefined ? this.activatedRoute.snapshot.paramMap.get('supports') : '');
-
-    this.service.searchProduit(titre, genres, supports).then(produits => this.produits = produits);
+   
+    if (!this.getProduits()) {
+      this.searchProduits(titre, genres, supports);
+    }
 
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
       { label: 'Tri par support', value: 'support' }
     ];
+  }
 
+  searchProduits(titre: string, genres: string[], supports: string[]) {
+    this.service.searchProduit(titre, genres, supports).subscribe(
+      produits => {
+        this.listeProduitsService.setProduits(produits);
+      });
+  }
+
+  getProduits(): Produit[] {
+    return this.listeProduitsService.getProduits();
   }
 
   selectProduit(event: Event, produit: Produit) {

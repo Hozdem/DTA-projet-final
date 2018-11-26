@@ -51,7 +51,7 @@ export class ProduitService {
     this.http.delete(this.url + '/deleteProduit/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
-  searchProduit(titre?: string, genres?: Array<string>, supports?: Array<string>): Promise<Produit[]> {
+  searchProduit(titre?: string, genres?: Array<string>, supports?: Array<string>) {
     let parameters = new HttpParams();
     if (!isNullOrUndefined(titre))
     parameters = parameters.set("titre", titre);
@@ -71,7 +71,7 @@ export class ProduitService {
     return this.http.get<Array<Produit>>(this.url + '/search', {
       headers: this.headers,
       params: parameters
-    }).toPromise();
+    });
   }
 
 }
