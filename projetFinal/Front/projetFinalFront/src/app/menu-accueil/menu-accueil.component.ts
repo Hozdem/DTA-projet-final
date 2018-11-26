@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MenuItem } from "primeng/api";
 import { ProduitService } from '../produit.service';
 import { ListeProduitsService } from '../liste-produits.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-menu-accueil',
@@ -10,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-accueil.component.css']
 })
 export class MenuAccueilComponent implements OnInit {
-
   items: MenuItem[];
   itemTmp = [];
   constructor(private service: ProduitService, private listeProduitsService: ListeProduitsService, private route: Router) { }
