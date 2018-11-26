@@ -21,9 +21,9 @@
         <div>
           <span>Nombre d'exemplaire : </span>
           <br><br>
-          <button pButton class="ui-button-raised gauche" label='<' (click)="retirerExemplaire()"></button>
+          <button pButton class="ui-button-raised gauche" label='-' (click)="retirerExemplaire()"></button>
           <label>{{this.nombreExemplaire}}</label>
-          <button pButton class="ui-button-raised droite" label=">"(click)="ajouterExemplaire()"></button>
+          <button pButton class="ui-button-raised droite" label="+"(click)="ajouterExemplaire()"></button>
         </div>
         <br>
         <br>
@@ -32,7 +32,7 @@
           <h2>{{this.nombreExemplaire}} * {{this.produit.prix}} = {{this.nombreExemplaire*this.produit.prix}} €</h2>
         </div>
         <div>
-          <button pButton (click)="ajouterPanier()" type="submit" label="Ajouter au panier" class="ui-button-raised"></button>  
+          <button pButton (click)="afficherVerification()" type="submit" label="Ajouter au panier" class="ui-button-raised"></button>  
         </div>
       </div>
     </div>
@@ -70,7 +70,13 @@
     </div>
     
   </div>
-  
-  
-  
 </div>
+
+<p-dialog header="Vérification d'ajout" [(visible)]="afficherVerificationAjout">
+    <span>Ajouter au panier ?</span>
+    <p-footer>
+      <button pButton (click)="ajouterPanier()" type="submit" label="Oui" class="ui-button-raised ui-button-success"></button>  
+      <button pButton (click)="afficherVerification()" type="submit" label="Non" class="ui-button-raised ui-button-danger droite"></button>  
+    </p-footer>
+
+</p-dialog>

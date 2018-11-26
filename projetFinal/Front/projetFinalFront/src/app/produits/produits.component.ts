@@ -82,9 +82,9 @@ export class ProduitsComponent implements OnInit
     this.selectedProduit = null;
   }
 
-  onClickDetails()
+  onClickDetails(id: number)
   {
-    this.router.navigate(['/']);
+    this.router.navigate(['/ficheProduit/' + id]);
   }
 
   onClickModifProduit()
