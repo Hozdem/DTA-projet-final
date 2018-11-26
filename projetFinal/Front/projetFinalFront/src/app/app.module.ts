@@ -54,6 +54,7 @@ import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
 import { MessageService } from 'primeng/api';
 import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
 import { FichePanierComponent } from './fiche-panier/fiche-panier.component';
+import { AfficherPanierComponent } from './afficher-panier/afficher-panier.component';
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -100,7 +101,8 @@ const route: Routes =
     UpdateProduitReactiveFormComponent,
     MenuAccueilComponent,
     FicheProduitComponent,
-    FichePanierComponent
+    FichePanierComponent,
+    AfficherPanierComponent
   ],
   imports: [
     BrowserModule,
