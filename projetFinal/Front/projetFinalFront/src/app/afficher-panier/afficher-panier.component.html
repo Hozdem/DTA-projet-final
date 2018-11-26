@@ -1,18 +1,35 @@
 <h1>Mon panier</h1>
 <div *ngIf="panier !== null">
-  <div class="ui-g centrerVertical" *ngFor="let p of this.panier">
-    
-    
-    <div class="ui-g-1">
+    <div class="ui-g centrerVertical" *ngFor="let p of this.panier">
       
+      <div class="ui-g-2">
+        
+      </div>
+      <div class="ui-g-1">
+        <img src="{{p.produit.lienImage}}">
+      </div>
+      <div class="ui-g-3">
+        <span>{{p.produit.titre}}</span>
+      </div>
+      <div class="ui-g-2">
+        <span>{{p.nbExemplaire}} x {{p.produit.prix.toFixed(2)}} € = {{p.nbExemplaire*p.produit.prix.toFixed(2)}} €</span>
+      </div>
+      <div>
+          <button pButton class="ui-button-raised gauche" label='<' (click)="retirerExemplaire(p)"></button>
+          <label>  {{p.nbExemplaire}}  </label>
+          <button pButton class="ui-button-raised droite" label=">"(click)="ajouterExemplaire(p)"></button>
+        </div>
     </div>
-    <div class="ui-g-1">
-      <img src="{{p.produit.lienImage}}">
+    <div class="ui-g">  
+        <div class="ui-g-9">
+          </div>
+          <div class="ui-g-2 centrer">
+                <span><b>Total = </b>{{this.prixTotal.toFixed(2)}} €</span>
+            <br>
+            <br>
+            <button pButton class="ui-button-raised" label="Commander"(click)="commander()"></button>
+          </div>
     </div>
-    <div class="ui-g-3">
-      <span>{{p.produit.titre}}</span>
-    </div>
-  </div>
 </div>
 
 
