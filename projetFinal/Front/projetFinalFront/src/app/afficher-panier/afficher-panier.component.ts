@@ -9,6 +9,7 @@ export class AfficherPanierComponent implements OnInit {
 
   panier = [];
   prixTotal: number = 0;
+  afficherVerificationCommande = false;
   constructor() { }
 
   ngOnInit() {
@@ -44,5 +45,10 @@ export class AfficherPanierComponent implements OnInit {
   commander()
   {
 
+  }
+
+  afficherVerification()
+  {
+    this.afficherVerificationCommande = !this.afficherVerificationCommande;
   }
 }
