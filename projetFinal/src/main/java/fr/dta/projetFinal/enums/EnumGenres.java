@@ -22,6 +22,8 @@ public enum EnumGenres
 	MMORPG("MMORPG"),
 	TACTICALRPG("TACTICALRPG"),
 	JRPG("JRPG"),
+	SHOOTER("SHOOTER"),
+	RPG("RPG"),
 	PUZZLE("PUZZLE"),
 	LABYRINTHE("LABYRINTHE"),
 	GESTION("GESTION"),
@@ -31,6 +33,7 @@ public enum EnumGenres
 	WARGAME("WARGAME"),
 	SPORT("SPORT"),
 	RACING("RACING"),
+	OPENWORLD("OPENWORLD"),
 	RHYTHM("RHYTHM");
 
 	private String genre;

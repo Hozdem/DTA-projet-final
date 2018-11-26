@@ -41,9 +41,9 @@ public class Produit {
 
 	}
 	
-	public Produit(String nom, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description) {
+	public Produit(String titre, List<String> genres, String support, Date dateSortie, float prix, String lienImage, String editeur, String description) {
 		super();
-		this.titre = nom;
+		this.titre = titre;
 		this.genres = genres;
 		this.support = support;
 		this.dateSortie = dateSortie;
