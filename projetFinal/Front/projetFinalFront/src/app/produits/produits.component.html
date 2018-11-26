@@ -72,9 +72,9 @@
             <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="onClickDeleteProduit()"></button>
         </div>
 
-        <div>
-            <label><span>{{this.activated}}</span></label>
-            <p-inputSwitch [(ngModel)]="activated" (click)="eventActivatedProduit()"></p-inputSwitch>
+        <div >
+            {{activated}}
+            <p-inputSwitch (click)="eventActivatedProduit()" [(ngModel)]="activated"></p-inputSwitch>
         </div>       
     </div>
 </p-dialog>
