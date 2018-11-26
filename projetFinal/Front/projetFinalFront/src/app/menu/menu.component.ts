@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     this.menuGlobal = [
       { label: 'Accueil', url: '/'},
       { label: 'Produit', url: '/produit' },
-      { label: 'Panier'}
+      { label: 'Panier', url: '/panier'}
     ];
     if(this.activatedRoute.snapshot.url.length === 0)
     {

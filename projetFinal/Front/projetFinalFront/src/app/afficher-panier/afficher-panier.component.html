@@ -1,3 +1,17 @@
-<p>
-  afficher-panier works!
-</p>
+<h1>Mon panier</h1>
+<div class="ui-g">
+  <div class="ui-g-1">
+      <div *ngIf="panier === null">
+          Votre panier est vide
+      </div>
+      <div *ngIf="panier !== null">
+          <div *ngFor="let p of this.panier">
+            <img src="{{p.produit.lienImage}}">
+          </div>
+        </div>
+  </div>
+  <div class="ui-g-11">
+
+  </div>
+</div>
+

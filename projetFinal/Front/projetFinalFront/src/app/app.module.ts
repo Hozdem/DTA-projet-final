@@ -55,6 +55,8 @@ import { MessageService } from 'primeng/api';
 import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
 import { FichePanierComponent } from './fiche-panier/fiche-panier.component';
 import { AfficherPanierComponent } from './afficher-panier/afficher-panier.component';
+
+
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -77,7 +79,9 @@ const route: Routes =
     { path: 'ficheProduit/:id', component: FicheProduitComponent },
     { path: 'titre/:titre', component: ProduitsComponent},
     { path: 'genres/:genres', component: ProduitsComponent},
-    { path: 'supports/:supports', component: ProduitsComponent}
+    { path: 'supports/:supports', component: ProduitsComponent},
+
+    { path: 'panier', component: AfficherPanierComponent}
   ];
 
 @NgModule({

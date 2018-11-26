@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from "primeng/api";
 import { ProduitService } from '../produit.service';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-menu-accueil',
@@ -11,6 +12,7 @@ export class MenuAccueilComponent implements OnInit {
   
   items: MenuItem[];
   itemTmp = [];
+  compteur = 0;
   constructor(private service: ProduitService) { }
   
   ngOnInit() {
@@ -19,7 +21,7 @@ export class MenuAccueilComponent implements OnInit {
     this.service.allSupports().subscribe( s => {
       for(let value of Object.values(s))
       {
-        this.itemTmp.push({label: value, url: 'supports/'+value});
+        this.itemTmp.push({label: value, command: (onclick) => this.onClick(value)});
       }
 
       this.items = [{
@@ -42,7 +44,7 @@ export class MenuAccueilComponent implements OnInit {
     });
   }
 
-  onClick(){
-
+  onClick(nom: string){
+    console.log(nom);
   }
 }
