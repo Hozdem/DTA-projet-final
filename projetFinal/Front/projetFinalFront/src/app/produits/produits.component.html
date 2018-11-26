@@ -4,7 +4,6 @@
      <app-produit-details [produit]="p" ></app-produit-details>
   </li>
 </ul> -->
-
 <p-dataView #dv [value]="produits" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>
         <div class="ui-helper-clearfix">
@@ -21,7 +20,7 @@
     </p-header>
 
     <ng-template let-produit pTemplate="listItem" >
-        <div class="ui-g" style="padding: 0em;border-bottom: 1px solid black">
+        <div class="ui-g" style="padding: 0em;border-bottom: 1px solid #292929">
             <div class="ui-g-11" (click)="onClickDetails()">
                 <div class="ui-g-12 ui-md-4" style="text-align:center;">
                     <img src={{produit.lienImage}}>
@@ -66,11 +65,11 @@
 <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="250" (onAfterHide)="onDialogHide()">
     <div id="fenetreGestionAdmin" *ngIf="selectedProduit">
         <div>
-            <button pButton label="Modifier" type="button" icon="pi pi-pencil" (click)="modifierProduit()"></button>
+            <button pButton label="Modifier" type="button" icon="pi pi-pencil" (click)="onClickModifProduit(21)"></button>
         </div>
-        
+
         <div>
-            <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="supprimerProduit()"></button>
+            <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="onClickDeleteProduit(21)"></button>
         </div>
 
         <div>
