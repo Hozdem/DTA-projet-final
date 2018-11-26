@@ -22,7 +22,7 @@ export class ConnexionReactiveFormComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private co: ConnexionService) { }
 
   ngOnInit() {
-
+    
   }
 
   onSubmit(){

@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
     this.search();
     this.menuGlobal = [
       { label: 'Accueil', url: '/'},
-      { label: 'Produit', url: '/produit' },
+      { label: 'Produit', url: '/produit'},
       { label: 'Panier', url: '/panier'}
     ];
     if(this.activatedRoute.snapshot.url.length === 0)
