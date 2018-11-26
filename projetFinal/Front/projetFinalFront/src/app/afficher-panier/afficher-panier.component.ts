@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AfficherPanierComponent implements OnInit {
 
+  panier = [];
   constructor() { }
 
   ngOnInit() {
+    this.panier = JSON.parse(localStorage.getItem('panier'));
+    if(this.panier !== null)
+    {
+    }
   }
-
 }

@@ -24,15 +24,35 @@ export class MenuComponent implements OnInit {
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private service: ProduitService, private route:Router, private listeProduitsService: ListeProduitsService) { 
   }
 
-
-
   ngOnInit() {
     this.search();
     this.menuGlobal = [
       { label: 'Accueil', url: '/'},
-      { label: 'Produit', url: '/produit'},
-      { label: 'Panier'}
+      { label: 'Produit', url: '/produit' },
+      { label: 'Panier', url: '/panier'}
     ];
+    if(this.activatedRoute.snapshot.url.length === 0)
+    {
+      // on est sur la page d'accueil
+      this.pageActuelle = this.menuGlobal[0];
+    }
+    else
+    {
+      if(this.activatedRoute.snapshot.url[0].path === 'produit')
+      {
+          // on est dans la recherche de produit
+          this.pageActuelle = this.menuGlobal[1];
+      }
+      else
+      {
+        
+        if(this.activatedRoute.snapshot.url[0].path === 'panier')
+        {
+            // on est dans la recherche de produit
+            this.pageActuelle = this.menuGlobal[1];
+        }
+      }
+    }
   }
 
   onSubmit(){
