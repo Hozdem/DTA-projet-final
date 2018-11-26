@@ -79,12 +79,4 @@ export class ProduitService {
   {
     return this.http.get<Array<string>>(this.url + '/allPicturesPath', this.httpOptions);
   }
-
-  /*
-  activateProduit(id:number)
-  {
-    this.http.put(this.url + '/activateProduit' + id, this.httpOptions).subscribe(() => this.router.navigate(['/produit']));
-  }
-  */
-
 }

@@ -37,7 +37,8 @@ export class ProduitsComponent implements OnInit
 
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
@@ -82,9 +83,9 @@ export class ProduitsComponent implements OnInit
     this.selectedProduit = null;
   }
 
-  onClickDetails()
+  onClickDetails(id:number)
   {
-    this.router.navigate(['/']);
+    this.router.navigate(['/ficheProduit/'+id]);
   }
 
   onClickModifProduit()
