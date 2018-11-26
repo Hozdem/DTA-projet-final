@@ -35,7 +35,8 @@ export class ProduitsComponent implements OnInit
 
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
 
     const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
 
@@ -60,7 +61,8 @@ export class ProduitsComponent implements OnInit
     event.preventDefault();
   }
 
-  onSortChange(event) {
+  onSortChange(event)
+  {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -83,13 +85,20 @@ export class ProduitsComponent implements OnInit
     this.router.navigate(['/']);
   }
 
-  onClickModifProduit(id:number)
+  onClickModifProduit()
   {
-    this.router.navigate(['/updateProduit/'+id]);
+    this.router.navigate(['/updateProduit/' + this.selectedProduit.id]);
   }
 
-  onClickDeleteProduit(id:number)
+  onClickDeleteProduit()
   {
-    this.router.navigate(['deleteProduit/'+id]);
+    this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
+  }
+
+  eventActivatedProduit()
+  {
+    this.selectedProduit.activated = !this.selectedProduit.activated;
+    console.log(this.selectedProduit.activated);
+    this.service.updateProduit(this.selectedProduit);
   }
 }
