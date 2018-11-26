@@ -37,28 +37,12 @@ export class ProduitsComponent implements OnInit
 
   }
 
-<<<<<<< HEAD
   ngOnInit() {
-=======
-  ngOnInit()
-  {
-    const titre: string = this.activatedRoute.snapshot.paramMap.get('titre') !== undefined ? this.activatedRoute.snapshot.paramMap.get('titre') : '';
-
-    const genres: Array<string> = [];
-    genres.push(this.activatedRoute.snapshot.paramMap.get('genres') !== undefined ? this.activatedRoute.snapshot.paramMap.get('genres') : '');
-
-    const supports: Array<string> = [];
-    supports.push(this.activatedRoute.snapshot.paramMap.get('supports') !== undefined ? this.activatedRoute.snapshot.paramMap.get('supports') : '');
-
-    this.service.searchProduit(titre, genres, supports).then(produits => this.produits = produits);
-
->>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
       { label: 'Tri par support', value: 'support' }
     ];
-<<<<<<< HEAD
   }
 
   searchProduits(titre: string, genres: string[], supports: string[]) {
@@ -70,8 +54,6 @@ export class ProduitsComponent implements OnInit
 
   getProduits(): Produit[] {
     return this.listeProduitsService.getProduits();
-=======
->>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
   }
 
   selectProduit(event: Event, produit: Produit) {
@@ -107,15 +89,14 @@ export class ProduitsComponent implements OnInit
 
   onClickModifProduit()
   {
-<<<<<<< HEAD
-    
-=======
     this.router.navigate(['/updateProduit/' + this.selectedProduit.id]);
->>>>>>> b2488b65c08b0edb487cbe2a140e085eb226742d
   }
 
   onClickDeleteProduit()
   {
+    let list = this.listeProduitsService.getProduits();
+    list = list.filter(item => item != this.selectedProduit );
+    this.listeProduitsService.setProduits(list);
     this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
   }
 
