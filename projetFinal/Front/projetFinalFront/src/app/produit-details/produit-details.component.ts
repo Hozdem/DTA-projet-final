@@ -17,7 +17,6 @@ export class ProduitDetailsComponent implements OnInit
 
   ngOnInit()
   {
-    console.log(this.produit);
+    
   }
-
 }

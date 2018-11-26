@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+h1{
+    text-align: center;
+} 
+.rose{
+    background-color: pink;
+ }
+ .centrer{
+    text-align: center;
+ }
+
+ .gauche{
+   float: left;
+}
+.droite{
+   float: right;
+}

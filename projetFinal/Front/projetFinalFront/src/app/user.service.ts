@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MyUser } from './my-user';
-import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { MyUser } from './my-user';
 import { FormGroup } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
   };
   constructor(private http: HttpClient, private router: Router) { }
 
-  getAllUser()
+  getAllUser(): Observable<MyUser[]>
   {
     return this.http.get<Array<MyUser>>(this.url +'/', this.httpOptions);
   }
@@ -47,9 +48,14 @@ export class UserService {
     this.http.delete<MyUser>(this.url +'/deleteMyUser/' + id,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
-  verifierLoginAndPassword(id: number, password: string): Observable<Object>
+  verifierLoginAndPassword(id: number, password: string): Observable<boolean>
   {
-    return this.http.post(this.url + '/connexionAuto/' + id,password,  this.httpOptions);
+    return this.http.post<boolean>(this.url + '/connexionAuto/' + id,password,  this.httpOptions);
+  }
+
+  findUserIdByLogin(login: string): Observable<MyUser>
+  {
+    return this.http.get<MyUser>(this.url + "/findUser/" + login, this.httpOptions );
   }
 
   verifierPassword(passwordKey: string, passwordConfirmationKey: string)
@@ -65,4 +71,19 @@ export class UserService {
       }
     }
   }
+
+
+
+  menu: MenuItem[];
+
+  labelProduit = 'Les produits';
+  urlProduit = '/';
+
+  labelMonCompte = 'Mon compte';
+  urlMonCompte = '/updateUser';
+
+  labelDeconnexion = 'Déconnexion';
+  urlDeconnexion = '/deconnexion';
+
+  idUser: number;
 }

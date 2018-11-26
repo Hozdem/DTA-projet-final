@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-deconnexion',
@@ -8,12 +9,10 @@ import { Router } from '@angular/router';
 })
 export class DeconnexionComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
-    localStorage.removeItem("loginVK");
-    localStorage.removeItem("passwordVK");
-    localStorage.removeItem("roleVK");
-    this.router.navigate(['/']);
+    this.loginService.logout();
+    this.router.navigateByUrl('/');
   }
 }

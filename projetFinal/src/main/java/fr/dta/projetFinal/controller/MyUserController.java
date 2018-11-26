@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,14 +47,18 @@ public class MyUserController
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/connexionAuto/{id}")
-    public boolean verifierConnexionAuto(@PathVariable long id, @RequestBody String password)
+    public boolean verifierConnexionAuto(@PathVariable(required = false) Long id, @RequestBody(required = false) String password)
 	{
-        return myUserService.verifPassword(id, password);
+		if( id == null || password == null) {
+			return false;
+		}else {
+			return myUserService.verifPassword(id, password);
+		}
     }
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/findUser/{login}")
-    public Optional<MyUser> findBylogin(@PathVariable String login)
+    public MyUser findBylogin(@PathVariable String login)
 	{
         return myUserService.findBylogin(login);
     }
@@ -81,13 +84,5 @@ public class MyUserController
     public List<MyUser> updateListMyUser(@RequestBody List<MyUser> users)
 	{
 		return myUserService.updateMyUser(users);
-    }
-	
-
-	@CrossOrigin(origins = "*")
-	@DeleteMapping("/deleteMyUser/{id}")
-    public void deleteMyUser(@PathVariable long id)
-	{
-		myUserService.deleteById(id);
     }
 }

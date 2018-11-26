@@ -1,17 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-import { RouterModule, Routes, Route } from '@angular/router';
-
-
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http'
 
 // primeNG
 import { AccordionModule } from 'primeng/accordion';
@@ -22,7 +18,20 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
+import {MenuModule} from 'primeng/menu';
+import {TableModule} from 'primeng/table';
+import {PaginatorModule} from 'primeng/paginator';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {ContextMenuModule} from 'primeng/contextmenu';
+
+import {FileUploadModule} from 'primeng/fileupload';
+import {MenubarModule} from 'primeng/menubar';
 import {PickListModule} from 'primeng/picklist';
+import {CarouselModule} from 'primeng/carousel';
 
 
 import { AddUserReactiveFormComponent } from './add-user-reactive-form/add-user-reactive-form.component';
@@ -40,6 +49,14 @@ import { GestionUserReactiveFormComponent } from './gestion-user-reactive-form/g
 
 import { DeleteProduitComponent } from './delete-produit/delete-produit.component';
 import { ProduitsComponent } from './produits/produits.component';
+import { UpdateProduitReactiveFormComponent } from './update-produit-reactive-form/update-produit-reactive-form.component';
+import { MenuAccueilComponent } from './menu-accueil/menu-accueil.component';
+import { MessageService } from 'primeng/api';
+import { FicheProduitComponent } from './fiche-produit/fiche-produit.component';
+import { FichePanierComponent } from './fiche-panier/fiche-panier.component';
+import { AfficherPanierComponent } from './afficher-panier/afficher-panier.component';
+
+
 const route: Routes =
   [
     { path: '', component: AccueilComponent },
@@ -48,15 +65,23 @@ const route: Routes =
 
     { path: 'addUser', component: AddUserReactiveFormComponent },
     { path: 'addProduit', component: AddProduitReactiveFormComponent },
-
+    
     { path: 'updateUser/:id', component: UpdateUserReactiveFormComponent },
+    { path: 'updateProduit/:id', component: UpdateProduitReactiveFormComponent },
 
     { path: 'deleteUser/:id', component: DeleteUserComponent },
     { path: 'deleteProduit/:id', component: DeleteProduitComponent },
 
     { path: 'administration', component: AdministrationReactiveFormComponent },
+    { path: 'gererUser', component: GestionUserReactiveFormComponent },
+
     { path: 'produit', component: ProduitsComponent },
-    { path: 'gererUser', component: GestionUserReactiveFormComponent }
+    { path: 'ficheProduit/:id', component: FicheProduitComponent },
+    { path: 'titre/:titre', component: ProduitsComponent},
+    { path: 'genres/:genres', component: ProduitsComponent},
+    { path: 'supports/:supports', component: ProduitsComponent},
+
+    { path: 'panier', component: AfficherPanierComponent}
   ];
 
 @NgModule({
@@ -76,7 +101,12 @@ const route: Routes =
     AddProduitReactiveFormComponent,
     GestionUserReactiveFormComponent,
     DeleteProduitComponent,
-    ProduitsComponent
+    ProduitsComponent,
+    UpdateProduitReactiveFormComponent,
+    MenuAccueilComponent,
+    FicheProduitComponent,
+    FichePanierComponent,
+    AfficherPanierComponent
   ],
   imports: [
     BrowserModule,
@@ -94,9 +124,22 @@ const route: Routes =
     PanelMenuModule,
     ButtonModule,
     MultiSelectModule,
-    PickListModule
+    AutoCompleteModule,
+    MenubarModule,
+    PickListModule,
+    CarouselModule,
+    DataViewModule,
+    PanelModule,
+    DialogModule,
+    MenuModule,
+    TableModule,
+    PaginatorModule,
+    InputSwitchModule,
+    FileUploadModule,
+    HttpModule,
+    ContextMenuModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
