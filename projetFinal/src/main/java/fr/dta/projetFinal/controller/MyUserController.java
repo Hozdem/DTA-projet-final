@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.dta.projetFinal.model.MyUser; 	 	
+import fr.dta.projetFinal.model.MyUser;
 import fr.dta.projetFinal.service.MyUserService;
 
 @RestController
@@ -81,13 +80,5 @@ public class MyUserController
     public List<MyUser> updateListMyUser(@RequestBody List<MyUser> users)
 	{
 		return myUserService.updateMyUser(users);
-    }
-	
-
-	@CrossOrigin(origins = "*")
-	@DeleteMapping("/deleteMyUser/{id}")
-    public void deleteMyUser(@PathVariable long id)
-	{
-		myUserService.deleteById(id);
     }
 }
