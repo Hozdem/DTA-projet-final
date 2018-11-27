@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="ui-g-1 search-icon" id="divBtnAdmin">
-                        <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
+                        <button *ngIf="admin" pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
                     </div>
                 </div>
             </ng-template>
@@ -61,13 +61,13 @@
                             <div class="produit-detail">{{produit.titre}} sur {{produit.support}}</div>
                         </div>
                         <hr class="ui-widget-content" style="border-top:0">
-                        <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
+                        <div><button  pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button></div>
                     </p-panel>
                 </div>
             </ng-template>
         </p-dataView>
     </div>
-    <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    <p-dialog  header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
         width="250" (onAfterHide)="onDialogHide()">
         <div id="fenetreGestionAdmin" *ngIf="selectedProduit">
             <div>

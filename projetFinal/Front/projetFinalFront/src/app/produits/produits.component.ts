@@ -50,6 +50,7 @@ export class ProduitsComponent implements OnInit {
     Genres: []
   });
 
+  admin = false;
   constructor(private service: ProduitService, private router: Router, private listeProduitsService: ListeProduitsService, private formBuilder: FormBuilder) {
     this.support.push(this.listeProduitsService.getSupport());
     this.genre.push(this.listeProduitsService.getGenre());
@@ -57,6 +58,7 @@ export class ProduitsComponent implements OnInit {
 
   ngOnInit() {
     this.items = [];
+    this.admin = localStorage.getItem('roleVK')=== 'ROLE_ADMIN';
     this.service.allSupports().subscribe(s => {
       for (let value of Object.values(s)) {
           if (this.listeProduitsService.getSupport() === value) {
