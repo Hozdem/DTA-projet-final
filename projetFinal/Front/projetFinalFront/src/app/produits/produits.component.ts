@@ -5,7 +5,7 @@ import { SelectItem, MenuItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
-import { empty } from 'rxjs';
+import { empty, generate } from 'rxjs';
 import { FormGroup, FormBuilder, FormArrayName } from '@angular/forms';
 
 @Component({
@@ -37,13 +37,24 @@ export class ProduitsComponent implements OnInit {
 
   itemSelected: FormArrayName;
 
+  support: Array<string> = [];
+  genre: Array<string> = [];
+
+
   form = this.formBuilder.group({
     Supports: [],
     Genres: []
   });
 
   constructor(private service: ProduitService, private router: Router, private listeProduitsService: ListeProduitsService, private formBuilder: FormBuilder) {
-
+    if(this.listeProduitsService.getProduits()[0].support !== undefined){
+      console.log('SUPPORT');
+      this.support.push(this.listeProduitsService.getProduits()[0].support);
+    }
+    if(this.listeProduitsService.getProduits()[0].genres !== undefined){
+      console.log('GENRES');
+      this.genre.push(this.listeProduitsService.getProduits()[0].genres[0]);
+    }
   }
 
   ngOnInit() {
@@ -138,10 +149,6 @@ export class ProduitsComponent implements OnInit {
     this.searchProduits('', this.genre, this.support);
   }
 
-
-  support = [];
-  genre = [];
-
   test(type, value) {
     if (type === 'Supports') {
       this.pushArray(value,this.support);
@@ -150,7 +157,7 @@ export class ProduitsComponent implements OnInit {
     }
   }
 
-  pushArray(value: string,array: any[]){
+  pushArray(value: string,array: string[]){
     if (array.includes(value)) {
       let idx = this.support.indexOf(value);
       array.splice(idx, 1);
