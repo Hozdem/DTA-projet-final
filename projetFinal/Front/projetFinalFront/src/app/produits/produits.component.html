@@ -61,7 +61,7 @@
                             <div class="produit-detail">{{produit.titre}} sur {{produit.support}}</div>
                         </div>
                         <hr class="ui-widget-content" style="border-top:0">
-                        <div><button  pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button></div>
+                        <div><button *ngIf="admin"  pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button></div>
                     </p-panel>
                 </div>
             </ng-template>
