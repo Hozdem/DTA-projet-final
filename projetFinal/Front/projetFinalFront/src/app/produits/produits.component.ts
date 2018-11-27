@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Produit } from '../produit';
 import { ProduitService } from '../produit.service';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MenuItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
 import { empty } from 'rxjs';
-import { MenuItem } from "primeng/api";
 import {PanelModule} from 'primeng/panel';
 import {MenuModule} from 'primeng/menu';
 import {CheckboxModule} from 'primeng/checkbox';
+import { FormGroup, FormBuilder, FormArrayName } from '@angular/forms';
 
 @Component({
   selector: 'app-produits',
@@ -17,8 +17,7 @@ import {CheckboxModule} from 'primeng/checkbox';
   styleUrls: ['./produits.component.css']
 })
 
-export class ProduitsComponent implements OnInit
-{
+export class ProduitsComponent implements OnInit {
 
   produits: Array<Produit> = [];
 
@@ -36,22 +35,44 @@ export class ProduitsComponent implements OnInit
 
   activated: boolean;
 
-  supports: string[];
+  items: MenuItem[];
+  itemTmp = [];
 
-  constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
-  { 
+  form = this.formBuilder.group({
+    Supports: [],
+    Genres: []
+  });
+
+  constructor(private service: ProduitService, private router: Router, private listeProduitsService: ListeProduitsService, private formBuilder: FormBuilder) {
 
   }
 
-  ngOnInit()
-  {
-    this.supports = [];
+  ngOnInit() {
+    this.items = [];
 
     this.service.allSupports().subscribe(s => {
-      this.supports = s;
+      for (let value of Object.values(s)) {
+        this.itemTmp.push({ label: value });
+      }
+
+      this.items = [{
+        label: 'Supports',
+        items: this.itemTmp
+      }];
+
+      this.service.allGenres().subscribe(g => {
+        this.itemTmp = [];
+        for (let value of Object.values(g)) {
+          this.itemTmp.push({ label: value });
+        }
+
+        this.items.push({
+          label: 'Genres',
+          items: this.itemTmp
+        });
+      });
+
     });
-
-
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
@@ -77,8 +98,7 @@ export class ProduitsComponent implements OnInit
     event.preventDefault();
   }
 
-  onSortChange(event)
-  {
+  onSortChange(event) {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -91,46 +111,52 @@ export class ProduitsComponent implements OnInit
     }
   }
 
-  onDialogHide()
-  {
+  onDialogHide() {
     this.selectedProduit = null;
   }
 
-  onClickDetails(id:number)
-  {
-    this.router.navigate(['/ficheProduit/'+id]);
+  onClickDetails(id: number) {
+    this.router.navigate(['/ficheProduit/' + id]);
   }
 
-  onClickModifProduit()
-  {
+  onClickModifProduit() {
     this.router.navigate(['/updateProduit/' + this.selectedProduit.id]);
   }
 
-  onClickDeleteProduit()
-  {
+  onClickDeleteProduit() {
     let list = this.listeProduitsService.getProduits();
-    list = list.filter(item => item != this.selectedProduit );
+    list = list.filter(item => item != this.selectedProduit);
     this.listeProduitsService.setProduits(list);
     this.router.navigate(['deleteProduit/' + this.selectedProduit.id]);
   }
 
-  eventActivatedProduit()
-  {
+  eventActivatedProduit() {
     this.selectedProduit.activated = !this.selectedProduit.activated;
     this.service.updateProduit(this.selectedProduit);
   }
 
-  produitSearchSupport(value: string) {
-    this.service.searchProduit('', [], [value]).subscribe(p => {
-      this.listeProduitsService.setProduits(p);
-      this.router.navigate(['produit']);
-    })
+  submit() {
+    this.searchProduits('', this.genre, this.support);
   }
 
-  produitSearchGenre(value: string) {
-    this.service.searchProduit('', [value], []).subscribe(p => {
-      this.listeProduitsService.setProduits(p);
-      this.router.navigate(['produit']);
-    })
+
+  support = [];
+  genre = [];
+
+  test(type, value) {
+    if (type === 'Supports') {
+      this.pushArray(value,this.support);
+    } else {
+      this.pushArray(value,this.genre);
+    }
+  }
+
+  pushArray(value: string,array: any[]){
+    if (array.includes(value)) {
+      let idx = this.support.indexOf(value);
+      array.splice(idx, 1);
+    } else {
+      array.push(value);
+    }
   }
 }

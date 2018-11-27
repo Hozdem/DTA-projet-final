@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { UserService } from '../user.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { MyUser } from '../my-user';
+import { LoginService } from '../login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu-reactive-form',
@@ -10,6 +12,8 @@ import { MyUser } from '../my-user';
   styleUrls: ['./menu-reactive-form.component.css']
 })
 export class MenuReactiveFormComponent implements OnInit {
+
+
 
   menu: MenuItem[];
   idUser: number;
@@ -21,10 +25,16 @@ export class MenuReactiveFormComponent implements OnInit {
   urlProduit: string = '/produit';
   urlMonCompte: string = '/updateUser';
   urlDeconnexion: string = '/deconnexion';
-  constructor(private serviceUser: UserService) { }
+
+  constructor(private serviceUser: UserService, private loginService: LoginService) { }
 
   ngOnInit() {
-      let visiteur = false;
+    this.initMenu();
+    this.loginService.getLogInEvent().subscribe(() => this.initMenu());
+  }
+  
+  initMenu() {
+    let visiteur = false;
       if (localStorage.getItem("loginVK") !== null && localStorage.getItem("passwordVK") !== null) {
         if (localStorage.getItem("roleVK") !== null) {
           // recuperer l'id pour la modification de luser et tester si il est connecte
@@ -53,10 +63,10 @@ export class MenuReactiveFormComponent implements OnInit {
                   this.menu = [
                     {
                       label: 'ADMIN', items: [
-                        { label: this.labelProduit, url: this.urlProduit },
-                        { label: this.labelMonCompte, url: this.urlMonCompte },
-                        { label: 'Administration', url: 'administration' },
-                        { label: this.labelDeconnexion, url: this.urlDeconnexion }
+                        { label: this.labelProduit, routerLink: this.urlProduit },
+                        { label: this.labelMonCompte, routerLink: this.urlMonCompte },
+                        { label: 'Administration', routerLink: 'administration' },
+                        { label: this.labelDeconnexion, routerLink: this.urlDeconnexion/*, command:() => { this.disconnect(); this.initMenu() }*/ }
                       ]
                     }
                   ];
@@ -75,5 +85,9 @@ export class MenuReactiveFormComponent implements OnInit {
           { label: 'Mon profil', items: [{ label: this.labelProduit, url: this.urlProduit }, { label: 'Inscription', url: '/addUser' }, { label: 'Connexion', url: '/connexion' }] }
         ];
       }
-    }
+  }
+
+  disconnect() {
+    localStorage.removeItem("loginVK");
+  }
 }
