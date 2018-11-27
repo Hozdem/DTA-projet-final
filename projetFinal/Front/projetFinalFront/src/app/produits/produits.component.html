@@ -1,18 +1,15 @@
 <div class="ui-g">
     <!--
-    
-                <p-panel header="Par Support:" class="ui-g-2-6">
-                    <p-checkbox *ngFor="let support of supports" name="{{support}}" value="{{support}}" label="{{support}}" [(ngModel)]="selectedSupports"></p-checkbox>
-                    <br>
-                    
-                </p-panel>
-                <p-panel header="Par Genre:" class="ui-g-2-6"> </p-panel>
-        
-
+        <p-panel header="Par Support:" class="ui-g-2-6">
+            <p-checkbox *ngFor="let support of supports" name="{{support}}" value="{{support}}" label="{{support}}" [(ngModel)]="selectedSupports"></p-checkbox>
+            <br>
+            
+        </p-panel>
+        <p-panel header="Par Genre:" class="ui-g-2-6"> </p-panel>
     -->
 
     <!--<p-panel id="panelProduit" header="Filtrer les produits" class="ui-g-3">-->
-        <form [formGroup]="form" (ngSubmit)="submit()">
+        <form id="panelProduit" [formGroup]="form" (ngSubmit)="submit()" class="ui-g-3">
             <p-panel header="{{item.label}}" *ngFor="let item of items" class="ui-g-2-6">
             <!--<ul *ngFor="let item of items"> -->
                 <!-- {{item.label}} -->
