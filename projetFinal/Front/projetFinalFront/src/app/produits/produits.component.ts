@@ -135,20 +135,27 @@ export class ProduitsComponent implements OnInit {
   }
 
   submit() {
-    this.searchProduits('',this.genre,this.support);
+    this.searchProduits('', this.genre, this.support);
   }
 
 
-  support=[];
-  genre=[];
+  support = [];
+  genre = [];
+
   test(type, value) {
-    console.log(type+' '+value);
     if (type === 'Supports') {
-      this.support.push(value);
+      this.pushArray(value,this.support);
     } else {
-      this.genre.push(value);
+      this.pushArray(value,this.genre);
     }
-    console.log(this.support);
-    console.log(this.genre);
+  }
+
+  pushArray(value: string,array: any[]){
+    if (array.includes(value)) {
+      let idx = this.support.indexOf(value);
+      array.splice(idx, 1);
+    } else {
+      array.push(value);
+    }
   }
 }
