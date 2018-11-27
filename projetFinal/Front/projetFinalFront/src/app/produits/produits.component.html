@@ -1,5 +1,5 @@
 <div class="ui-g">
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="ui-g-3" id="panelProduit">
         <p-panel header="{{item.label}}" *ngFor="let item of items" class="ui-g-2-6">
             <label *ngFor="let value of item.items">
                 <input *ngIf="value.valeur" type="checkbox" (ngModel)="true" (change)="test(item.label,value.label)" checked>
