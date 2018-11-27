@@ -107,8 +107,7 @@ const route: Routes =
     MenuAccueilComponent,
     FicheProduitComponent,
     FichePanierComponent,
-    AfficherPanierComponent,
-    CommandesComponent
+    AfficherPanierComponent
   ],
   imports: [
     BrowserModule,
