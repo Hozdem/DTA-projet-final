@@ -19,3 +19,8 @@ img
 {
     margin: 10px; 
 }
+
+#panelProduit
+{
+    width:auto; height:auto;
+}

@@ -1,18 +1,28 @@
 <div class="ui-g">
-    <div class="ui-g-2">
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <input type="submit">
-            <ul *ngFor="let item of items">
-                {{item.label}}
-                <label *ngFor="let value of item.items">
-                    <br>
-                    <input type="checkbox" [formControlName]="item.label" (change)="test(item.label,value.label)">
-                    {{value.label}}
+    <!--
+        <p-panel header="Par Support:" class="ui-g-2-6">
+            <p-checkbox *ngFor="let support of supports" name="{{support}}" value="{{support}}" label="{{support}}" [(ngModel)]="selectedSupports"></p-checkbox>
+            <br>
+            
+        </p-panel>
+        <p-panel header="Par Genre:" class="ui-g-2-6"> </p-panel>
+    -->
 
+    <!--<p-panel id="panelProduit" header="Filtrer les produits" class="ui-g-3">-->
+        <form id="panelProduit" [formGroup]="form" (ngSubmit)="submit()" class="ui-g-3">
+            <p-panel header="{{item.label}}" *ngFor="let item of items" class="ui-g-2-6">
+            <!--<ul *ngFor="let item of items"> -->
+                <!-- {{item.label}} -->
+                <label *ngFor="let value of item.items">
+                    <input type="checkbox" [formControlName]="item.label" (change)="test(item.label,value.label)">{{value.label}}<br>
                 </label>
-            </ul>
+            </p-panel>
+            <!-- </ul> -->
+            <button pButton type="submit" label='Valider' class='ui-button-raised droite'></button>
         </form>
-    </div>
+    <!--</p-panel>-->
+
+
     <div class="ui-g-9">
         <p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10" [totalRecords]="100"
             [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre" [sortField]="sortField"
@@ -75,9 +85,6 @@
 
         </p-dataView>
     </div>
-
-
-
 
 
 
