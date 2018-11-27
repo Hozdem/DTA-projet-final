@@ -33,7 +33,6 @@ public class ProduitService {
 		}
 		else
 		{
-			System.out.println("objet non trouvé en base de donnée");
 			return null;
 		}
 	}
