@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
 import { empty, generate } from 'rxjs';
+import {PanelModule} from 'primeng/panel';
+import {MenuModule} from 'primeng/menu';
+import {CheckboxModule} from 'primeng/checkbox';
 import { FormGroup, FormBuilder, FormArrayName } from '@angular/forms';
 
 @Component({
