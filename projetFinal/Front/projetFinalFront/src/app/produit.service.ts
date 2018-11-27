@@ -30,7 +30,7 @@ export class ProduitService {
   }
 
   allSupports() {
-    return this.http.get(this.url + '/allSupports', this.httpOptions);
+    return this.http.get<string[]>(this.url + '/allSupports', this.httpOptions);
   }
 
   getAllProduit() {

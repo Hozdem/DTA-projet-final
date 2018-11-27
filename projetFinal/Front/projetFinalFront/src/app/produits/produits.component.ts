@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
 import { empty } from 'rxjs';
+import { MenuItem } from "primeng/api";
+import {PanelModule} from 'primeng/panel';
+import {MenuModule} from 'primeng/menu';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @Component({
   selector: 'app-produits',
@@ -32,6 +36,8 @@ export class ProduitsComponent implements OnInit
 
   activated: boolean;
 
+  supports: string[];
+
   constructor(private service: ProduitService, private router: Router, private activatedRoute: ActivatedRoute, private listeProduitsService: ListeProduitsService)
   { 
 
@@ -39,6 +45,13 @@ export class ProduitsComponent implements OnInit
 
   ngOnInit()
   {
+    this.supports = [];
+
+    this.service.allSupports().subscribe(s => {
+      this.supports = s;
+    });
+
+
     this.sortOptions = [
       { label: 'Tri alphabétique croissant', value: '!titre' },
       { label: 'Tri alphabétique décroissant', value: 'titre' },
@@ -105,5 +118,19 @@ export class ProduitsComponent implements OnInit
   {
     this.selectedProduit.activated = !this.selectedProduit.activated;
     this.service.updateProduit(this.selectedProduit);
+  }
+
+  produitSearchSupport(value: string) {
+    this.service.searchProduit('', [], [value]).subscribe(p => {
+      this.listeProduitsService.setProduits(p);
+      this.router.navigate(['produit']);
+    })
+  }
+
+  produitSearchGenre(value: string) {
+    this.service.searchProduit('', [value], []).subscribe(p => {
+      this.listeProduitsService.setProduits(p);
+      this.router.navigate(['produit']);
+    })
   }
 }

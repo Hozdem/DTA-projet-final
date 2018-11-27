@@ -1,75 +1,88 @@
-<p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
-    <p-header>
-        <h1>LISTE DES PRODUITS</h1>
-        <div class="ui-helper-clearfix">
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-6 ui-lg-3">
-                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par:" (onChange)="onSortChange($event)" [autoWidth]="true" [style]="{'min-width':'15em'}"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align:right">
-                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                </div>
-            </div>
-        </div>
-    </p-header>
 
-    <ng-template let-produit pTemplate="listItem" >
-        <div class="ui-g" style="padding: 0em;border-bottom: 1px solid #292929">
-            <div class="ui-g-11" (click)="onClickDetails(produit.id)">
-                <div class="ui-g-12 ui-md-4" style="text-align:center;">
-                    <img src={{produit.lienImage}}>
-                </div>
-                <div class="ui-g-12 ui-md-8 car-details">
-                    <div class="ui-g">
-                        <div class="ui-g-2 ui-sm-6">Titre: </div>
-                        <div class="ui-g-10 ui-sm-6"><b>{{produit.titre}}</b></div>
+<body class="ui-g">
     
-                        <div class="ui-g-2 ui-sm-6">Support: </div>
-                        <div class="ui-g-10 ui-sm-6"><b>{{produit.support}}</b></div>
-    
-                        <div class="ui-g-2 ui-sm-6">Date de sortie: </div>
-                        <div class="ui-g-10 ui-sm-6"><b>{{produit.dateSortie | date:'dd/MM/yyyy'}}</b></div>
-    
-                        <div class="ui-g-2 ui-sm-6">Prix de l'article: </div>
-                        <div class="ui-g-10 ui-sm-6"><b>{{produit.prixProd.toFixed(2)}}€</b></div>
+    <p-panel header="Filtrer les produits" class="ui-g-2">
+            <p-panel header="Par Support:" class="ui-g-2-6">
+                <p-checkbox *ngFor="let support of supports" name="{{support}}" value="{{support}}" label="{{support}}" [(ngModel)]="selectedSupports"></p-checkbox>
+                <br>
+                <!-- TODO FAIRE LA DEUXIEME PARTIE -->
+            </p-panel>
+            <p-panel header="Par Genre:" class="ui-g-2-6"> </p-panel>
+    </p-panel>
+
+    <p-dataView #dv [value]="getProduits()" class="ui-g-10" [paginator]="true" [rows]="10"  [totalRecords]="100" [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre"  [sortField]="sortField" [sortOrder]="sortOrder">
+        <p-header>
+            <h1>LISTE DES PRODUITS</h1>
+            <div class="ui-helper-clearfix">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier par:" (onChange)="onSortChange($event)" [autoWidth]="true" [style]="{'min-width':'15em'}"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align:right">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                     </div>
                 </div>
             </div>
-            
-            <div class="ui-g-1 search-icon" id="divBtnAdmin">
-                <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
-            </div>
-        </div>
-    </ng-template>
-
-    <ng-template let-produit pTemplate="gridItem">
-        <div style="padding:.5em" class="ui-g-12 ui-md-3">
-            <p-panel [header]="produit.titre" [style]="{'text-align':'center'}">
-                <div (click)="onClickDetails()">
-                    <img src={{produit.lienImage}} width="60">
-                    <div class="produit-detail">{{produit.titre}} sur {{produit.support}}</div>
+        </p-header>
+    
+        <ng-template let-produit pTemplate="listItem" >
+            <div class="ui-g" style="padding: 0em;border-bottom: 1px solid #292929">
+                <div class="ui-g-11" (click)="onClickDetails(produit.id)">
+                    <div class="ui-g-12 ui-md-4" style="text-align:center;">
+                        <img src={{produit.lienImage}}>
+                    </div>
+                    <div class="ui-g-12 ui-md-8 car-details">
+                        <div class="ui-g">
+                            <div class="ui-g-2 ui-sm-6">Titre: </div>
+                            <div class="ui-g-10 ui-sm-6"><b>{{produit.titre}}</b></div>
+        
+                            <div class="ui-g-2 ui-sm-6">Support: </div>
+                            <div class="ui-g-10 ui-sm-6"><b>{{produit.support}}</b></div>
+        
+                            <div class="ui-g-2 ui-sm-6">Date de sortie: </div>
+                            <div class="ui-g-10 ui-sm-6"><b>{{produit.dateSortie | date:'dd/MM/yyyy'}}</b></div>
+        
+                            <div class="ui-g-2 ui-sm-6">Prix de l'article: </div>
+                            <div class="ui-g-10 ui-sm-6"><b>{{produit.prixProd.toFixed(2)}}€</b></div>
+                        </div>
+                    </div>
                 </div>
-                <hr class="ui-widget-content" style="border-top:0">
-                <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
-            </p-panel>
+                
+                <div class="ui-g-1 search-icon" id="divBtnAdmin">
+                    <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
+                </div>
+            </div>
+        </ng-template>
+    
+        <ng-template let-produit pTemplate="gridItem">
+            <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                <p-panel [header]="produit.titre" [style]="{'text-align':'center'}">
+                    <div (click)="onClickDetails()">
+                        <img src={{produit.lienImage}} width="60">
+                        <div class="produit-detail">{{produit.titre}} sur {{produit.support}}</div>
+                    </div>
+                    <hr class="ui-widget-content" style="border-top:0">
+                    <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
+                </p-panel>
+            </div>
+        </ng-template>
+    
+    </p-dataView>
+        
+    <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="250" (onAfterHide)="onDialogHide()">
+        <div id="fenetreGestionAdmin" *ngIf="selectedProduit">
+            <div>
+                <button pButton label="Modifier" type="button" icon="pi pi-pencil" (click)="onClickModifProduit()"></button>
+            </div>
+    
+            <div>
+                <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="onClickDeleteProduit()"></button>
+            </div>
+    
+            <div >
+                {{activated}}
+                <p-inputSwitch (click)="eventActivatedProduit()" [(ngModel)]="activated"></p-inputSwitch>
+            </div>       
         </div>
-    </ng-template>
-
-</p-dataView>
-
-<p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="250" (onAfterHide)="onDialogHide()">
-    <div id="fenetreGestionAdmin" *ngIf="selectedProduit">
-        <div>
-            <button pButton label="Modifier" type="button" icon="pi pi-pencil" (click)="onClickModifProduit()"></button>
-        </div>
-
-        <div>
-            <button pButton label="Supprimer" type="button" icon="pi pi-trash" (click)="onClickDeleteProduit()"></button>
-        </div>
-
-        <div >
-            {{activated}}
-            <p-inputSwitch (click)="eventActivatedProduit()" [(ngModel)]="activated"></p-inputSwitch>
-        </div>       
-    </div>
-</p-dialog>
+    </p-dialog>
+</body>
