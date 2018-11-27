@@ -1,31 +1,13 @@
 <div class="ui-g">
-    <!--
-    
-                <p-panel header="Par Support:" class="ui-g-2-6">
-                    <p-checkbox *ngFor="let support of supports" name="{{support}}" value="{{support}}" label="{{support}}" [(ngModel)]="selectedSupports"></p-checkbox>
-                    <br>
-                    
-                </p-panel>
-                <p-panel header="Par Genre:" class="ui-g-2-6"> </p-panel>
-        
-
-    -->
-
-    <!--<p-panel id="panelProduit" header="Filtrer les produits" class="ui-g-3">-->
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <p-panel header="{{item.label}}" *ngFor="let item of items" class="ui-g-2-6">
-            <!--<ul *ngFor="let item of items"> -->
-                <!-- {{item.label}} -->
-                <label *ngFor="let value of item.items">
-                    <input type="checkbox" [formControlName]="item.label" (change)="test(item.label,value.label)">{{value.label}}<br>
-                </label>
-            </p-panel>
-            <!-- </ul> -->
-            <button pButton type="submit" label='Valider' class='ui-button-raised droite'></button>
-        </form>
-    <!--</p-panel>-->
-
-
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <p-panel header="{{item.label}}" *ngFor="let item of items" class="ui-g-2-6">
+            <label *ngFor="let value of item.items">
+                <input *ngIf="value.valeur" type="checkbox" (ngModel)="true" (change)="test(item.label,value.label)" checked>
+                <input *ngIf="!value.valeur" type="checkbox" (ngModel)="true" (change)="test(item.label,value.label)">{{value.label}}<br>
+            </label>
+        </p-panel>
+        <button pButton type="submit" label='Valider' class='ui-button-raised droite'></button>
+    </form>
     <div class="ui-g-9">
         <p-dataView #dv [value]="getProduits()" [paginator]="true" [rows]="10" [totalRecords]="100"
             [rowsPerPageOptions]="[5,10,20,30]" paginatorPosition="both" filterBy="titre" [sortField]="sortField"
@@ -66,13 +48,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="ui-g-1 search-icon" id="divBtnAdmin">
                         <button pButton type="button" icon="pi pi-cog" (click)="selectProduit($event, produit)"></button>
                     </div>
                 </div>
             </ng-template>
-
             <ng-template let-produit pTemplate="gridItem">
                 <div style="padding:.5em" class="ui-g-12 ui-md-3">
                     <p-panel [header]="produit.titre" [style]="{'text-align':'center'}">
@@ -85,12 +65,8 @@
                     </p-panel>
                 </div>
             </ng-template>
-
         </p-dataView>
     </div>
-
-
-
     <p-dialog header="Gestion Produit" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
         width="250" (onAfterHide)="onDialogHide()">
         <div id="fenetreGestionAdmin" *ngIf="selectedProduit">

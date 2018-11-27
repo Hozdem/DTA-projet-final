@@ -4,6 +4,7 @@ import { ProduitService } from '../produit.service';
 import { ListeProduitsService } from '../liste-produits.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'protractor';
+import { Produit } from '../produit';
 
 @Component({
   selector: 'app-menu-accueil',
@@ -20,7 +21,7 @@ export class MenuAccueilComponent implements OnInit {
 
     this.service.allSupports().subscribe(s => {
       for (let value of Object.values(s)) {
-        this.itemTmp.push({ label: value, command: (onClick) => this.searchSupport(value)});
+        this.itemTmp.push({ label: value, command: (onClick) => { this.searchSupport(value)}});
       }
 
       this.items = [{
@@ -31,7 +32,7 @@ export class MenuAccueilComponent implements OnInit {
       this.service.allGenres().subscribe(g => {
         this.itemTmp = [];
         for (let value of Object.values(g)) {
-          this.itemTmp.push({ label: value , command: (onClick) => this.searchGenre(value)});
+          this.itemTmp.push({ label: value , command: (onClick) => { this.searchGenre(value)}});
         }
 
         this.items.push({
@@ -45,6 +46,7 @@ export class MenuAccueilComponent implements OnInit {
   searchSupport(value: string) {
     this.service.searchProduit('', [], [value]).subscribe(p => {
       this.listeProduitsService.setProduits(p);
+      this.listeProduitsService.setSupport(value);
       this.route.navigate(['produit']);
     })
   }
@@ -52,6 +54,8 @@ export class MenuAccueilComponent implements OnInit {
   searchGenre(value: string) {
     this.service.searchProduit('', [value], []).subscribe(p => {
       this.listeProduitsService.setProduits(p);
+      this.listeProduitsService.setGenre(value);
+      this.listeProduitsService.setSupport('');
       this.route.navigate(['produit']);
     })
   }

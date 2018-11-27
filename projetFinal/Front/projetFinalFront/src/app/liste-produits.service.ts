@@ -7,6 +7,8 @@ import { Produit } from './produit';
 export class ListeProduitsService {
 
   produits: Produit[];
+  genre: string;
+  support: string;
   constructor() { }
 
   setProduits(produits: Produit[]){
@@ -15,5 +17,25 @@ export class ListeProduitsService {
 
   getProduits(): Produit[]{
     return this.produits;
+  }
+
+  getGenre()
+  {
+    return this.genre;
+  }
+
+  setGenre(s: string)
+  {
+    this.genre = s;
+  }
+
+  getSupport()
+  {
+    return this.support;
+  }
+
+  setSupport(s: string)
+  {
+    this.support = s;
   }
 }

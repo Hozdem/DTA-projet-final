@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { promise } from 'protractor';
 import { ListeProduitsService } from '../liste-produits.service';
 import { empty, generate } from 'rxjs';
-import {PanelModule} from 'primeng/panel';
-import {MenuModule} from 'primeng/menu';
-import {CheckboxModule} from 'primeng/checkbox';
+import { PanelModule } from 'primeng/panel';
+import { MenuModule } from 'primeng/menu';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FormGroup, FormBuilder, FormArrayName } from '@angular/forms';
 
 @Component({
@@ -43,6 +43,7 @@ export class ProduitsComponent implements OnInit {
   support: Array<string> = [];
   genre: Array<string> = [];
 
+  testBool = true;
 
   form = this.formBuilder.group({
     Supports: [],
@@ -50,22 +51,20 @@ export class ProduitsComponent implements OnInit {
   });
 
   constructor(private service: ProduitService, private router: Router, private listeProduitsService: ListeProduitsService, private formBuilder: FormBuilder) {
-    if(this.listeProduitsService.getProduits()[0].support !== undefined){
-      console.log('SUPPORT');
-      this.support.push(this.listeProduitsService.getProduits()[0].support);
-    }
-    if(this.listeProduitsService.getProduits()[0].genres !== undefined){
-      console.log('GENRES');
-      this.genre.push(this.listeProduitsService.getProduits()[0].genres[0]);
-    }
+    this.support.push(this.listeProduitsService.getSupport());
+    this.genre.push(this.listeProduitsService.getGenre());
   }
 
   ngOnInit() {
     this.items = [];
-
     this.service.allSupports().subscribe(s => {
       for (let value of Object.values(s)) {
-        this.itemTmp.push({ label: value });
+          if (this.listeProduitsService.getSupport() === value) {
+            this.itemTmp.push({ label: value, valeur: true });
+          }
+          else {
+            this.itemTmp.push({ label: value, valeur: false });
+          }
       }
 
       this.items = [{
@@ -76,7 +75,12 @@ export class ProduitsComponent implements OnInit {
       this.service.allGenres().subscribe(g => {
         this.itemTmp = [];
         for (let value of Object.values(g)) {
-          this.itemTmp.push({ label: value });
+            if (value === this.listeProduitsService.getGenre()) {
+              this.itemTmp.push({ label: value, valeur: true });
+            }
+            else {
+              this.itemTmp.push({ label: value, valeur: false });
+            }
         }
 
         this.items.push({
@@ -97,6 +101,7 @@ export class ProduitsComponent implements OnInit {
     this.service.searchProduit(titre, genres, supports).subscribe(
       produits => {
         this.listeProduitsService.setProduits(produits);
+
       });
   }
 
@@ -154,13 +159,14 @@ export class ProduitsComponent implements OnInit {
 
   test(type, value) {
     if (type === 'Supports') {
-      this.pushArray(value,this.support);
+      this.pushArray(value, this.support);
     } else {
-      this.pushArray(value,this.genre);
+      this.pushArray(value, this.genre);
     }
+    console.log(this.genre+' '+this.support);
   }
 
-  pushArray(value: string,array: string[]){
+  pushArray(value: string, array: string[]) {
     if (array.includes(value)) {
       let idx = this.support.indexOf(value);
       array.splice(idx, 1);
